@@ -130,6 +130,16 @@ video::-webkit-media-controls-download-button {
 video::-webkit-media-controls-remote-playback-button {
   display: none !important;
 }
+  /* remove menu extra no safari */
+video::-internal-media-controls-download-button{
+  display:none !important;
+}
+
+/* impede seleção */
+video{
+  user-select:none;
+  -webkit-user-select:none;
+}
 .vsl-box:hover {
   border-color: rgba(192,57,43,0.8);
   box-shadow: 0 0 60px rgba(192,57,43,0.4), 0 20px 60px rgba(0,0,0,0.7);
@@ -611,7 +621,7 @@ footer a { color: #666; text-decoration: underline; }
             <div class="tvid-ph-icon"></div>
             <div class="tvid-ph-text"></div>
           </div>
-          <video src="../video/gelvolumetrao/video1.mp4"></video>
+         <video src="../video/gelvolumetrao/video1.mp4" playsinline preload="metadata" controls controlsList="nodownload nofullscreen noremoteplayback" disablePictureInPicture></video>
           <div class="tvid-overlay">
             <div class="tvid-stars">★★★★★</div>
             <div class="tvid-name">Antonio F.</div>
@@ -631,7 +641,7 @@ footer a { color: #666; text-decoration: underline; }
             <div class="tvid-ph-icon"></div>
             <div class="tvid-ph-text"></div>
           </div>
-          <video src="../video/gelvolumetrao/video2.mp4"></video>
+            <video src="../video/gelvolumetrao/video2.mp4" playsinline preload="metadata" controls controlsList="nodownload nofullscreen noremoteplayback" disablePictureInPicture></video>
           <div class="tvid-overlay">
             <div class="tvid-stars">★★★★★</div>
             <div class="tvid-name">Diogo G.</div>
@@ -651,7 +661,7 @@ footer a { color: #666; text-decoration: underline; }
              <div class="tvid-ph-icon"></div>
             <div class="tvid-ph-text"></div>
           </div>
-          <video src="../video/gelvolumetrao/video3.mp4"></video>
+          <video src="../video/gelvolumetrao/video3.mp4" playsinline preload="metadata" controls controlsList="nodownload nofullscreen noremoteplayback" disablePictureInPicture></video>
           <div class="tvid-overlay">
             <div class="tvid-stars">★★★★★</div>
             <div class="tvid-name">Aline C.</div>

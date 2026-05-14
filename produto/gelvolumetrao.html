@@ -243,7 +243,13 @@ h2.stitle span { color: var(--primary); }
 .tcard { background: var(--surface2); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
 .tvid-wrap { position: relative; width: 100%; padding-top: 177.78%; /* 9:16 portrait */ background: #000; }
 .tvid-wrap video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
-
+.tvvid-box {
+  position: relative; width: 100%; padding-top: 56.25%;
+  border-radius: 16px; overflow: hidden; cursor: pointer;
+  border: 2px solid rgba(192,57,43,0.35);
+  box-shadow: 0 0 40px rgba(192,57,43,0.25), 0 20px 60px rgba(0,0,0,0.6);
+  transition: border-color .3s, box-shadow .3s;
+}
 .tvid-overlay {
   position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 45%);

@@ -418,39 +418,25 @@ footer a { color: #666; text-decoration: underline; }
   <!-- VSL -->
   <div class="vsl-wrap">
     <div class="vsl-label">▶ Assista antes de comprar</div>
-    <div class="vsl-box" onclick="document.getElementById('vsl-modal').classList.add('active')" role="button" aria-label="Assistir vídeo de apresentação">
-      <div class="vsl-thumb">
-        <div class="vsl-thumb-pattern"></div>
-        <div class="vsl-play">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-        <div class="vsl-caption">
-           <video width="560" height="315" src="../video/gelvolumetrao/vsl.mp4"></video>
-         <strong>Descubra como o Volumetrão funciona</strong>
+    <div class="tcard">
+        <div class="tvid-wrap">
+            <div class="tvid-placeholder">
+            <div class="tvid-ph-pattern"></div>
+            <div class="tvid-ph-icon"></div>
+            <div class="tvid-ph-text"></div>
+            </div>
+      <video width="560" height="315" src="../video/gelvolumetrao/vsl.mp4"></video>
+      <strong>Descubra como o Volumetrão funciona</strong>
+            <div class="tvid-overlay">
+            </div>
+            <div class="tvid-play-btn" onclick="toggleVideo(this)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+            </div>
         </div>
       </div>
       <div class="vsl-timer">00:55</div>
     </div>
-  </div>
-
-   <div class="tcard">
-        <div class="tvid-wrap">
-          <div class="tvid-placeholder">
-            <div class="tvid-ph-pattern"></div>
-            <div class="tvid-ph-icon"></div>
-            <div class="tvid-ph-text"></div>
-          </div>
-          <video src="../video/gelvolumetrao/video1.mp4"></video>
-          <div class="tvid-overlay">
-            <div class="tvid-stars">★★★★★</div>
-            <div class="tvid-name">Antonio F.</div>
-            <div class="tvid-loc">São Paulo, SP · Cliente verificado</div>
-          </div>
-          <div class="tvid-play-btn" onclick="toggleVideo(this)">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-          </div>
-        </div>
-      </div>
+        
 
   <a href="#pedido" class="cta-btn">🚀 Quero Meu Volumetrão Agora</a>
   <p class="hero-note">🔒 Compra segura &nbsp;·&nbsp; Entrega discreta &nbsp;·&nbsp; Pagamento 100% seguro</p>

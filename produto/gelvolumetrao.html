@@ -91,12 +91,32 @@ body { font-family: 'Open Sans', sans-serif; background: var(--bg); color: var(-
   content: ''; flex: 1; max-width: 60px;
   height: 1px; background: rgba(241,196,15,0.35);
 }
-.vsl-box {
-  position: relative; width: 100%; padding-top: 56.25%;
-  border-radius: 16px; overflow: hidden; cursor: pointer;
-  border: 2px solid rgba(192,57,43,0.35);
-  box-shadow: 0 0 40px rgba(192,57,43,0.25), 0 20px 60px rgba(0,0,0,0.6);
-  transition: border-color .3s, box-shadow .3s;
+.vsl-box{
+  position:relative;
+  width:100%;
+  padding-top:56.25%;
+  border-radius:16px;
+  overflow:hidden;
+  border:2px solid rgba(192,57,43,0.35);
+  box-shadow:0 0 40px rgba(192,57,43,0.25), 0 20px 60px rgba(0,0,0,0.6);
+  background:#000;
+}
+.vsl-box video{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border:none;
+  outline:none;
+}
+video::-webkit-media-controls-download-button {
+  display:none;
+}
+
+video::-webkit-media-controls-enclosure {
+  overflow:hidden;
 }
 .vsl-box:hover {
   border-color: rgba(192,57,43,0.8);
@@ -416,29 +436,31 @@ footer a { color: #666; text-decoration: underline; }
   <h1>Seu Tamanho. <span>Amplificado.</span><br>Sua Confiança. <span>Transformada.</span></h1>
   <p class="sub">O gel vasodilatador que <strong>aumenta o fluxo sanguíneo local</strong>, promovendo mais volume, mais espessura e ereções mais firmes — com a segurança de ativos 100% naturais.</p>
   <!-- VSL -->
-  <div class="vsl-wrap">
-    <div class="vsl-label">▶ Assista antes de comprar</div>
-    <div class="vsl-box" onclick="document.getElementById('vsl-modal').classList.add('active')" role="button" aria-label="Assistir vídeo de apresentação">
-      <div class="vsl-thumb">
-        <div class="vsl-thumb-pattern"></div>
-        <div class="vsl-play">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-        <div class="vsl-caption">
-          <strong>Descubra como o Volumetrão funciona</strong>
-        </div>
-      </div>
-      <div class="vsl-timer">00:55</div>
-    </div>
-  </div>
+<div class="vsl-wrap">
+  <div class="vsl-label">▶ Assista antes de comprar</div>
 
-  <!-- Modal VSL -->
-  <div id="vsl-modal" class="vsl-modal-overlay" onclick="if(event.target===this){this.classList.remove('active');document.getElementById('vsl-iframe').src=document.getElementById('vsl-iframe').src;}">
-    <div class="vsl-modal">
-      <button class="vsl-modal-close" onclick="document.getElementById('vsl-modal').classList.remove('active');document.getElementById('vsl-iframe').src=document.getElementById('vsl-iframe').src;">✕</button>
-     <video width="560" height="315" src="../video/gelvolumetrao/vsl.mp4" title="VSL" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope;  web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></video>
-    </div>
+  <div class="vsl-box">
+    <video 
+      id="vsl-video"
+      controls
+      playsinline
+      preload="metadata"
+      poster="../images/gelvolumetrao/thumb-vsl.jpg"
+      style="
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        border-radius:16px;
+        background:#000;
+      "
+    >
+      <source src="../video/gelvolumetrao/vsl.mp4" type="video/mp4">
+    </video>
   </div>
+</div>
+
 
   <a href="#pedido" class="cta-btn">🚀 Quero Meu Volumetrão Agora</a>
   <p class="hero-note">🔒 Compra segura &nbsp;·&nbsp; Entrega discreta &nbsp;·&nbsp; Pagamento 100% seguro</p>
@@ -818,21 +840,93 @@ footer a { color: #666; text-decoration: underline; }
 
 // ---- Video toggle ----
 function toggleVideo(btn) {
+
   var wrap = btn.closest('.tvid-wrap');
   var video = wrap.querySelector('video');
   var ph = wrap.querySelector('.tvid-placeholder');
-  if (!video) return; // placeholder mode — no video src yet
-  if (video.paused) {
-    // pause all others first
-    document.querySelectorAll('.tvid-wrap video').forEach(function(v){ if(v !== video){ v.pause(); v.closest('.tvid-wrap').querySelector('.tvid-play-btn svg path').setAttribute('d','M8 5v14l11-7z'); } });
+
+  if (!video) return;
+
+  // pausa todos os outros vídeos
+  document.querySelectorAll('.tvid-wrap video').forEach(function(v){
+
+    if(v !== video){
+
+      v.pause();
+
+      var otherBtn = v.closest('.tvid-wrap').querySelector('.tvid-play-btn');
+
+      if(otherBtn){
+        otherBtn.querySelector('svg path')
+        .setAttribute('d','M8 5v14l11-7z');
+      }
+
+    }
+
+  });
+
+  // PLAY
+  if(video.paused){
+
     video.play();
-    btn.querySelector('svg path').setAttribute('d','M6 19h4V5H6v14zm8-14v14h4V5h-4z'); // pause icon
-    if (ph) ph.style.display = 'none';
-  } else {
-    video.pause();
-    btn.querySelector('svg path').setAttribute('d','M8 5v14l11-7z'); // play icon
+
+    video.setAttribute('controls','controls');
+
+    btn.querySelector('svg path')
+    .setAttribute('d','M6 19h4V5H6v14zm8-14v14h4V5h-4z');
+
+    if(ph){
+      ph.style.display = 'none';
+    }
+
+    // esconde botão após iniciar
+    setTimeout(function(){
+      btn.style.opacity = '0';
+      btn.style.pointerEvents = 'none';
+    },300);
+
   }
+
+  // PAUSE
+  else{
+
+    video.pause();
+
+    btn.querySelector('svg path')
+    .setAttribute('d','M8 5v14l11-7z');
+
+    btn.style.opacity = '1';
+    btn.style.pointerEvents = 'all';
+
+  }
+
 }
+
+
+// quando vídeo terminar, volta botão play
+document.querySelectorAll('.tvid-wrap video').forEach(function(video){
+
+  video.setAttribute('playsinline','');
+  video.setAttribute('preload','metadata');
+
+  video.addEventListener('ended', function(){
+
+    var wrap = video.closest('.tvid-wrap');
+    var btn = wrap.querySelector('.tvid-play-btn');
+
+    if(btn){
+
+      btn.style.opacity = '1';
+      btn.style.pointerEvents = 'all';
+
+      btn.querySelector('svg path')
+      .setAttribute('d','M8 5v14l11-7z');
+
+    }
+
+  });
+
+});
 </script>
 </body>
 </html>

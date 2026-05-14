@@ -111,12 +111,24 @@ body { font-family: 'Open Sans', sans-serif; background: var(--bg); color: var(-
   border:none;
   outline:none;
 }
-video::-webkit-media-controls-download-button {
-  display:none;
+/* Remove botão Picture-in-Picture no Chrome */
+video::-webkit-media-controls-picture-in-picture-button {
+  display: none !important;
 }
 
-video::-webkit-media-controls-enclosure {
-  overflow:hidden;
+/* Remove botão fullscreen */
+video::-webkit-media-controls-fullscreen-button {
+  display: none !important;
+}
+
+/* Remove botão download */
+video::-webkit-media-controls-download-button {
+  display: none !important;
+}
+
+/* Remove AirPlay / cast */
+video::-webkit-media-controls-remote-playback-button {
+  display: none !important;
 }
 .vsl-box:hover {
   border-color: rgba(192,57,43,0.8);
@@ -440,24 +452,26 @@ footer a { color: #666; text-decoration: underline; }
   <div class="vsl-label">▶ Assista antes de comprar</div>
 
   <div class="vsl-box">
-    <video 
-      id="vsl-video"
-      controls
-      playsinline
-      preload="metadata"
-      poster="../images/gelvolumetrao/thumb-vsl.jpg"
-      style="
-        position:absolute;
-        inset:0;
-        width:100%;
-        height:100%;
-        object-fit:cover;
-        border-radius:16px;
-        background:#000;
-      "
-    >
-      <source src="../video/gelvolumetrao/vsl.mp4" type="video/mp4">
-    </video>
+   <video 
+  id="vsl-video"
+  controls
+  controlsList="nodownload nofullscreen noremoteplayback"
+  disablePictureInPicture
+  playsinline
+  preload="metadata"
+  poster="../images/gelvolumetrao/thumb-vsl.jpg"
+  style="
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:16px;
+    background:#000;
+  "
+>
+  <source src="../video/gelvolumetrao/vsl.mp4" type="video/mp4">
+</video>
   </div>
 </div>
 

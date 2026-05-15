@@ -239,10 +239,13 @@ h2.stitle span { color: var(--primary); }
 .stat-n { font-family: 'Montserrat', sans-serif; font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 900; color: var(--primary); line-height: 1; }
 .stat-l { font-size: 0.83rem; color: #888; margin-top: 5px; }
 .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; margin-top: 44px; text-align: left; }
-/* ── TESTIMONIAL VIDEO CARDS ── */
+.testimonials2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; margin-top: 44px; text-align: left; }
+
+  /* ── TESTIMONIAL VIDEO CARDS ── */
 .tcard { background: var(--surface2); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
 .tvid-wrap { position: relative; width: 100%; padding-top: 177.78%; /* 9:16 portrait */ background: #000; }
-.tvid-wrap video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.tvid-wrap2 { position: relative; width="560" height="315" background: #000; }
+  .tvid-wrap video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .tvid-overlay {
   position: absolute; inset: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 45%);
@@ -450,28 +453,30 @@ height:32px;
   <!-- VSL -->
   <div class="vsl-wrap">
     <div class="vsl-label">▶ Assista antes de comprar</div>
-    <div class="vsl-box" onclick="document.getElementById('vsl-modal').classList.add('active')" role="button" aria-label="Assistir vídeo de apresentação">
-      <div class="vsl-thumb">
-        <div class="vsl-thumb-pattern"></div>
-        <div class="vsl-play">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
-        </div>
-        <div class="vsl-caption">
-          <strong>Descubra como o Volumetrão funciona</strong>
+    
+    <div class="testimonials">
+      <div class="tcard">
+        <div class="tvid-wrap2">
+          <div class="tvid-placeholder">
+            <div class="tvid-ph-pattern"></div>
+            <div class="tvid-ph-icon"></div>
+            <div class="tvid-ph-text"></div> 
+          </div>
+          <video src="../video/gelvolumetrao/vsl.mp4"></video>
+          <div class="tvid-overlay">
+            <div class="tvid-name">Antonio F.</div>
+          </div>
+          <div class="tvid-play-btn" onclick="toggleVideo(this)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+          </div>
         </div>
       </div>
-      <div class="vsl-timer">00:55</div>
-    </div>
+          <strong>Descubra como o Volumetrão funciona</strong>
+ <div class="vsl-timer">00:55</div>
+  </div>
   </div>
 
-  <!-- Modal VSL -->
-  <div id="vsl-modal" class="vsl-modal-overlay" onclick="if(event.target===this){this.classList.remove('active');document.getElementById('vsl-iframe').src=document.getElementById('vsl-iframe').src;}">
-    <div class="vsl-modal">
-      <button class="vsl-modal-close" onclick="document.getElementById('vsl-modal').classList.remove('active');document.getElementById('vsl-iframe').src=document.getElementById('vsl-iframe').src;">✕</button>
-     <iframe width="560" height="315" src="../video/gelvolumetrao/vsl.mp4" title="VSL" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-  </div>
-
+      
   <a href="#pedido" class="cta-btn">🚀 Quero Meu Volumetrão Agora</a>
   <p class="hero-note">🔒 Compra segura &nbsp;·&nbsp; Entrega discreta &nbsp;·&nbsp; Pagamento 100% seguro</p>
 </section>

@@ -592,6 +592,24 @@ padding-top:60px;
   70%  { box-shadow: 0 0 0 22px rgba(192,57,43,0); }
   100% { box-shadow: 0 0 0 0 rgba(192,57,43,0); }
 }
+
+/* ── VSL ── */
+.vsl-wrap {
+  width: 100%; max-width: 720px;
+  margin: 0 auto 44px;
+  position: relative;
+}
+  .vsl-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 12px;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.vsl-label::before, .vsl-label::after {
+  content: ''; flex: 1; max-width: 60px;
+  height: 1px; background: rgba(241,196,15,0.35);
+}
   .vsl-timer {
   position: absolute; bottom: 14px; right: 16px; z-index: 3;
   background: rgba(0,0,0,0.65); border-radius: 6px;
@@ -686,10 +704,33 @@ Mais conforto para seus olhos.<br>
 <p>
 O 2V PRO foi desenvolvido para proporcionar mais conforto visual durante leituras, uso de celular, computador e atividades do dia a dia. Um modelo moderno, leve e resistente com proteção contra luz azul.
 </p>
+<!---------------------------- VSL ----------------------->
 
-<img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=1200&auto=format&fit=crop"
-class="hero-img">
-
+  <div class="vsl-wrap">
+    <div class="vsl-label">▶ Assista antes de comprar</div>
+    
+    <div class="testimonials">
+      <div class="tcard">
+        <div class="tvid-wrap2">
+          <div class="tvid-placeholder">
+            <div class="tvid-ph-pattern"></div>
+            <div class="tvid-ph-icon"></div>
+            <div class="tvid-ph-text"></div> 
+          </div>
+          <video src="../video/oculosv2/video1.mp4"></video>
+          <div class="tvid-overlay">
+        
+            <strong center>Descubra como o Volumetrão funciona</strong>
+             
+          </div>
+          <div class="tvid-play-btn" onclick="toggleVideo2(this)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- FIM VSL -->
 <a href="#pedido" class="cta-btn">
 🚀 QUERO MEU 2V PRO AGORA
 </a>
@@ -1280,7 +1321,7 @@ function toggleVideo(btn) {
   
   
 <div class="whatsapp-fixo">
-<a href="https://wa.me/5551999999999" target="_blank">
+<a href="https://wa.me/555183556545" target="_blank">
 <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
 </a>
 </div>

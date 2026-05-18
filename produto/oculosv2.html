@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2V PRO — Óculos de Descanso e Leitura</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600&display=swap');
+
+*,*::before,*::after{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+:root{
+--primary:#0f172a;
+--primary2:#1e293b;
+--gold:#f59e0b;
+--bg:#050505;
+--surface:#101010;
+--surface2:#171717;
+--text:#fff;
+--muted:#aaa;
+--border:#262626;
+}
+
+body{
+font-family:'Open Sans',sans-serif;
+background:var(--bg);
+color:var(--text);
+overflow-x:hidden;
+}
+
+.hero{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:80px 20px;
+background:
+linear-gradient(135deg,#050505 0%,#0f172a 50%,#111827 100%);
+position:relative;
+overflow:hidden;
+}
+
+.hero::before{
+content:'';
+position:absolute;
+width:700px;
+height:700px;
+background:radial-gradient(circle,rgba(255,255,255,.06) 0%,transparent 70%);
+top:-200px;
+left:50%;
+transform:translateX(-50%);
+}
+
+.badge{
+display:inline-block;
+background:var(--gold);
+color:#111;
+padding:8px 22px;
+border-radius:50px;
+font-family:'Montserrat',sans-serif;
+font-weight:800;
+font-size:.75rem;
+letter-spacing:2px;
+text-transform:uppercase;
+margin-bottom:30px;
+}
+
+.hero h1{
+font-family:'Montserrat',sans-serif;
+font-size:clamp(2.2rem,6vw,4.2rem);
+font-weight:900;
+line-height:1.1;
+max-width:900px;
+text-transform:uppercase;
+margin-bottom:22px;
+}
+
+.hero h1 span{
+color:var(--gold);
+}
+
+.hero p{
+max-width:760px;
+font-size:clamp(1rem,2vw,1.2rem);
+line-height:1.8;
+color:#d4d4d4;
+margin-bottom:40px;
+}
+
+.hero-img{
+width:100%;
+max-width:520px;
+border-radius:24px;
+margin-bottom:40px;
+box-shadow:0 20px 60px rgba(0,0,0,.6);
+}
+
+.cta-btn{
+display:inline-block;
+background:linear-gradient(135deg,var(--gold),#fbbf24);
+padding:20px 48px;
+border-radius:60px;
+font-family:'Montserrat',sans-serif;
+font-weight:800;
+font-size:1rem;
+text-decoration:none;
+color:#111;
+transition:.3s;
+box-shadow:0 10px 30px rgba(245,158,11,.3);
+}
+
+.cta-btn:hover{
+transform:translateY(-4px) scale(1.03);
+}
+
+.hero-note{
+margin-top:18px;
+font-size:.82rem;
+color:#888;
+}
+
+.trust{
+background:#090909;
+padding:20px;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:26px;
+border-top:1px solid #1f1f1f;
+border-bottom:1px solid #1f1f1f;
+}
+
+.trust-item{
+font-size:.82rem;
+font-family:'Montserrat',sans-serif;
+color:#999;
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+section{
+padding:90px 20px;
+}
+
+.container{
+max-width:1100px;
+margin:0 auto;
+}
+
+.section-tag{
+display:block;
+font-family:'Montserrat',sans-serif;
+font-size:.72rem;
+font-weight:800;
+letter-spacing:3px;
+text-transform:uppercase;
+color:var(--gold);
+margin-bottom:14px;
+}
+
+.stitle{
+font-family:'Montserrat',sans-serif;
+font-size:clamp(1.8rem,4vw,3rem);
+font-weight:900;
+line-height:1.2;
+margin-bottom:20px;
+}
+
+.stitle span{
+color:var(--gold);
+}
+
+.problem{
+background:var(--surface);
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:24px;
+margin-top:50px;
+}
+
+.card{
+background:var(--surface2);
+border:1px solid var(--border);
+border-radius:18px;
+padding:30px 24px;
+text-align:center;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+border-color:var(--gold);
+}
+
+.card .icon{
+font-size:2.5rem;
+margin-bottom:16px;
+}
+
+.card h3{
+font-family:'Montserrat',sans-serif;
+font-size:1rem;
+font-weight:800;
+margin-bottom:10px;
+}
+
+.card p{
+font-size:.88rem;
+color:var(--muted);
+line-height:1.7;
+}
+
+.solution{
+background:linear-gradient(180deg,#050505,#111827);
+text-align:center;
+}
+
+.solution p{
+max-width:760px;
+margin:0 auto 50px;
+color:#ccc;
+line-height:1.8;
+}
+
+.benefits{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:24px;
+margin-bottom:50px;
+}
+
+.benefit{
+background:rgba(255,255,255,.03);
+border:1px solid rgba(255,255,255,.06);
+border-radius:18px;
+padding:28px 20px;
+}
+
+.benefit .icon{
+font-size:2rem;
+margin-bottom:14px;
+}
+
+.benefit h3{
+font-family:'Montserrat',sans-serif;
+font-size:1rem;
+font-weight:800;
+margin-bottom:8px;
+}
+
+.benefit p{
+font-size:.85rem;
+color:#bbb;
+line-height:1.7;
+}
+
+.how{
+background:var(--surface);
+text-align:center;
+}
+
+.steps{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:22px;
+margin-top:50px;
+}
+
+.step{
+max-width:240px;
+}
+
+.step-number{
+width:60px;
+height:60px;
+background:var(--gold);
+color:#111;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-family:'Montserrat',sans-serif;
+font-weight:900;
+font-size:1.4rem;
+margin:0 auto 18px;
+}
+
+.step h3{
+font-family:'Montserrat',sans-serif;
+font-size:1rem;
+font-weight:800;
+margin-bottom:10px;
+}
+
+.step p{
+font-size:.88rem;
+color:#aaa;
+line-height:1.7;
+}
+
+.specs{
+background:linear-gradient(180deg,#050505,#0f172a);
+text-align:center;
+}
+
+.tags{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:14px;
+margin-top:40px;
+}
+
+.tag{
+padding:12px 22px;
+border-radius:40px;
+background:rgba(255,255,255,.05);
+border:1px solid rgba(255,255,255,.08);
+font-family:'Montserrat',sans-serif;
+font-size:.86rem;
+font-weight:700;
+color:#ddd;
+}
+
+.proof{
+background:var(--surface);
+text-align:center;
+}
+
+.stats{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:40px;
+margin-top:50px;
+}
+
+.stat-number{
+font-family:'Montserrat',sans-serif;
+font-size:3rem;
+font-weight:900;
+color:var(--gold);
+}
+
+.stat-label{
+font-size:.84rem;
+color:#999;
+}
+
+.testimonials{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:22px;
+margin-top:50px;
+}
+
+.tcard{
+background:var(--surface2);
+border:1px solid var(--border);
+border-radius:18px;
+padding:28px;
+text-align:left;
+}
+
+.stars{
+color:var(--gold);
+margin-bottom:12px;
+}
+
+.tcard p{
+font-size:.9rem;
+line-height:1.8;
+color:#ccc;
+margin-bottom:18px;
+}
+
+.tcard strong{
+font-family:'Montserrat',sans-serif;
+font-size:.9rem;
+}
+
+.pricing{
+background:#050505;
+text-align:center;
+}
+
+.price-grid{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:24px;
+margin-top:50px;
+}
+
+.price-card{
+background:var(--surface2);
+border:1px solid var(--border);
+border-radius:22px;
+padding:34px 28px;
+width:280px;
+position:relative;
+transition:.3s;
+}
+
+.price-card:hover{
+transform:translateY(-6px);
+}
+
+.price-card.featured{
+border:2px solid var(--gold);
+transform:scale(1.04);
+}
+
+.popular{
+position:absolute;
+top:-14px;
+left:50%;
+transform:translateX(-50%);
+background:var(--gold);
+color:#111;
+padding:6px 18px;
+border-radius:30px;
+font-family:'Montserrat',sans-serif;
+font-size:.7rem;
+font-weight:800;
+text-transform:uppercase;
+}
+
+.kit{
+font-family:'Montserrat',sans-serif;
+font-size:.9rem;
+font-weight:800;
+margin-bottom:12px;
+color:#bbb;
+}
+
+.price{
+font-family:'Montserrat',sans-serif;
+font-size:3rem;
+font-weight:900;
+margin-bottom:10px;
+}
+
+.old{
+font-size:.85rem;
+color:#777;
+margin-bottom:22px;
+}
+
+.features{
+list-style:none;
+margin-bottom:26px;
+}
+
+.features li{
+padding:8px 0;
+font-size:.88rem;
+color:#ccc;
+border-bottom:1px solid #222;
+}
+
+.features li::before{
+content:'✓ ';
+color:var(--gold);
+font-weight:800;
+}
+
+.faq{
+background:var(--surface);
+}
+
+.faq-list{
+margin-top:40px;
+}
+
+details{
+background:var(--surface2);
+border:1px solid var(--border);
+border-radius:14px;
+margin-bottom:12px;
+overflow:hidden;
+}
+
+summary{
+padding:22px;
+cursor:pointer;
+font-family:'Montserrat',sans-serif;
+font-weight:700;
+font-size:.92rem;
+}
+
+details p{
+padding:0 22px 22px;
+color:#bbb;
+line-height:1.8;
+font-size:.88rem;
+}
+
+.footer-cta{
+background:linear-gradient(135deg,#111827,#050505);
+text-align:center;
+padding:90px 20px;
+}
+
+.footer-cta h2{
+font-family:'Montserrat',sans-serif;
+font-size:clamp(2rem,5vw,3rem);
+font-weight:900;
+margin-bottom:18px;
+}
+
+.footer-cta h2 span{
+color:var(--gold);
+}
+
+.footer-cta p{
+max-width:640px;
+margin:0 auto 36px;
+color:#bbb;
+line-height:1.8;
+}
+
+footer{
+background:#050505;
+padding:30px 20px;
+text-align:center;
+font-size:.78rem;
+color:#666;
+line-height:1.8;
+}
+
+.whatsapp-fixo{
+position:fixed;
+right:20px;
+bottom:20px;
+z-index:9999;
+}
+
+.whatsapp-fixo a{
+display:flex;
+align-items:center;
+justify-content:center;
+background:#25D366;
+width:68px;
+height:68px;
+border-radius:50%;
+box-shadow:0 10px 30px rgba(0,0,0,.4);
+}
+
+.whatsapp-fixo img{
+width:34px;
+height:34px;
+}
+
+@media(max-width:768px){
+
+.price-card.featured{
+transform:scale(1);
+}
+
+.hero{
+padding-top:60px;
+}
+
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero">
+
+<div class="badge">
+🔥 ÓCULOS 2V PRO • CONFORTO VISUAL
+</div>
+
+<h1>
+Mais conforto para seus olhos.<br>
+<span>Mais nitidez</span> no seu dia a dia.
+</h1>
+
+<p>
+O 2V PRO foi desenvolvido para proporcionar mais conforto visual durante leituras, uso de celular, computador e atividades do dia a dia. Um modelo moderno, leve e resistente com proteção contra luz azul.
+</p>
+
+<img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?q=80&w=1200&auto=format&fit=crop"
+class="hero-img">
+
+<a href="#pedido" class="cta-btn">
+🚀 QUERO MEU 2V PRO AGORA
+</a>
+
+<p class="hero-note">
+🔒 Compra segura · 🚚 Entrega discreta · 💳 Pagamento seguro
+</p>
+
+</section>
+
+<div class="trust">
+
+<div class="trust-item">🛡️ Lente resistente</div>
+<div class="trust-item">👓 Modelo unissex</div>
+<div class="trust-item">💻 Proteção luz azul</div>
+<div class="trust-item">📱 Ideal para telas</div>
+<div class="trust-item">⭐ Milhares de clientes satisfeitos</div>
+
+</div>
+
+<section class="problem">
+
+<div class="container">
+
+<span class="section-tag">
+VOCÊ PASSA POR ISSO?
+</span>
+
+<h2 class="stitle">
+Sua visão fica cansada ao usar <span>celular, computador ou leitura?</span>
+</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="icon">😵</div>
+<h3>Vista cansada</h3>
+<p>Leitura e telas digitais podem gerar desconforto e sensação de fadiga visual.</p>
+</div>
+
+<div class="card">
+<div class="icon">💻</div>
+<h3>Excesso de telas</h3>
+<p>Passar horas no celular ou computador força sua visão diariamente.</p>
+</div>
+
+<div class="card">
+<div class="icon">📖</div>
+<h3>Dificuldade para leitura</h3>
+<p>Pequenos textos podem causar desconforto e necessidade de esforço visual.</p>
+</div>
+
+<div class="card">
+<div class="icon">🌙</div>
+<h3>Olhos cansados à noite</h3>
+<p>Ao final do dia, a sensação de peso nos olhos pode atrapalhar sua rotina.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="solution">
+
+<div class="container">
+
+<span class="section-tag">
+A SOLUÇÃO
+</span>
+
+<h2 class="stitle">
+Conheça o <span>2V PRO</span>
+</h2>
+
+<p>
+Um óculos de descanso e leitura desenvolvido com lentes tecnológicas e armação ultra resistente, proporcionando mais conforto visual e proteção no uso diário.
+</p>
+
+<div class="benefits">
+
+<div class="benefit">
+<div class="icon">🛡️</div>
+<h3>Proteção contra luz azul</h3>
+<p>Ideal para reduzir o impacto visual causado por telas digitais.</p>
+</div>
+
+<div class="benefit">
+<div class="icon">👓</div>
+<h3>Modelo leve e moderno</h3>
+<p>Design confortável e elegante para uso diário.</p>
+</div>
+
+<div class="benefit">
+<div class="icon">💎</div>
+<h3>Lente resistente</h3>
+<p>Produzida com resina e acetato de celulose de alta durabilidade.</p>
+</div>
+
+<div class="benefit">
+<div class="icon">⚙️</div>
+<h3>Armação reforçada</h3>
+<p>Estrutura em titânio + acetato de celulose super resistente.</p>
+</div>
+
+<div class="benefit">
+<div class="icon">📱</div>
+<h3>Ideal para telas</h3>
+<p>Excelente para celular, leitura, computador e uso diário.</p>
+</div>
+
+<div class="benefit">
+<div class="icon">✨</div>
+<h3>Não embaça</h3>
+<p>Lentes desenvolvidas para maior conforto visual no dia a dia.</p>
+</div>
+
+</div>
+
+<a href="#pedido" class="cta-btn">
+🔥 GARANTIR MEU 2V PRO
+</a>
+
+</div>
+
+</section>
+
+<section class="how">
+
+<div class="container">
+
+<span class="section-tag">
+COMO FUNCIONA
+</span>
+
+<h2 class="stitle">
+Mais conforto visual em <span>4 passos</span>
+</h2>
+
+<div class="steps">
+
+<div class="step">
+<div class="step-number">1</div>
+<h3>Coloque o óculos</h3>
+<p>Use normalmente em leituras, telas ou atividades do dia a dia.</p>
+</div>
+
+<div class="step">
+<div class="step-number">2</div>
+<h3>Reduza o esforço visual</h3>
+<p>A lente auxilia no conforto visual durante o uso prolongado.</p>
+</div>
+
+<div class="step">
+<div class="step-number">3</div>
+<h3>Mais nitidez</h3>
+<p>Ideal para curta e média distância.</p>
+</div>
+
+<div class="step">
+<div class="step-number">4</div>
+<h3>Sinta a diferença</h3>
+<p>Mais conforto, praticidade e menos fadiga visual.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="specs">
+
+<div class="container">
+
+<span class="section-tag">
+INFORMAÇÕES IMPORTANTES
+</span>
+
+<h2 class="stitle">
+Tecnologia e <span>Conforto Visual</span>
+</h2>
+
+<div class="tags">
+
+<div class="tag">👓 Modelo único e unissex</div>
+<div class="tag">💻 Proteção luz azul</div>
+<div class="tag">📖 Ideal para leitura</div>
+<div class="tag">📱 Excelente para celular</div>
+<div class="tag">⚙️ Armação resistente</div>
+<div class="tag">✨ Lente tecnológica</div>
+<div class="tag">🛡️ Material premium</div>
+<div class="tag">🚚 Entrega discreta</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="proof">
+
+<div class="container">
+
+<span class="section-tag">
+RESULTADOS REAIS
+</span>
+
+<h2 class="stitle">
+Clientes que estão usando o <span>2V PRO</span>
+</h2>
+
+<div class="stats">
+
+<div>
+<div class="stat-number">4.9⭐</div>
+<div class="stat-label">Avaliação média</div>
+</div>
+
+<div>
+<div class="stat-number">+5mil</div>
+<div class="stat-label">Clientes satisfeitos</div>
+</div>
+
+<div>
+<div class="stat-number">97%</div>
+<div class="stat-label">Aprovam o conforto</div>
+</div>
+
+<div>
+<div class="stat-number">24h</div>
+<div class="stat-label">Uso diário confortável</div>
+</div>
+
+</div>
+
+<div class="testimonials">
+
+<div class="tcard">
+<div class="stars">★★★★★</div>
+<p>
+“Uso no computador o dia inteiro e senti muito menos cansaço nos olhos.”
+</p>
+<strong>Marcos A. • São Paulo/SP</strong>
+</div>
+
+<div class="tcard">
+<div class="stars">★★★★★</div>
+<p>
+“Perfeito para leitura e celular. Muito leve e confortável.”
+</p>
+<strong>Ana C. • Curitiba/PR</strong>
+</div>
+
+<div class="tcard">
+<div class="stars">★★★★★</div>
+<p>
+“A armação é muito resistente e ficou excelente no rosto.”
+</p>
+<strong>Roberto L. • Belo Horizonte/MG</strong>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="pricing" id="pedido">
+
+<div class="container">
+
+<span class="section-tag">
+ESCOLHA SEU KIT
+</span>
+
+<h2 class="stitle">
+Garanta seu <span>2V PRO</span> hoje
+</h2>
+
+<div class="price-grid">
+
+<div class="price-card">
+
+<div class="kit">
+KIT STARTER • 1 UNIDADE
+</div>
+
+<div class="price">
+R$ 89,90
+</div>
+
+<div class="old">
+De R$ 129,90
+</div>
+
+<ul class="features">
+<li>1 Óculos 2V PRO</li>
+<li>Frete grátis</li>
+<li>Pagamento seguro</li>
+<li>Entrega discreta</li>
+</ul>
+
+<a href="#" class="cta-btn" style="width:100%;display:block;">
+COMPRAR AGORA
+</a>
+
+</div>
+
+<div class="price-card featured">
+
+<div class="popular">
+⭐ MAIS POPULAR
+</div>
+
+<div class="kit">
+KIT PREMIUM • 2 UNIDADES
+</div>
+
+<div class="price">
+R$ 147,00
+</div>
+
+<div class="old">
+Economize mais
+</div>
+
+<ul class="features">
+<li>2 Óculos 2V PRO</li>
+<li>Frete grátis</li>
+<li>Pagamento seguro</li>
+<li>Entrega discreta</li>
+</ul>
+
+<a href="#" class="cta-btn" style="width:100%;display:block;">
+🔥 QUERO ESTE KIT
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="faq">
+
+<div class="container">
+
+<span class="section-tag">
+DÚVIDAS FREQUENTES
+</span>
+
+<h2 class="stitle">
+Perguntas e <span>Respostas</span>
+</h2>
+
+<div class="faq-list">
+
+<details>
+<summary>O 2V PRO substitui óculos de grau?</summary>
+<p>
+Não. O 2V PRO é um modelo voltado para conforto visual, leitura e proteção contra luz azul.
+</p>
+</details>
+
+<details>
+<summary>Serve para quem usa grau?</summary>
+<p>
+Pode auxiliar pessoas com miopia leve/moderada, hipermetropia e vista cansada. Pessoas com grau acima de +4 podem não se adaptar.
+</p>
+</details>
+
+<details>
+<summary>Funciona para longa distância?</summary>
+<p>
+O foco principal é curta e média distância. Alguns clientes também relatam boa adaptação para longa distância.
+</p>
+</details>
+
+<details>
+<summary>O modelo é masculino ou feminino?</summary>
+<p>
+O 2V PRO é modelo único e unissex.
+</p>
+</details>
+
+<details>
+<summary>Tem garantia?</summary>
+<p>
+Produtos em Cash on Delivery possuem garantia somente para defeito de fabricação.
+</p>
+</details>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="footer-cta">
+
+<div class="container">
+
+<h2>
+Mais conforto para sua visão.<br>
+<span>Mais qualidade no seu dia a dia.</span>
+</h2>
+
+<p>
+O 2V PRO é perfeito para leitura, celular, computador e rotina diária com mais conforto visual.
+</p>
+
+<a href="#pedido" class="cta-btn">
+🚀 GARANTIR MEU 2V PRO
+</a>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+© 2026 2V PRO • Todos os direitos reservados
+</p>
+
+<p style="margin-top:10px;">
+Este produto não substitui óculos de grau prescritos por oftalmologistas.
+</p>
+
+</footer>
+
+<div class="whatsapp-fixo">
+
+<a href="https://wa.me/5551999999999" target="_blank">
+
+<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+
+</a>
+
+</div>
+
+</body>
+</html>

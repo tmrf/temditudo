@@ -359,37 +359,46 @@ font-size:.84rem;
 color:#999;
 }
 
-.testimonials{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-gap:22px;
-margin-top:50px;
-}
+.testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; margin-top: 44px; text-align: left; }
 
-.tcard{
-background:var(--surface2);
-border:1px solid var(--border);
-border-radius:18px;
-padding:28px;
-text-align:left;
+  /* ── TESTIMONIAL VIDEO CARDS ── */
+.tcard { background: var(--surface2); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+.tvid-wrap { position: relative; width: 100%; padding-top: 177.78%; /* 9:16 portrait */ background: #000; }
+.tvid-wrap2 { position: relative; width:100%; padding-top: 63%; background: #000; }
+  .tvid-wrap video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .tvid-wrap2 video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.tvid-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 45%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 16px;
+  pointer-events: none;
 }
-
-.stars{
-color:var(--gold);
-margin-bottom:12px;
+.tvid-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 6px; }
+.tvid-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; color: #fff; }
+.tvid-loc { font-size: 0.73rem; color: #bbb; margin-top: 2px; }
+.tvid-play-btn {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 56px; height: 56px; border-radius: 50%;
+  background: rgba(192,57,43,0.85); border: 2px solid rgba(255,255,255,0.3);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: transform .2s, background .2s;
+  pointer-events: all;
 }
-
-.tcard p{
-font-size:.9rem;
-line-height:1.8;
-color:#ccc;
-margin-bottom:18px;
+.tvid-play-btn:hover { transform: translate(-50%,-50%) scale(1.12); background: var(--primary); }
+.tvid-play-btn svg { margin-left: 4px; }
+.tvid-placeholder {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  background: linear-gradient(135deg, #1a0000, #111);
 }
-
-.tcard strong{
-font-family:'Montserrat',sans-serif;
-font-size:.9rem;
+.tvid-ph-pattern {
+  position: absolute; inset: 0; opacity: 0.05;
+  background-image: repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%);
+  background-size: 16px 16px;
 }
+.tvid-ph-icon { font-size: 2.8rem; position: relative; z-index:1; }
+.tvid-ph-text { font-family:'Montserrat',sans-serif; font-size:0.75rem; color:#777; position:relative;z-index:1; letter-spacing:1px; text-transform:uppercase; }
 
 .pricing{
 background:#050505;
@@ -543,7 +552,7 @@ line-height:1.8;
 
 .whatsapp-fixo{
 position:fixed;
-right:20px;
+left:20px;
 bottom:20px;
 z-index:9999;
 }
@@ -573,8 +582,25 @@ transform:scale(1);
 .hero{
 padding-top:60px;
 }
-
 }
+@keyframes pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(192,57,43,0.6); }
+  50%      { box-shadow: 0 0 0 12px rgba(192,57,43,0); }
+}
+@keyframes play-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(192,57,43,0.6); }
+  70%  { box-shadow: 0 0 0 22px rgba(192,57,43,0); }
+  100% { box-shadow: 0 0 0 0 rgba(192,57,43,0); }
+}
+  .vsl-timer {
+  position: absolute; bottom: 14px; right: 16px; z-index: 3;
+  background: rgba(0,0,0,0.65); border-radius: 6px;
+  padding: 4px 10px; font-family: 'Montserrat', sans-serif;
+  font-size: 0.75rem; font-weight: 700; color: #ddd; letter-spacing: 1px;
+}
+  
+  
+
 </style>
 </head>
 
@@ -835,23 +861,71 @@ Clientes que estão usando o <span>2V PRO</span>
 
 </div>
 
-<div class="testimonials">
+    <div class="testimonials">
 
-<div class="tcard">
-<div class="stars">★★★★★</div>
-<p>
-“Uso no computador o dia inteiro e senti muito menos cansaço nos olhos.”
-</p>
-<strong>Marcos A. • São Paulo/SP</strong>
-</div>
+      <!-- Depoimento 1 — substitua o src do <video> pelo link do seu arquivo MP4 -->
+      <div class="tcard">
+        <div class="tvid-wrap">
+          <div class="tvid-placeholder">
+            <div class="tvid-ph-pattern"></div>
+            <div class="tvid-ph-icon"></div>
+            <div class="tvid-ph-text"></div>
+          </div>
+        <video src="../video/oculosv2/video1.mp4"></video>
+          <div class="tvid-overlay">
+            <div class="tvid-stars">★★★★★</div>
+            <div class="tvid-name">Antonio F.</div>
+            <div class="tvid-loc">São Paulo, SP · Cliente verificado</div>
+          </div>
+          <div class="tvid-play-btn" onclick="toggleVideo(this)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+      </div>
 
-<div class="tcard">
-<div class="stars">★★★★★</div>
-<p>
-“Perfeito para leitura e celular. Muito leve e confortável.”
-</p>
-<strong>Ana C. • Curitiba/PR</strong>
-</div>
+      <!-- Depoimento 2 -->
+      <div class="tcard">
+        <div class="tvid-wrap">
+          <div class="tvid-placeholder">
+            <div class="tvid-ph-pattern"></div>
+            <div class="tvid-ph-icon"></div>
+            <div class="tvid-ph-text"></div>
+          </div>
+        <video src="../video/oculosv2/video2.mp4"></video>
+          <div class="tvid-overlay">
+            <div class="tvid-stars">★★★★★</div>
+            <div class="tvid-name">Diogo G.</div>
+            <div class="tvid-loc">Belo Horizonte, MG · Cliente verificado</div>
+          </div>
+          <div class="tvid-play-btn" onclick="toggleVideo(this)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Depoimento 3 -->
+      <div class="tcard">
+        <div class="tvid-wrap">
+          <div class="tvid-placeholder">
+            <div class="tvid-ph-pattern"></div>
+             <div class="tvid-ph-icon"></div>
+            <div class="tvid-ph-text"></div>
+          </div>
+          <video src="../video/oculosv2/video3.mp4"></video>
+          <div class="tvid-overlay">
+            <div class="tvid-stars">★★★★★</div>
+            <div class="tvid-name">Aline C.</div>
+            <div class="tvid-loc">Rio de Janeiro, RJ · Cliente verificado</div>
+          </div>
+          <div class="tvid-play-btn" onclick="toggleVideo(this)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <div class="tcard">
 <div class="stars">★★★★★</div>
@@ -869,6 +943,27 @@ Clientes que estão usando o <span>2V PRO</span>
 
 <section class="pricing" id="pedido">
 
+<!-- COUNTDOWN -->
+    <div class="countdown-wrap">
+      <div class="countdown-label">
+        <span class="dot"></span>
+        Oferta expira em:
+        <span class="dot"></span>
+      </div>
+      <div class="countdown-box">
+        <div class="cd-unit">
+          <span class="cd-num" id="cd-min">10</span>
+          <span class="cd-lbl">min</span>
+        </div>
+        <div class="cd-sep">:</div>
+        <div class="cd-unit">
+          <span class="cd-num" id="cd-sec">00</span>
+          <span class="cd-lbl">seg</span>
+        </div>
+      </div>
+      <p class="countdown-note">🔥 Desconto especial reservado para esta sessão</p>
+    </div>
+  
 <div class="container">
 
 <span class="section-tag">
@@ -878,7 +973,8 @@ ESCOLHA SEU KIT
 <h2 class="stitle">
 Garanta seu <span>2V PRO</span> hoje
 </h2>
-
+<div class="badge">🛵 COMPRE NO LINK ABAIXO COM FRETE GRÁTIS 👇</div>
+      
 <div class="price-grid">
 
 <div class="price-card">
@@ -1033,15 +1129,110 @@ Este produto não substitui óculos de grau prescritos por oftalmologistas.
 
 </footer>
 
+<script>
+(function() {
+  var DURATION = 10 * 60; // 10 minutos em segundos
+  var KEY_END  = 'vsl_cd_end'; // sessionStorage key
+
+  var minEl = document.getElementById('cd-min');
+  var secEl = document.getElementById('cd-sec');
+  var box   = document.querySelector('.countdown-box');
+  var note  = document.querySelector('.countdown-note');
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  // Calcula ou recupera o timestamp de término
+  var endTime;
+  var stored = sessionStorage.getItem(KEY_END);
+  if (stored) {
+    endTime = parseInt(stored, 10);
+    // Se já expirou na sessão anterior, reinicia
+    if (Date.now() >= endTime) {
+      endTime = Date.now() + DURATION * 1000;
+      sessionStorage.setItem(KEY_END, endTime);
+    }
+  } else {
+    // Primeira visita da sessão — inicia do zero
+    endTime = Date.now() + DURATION * 1000;
+    sessionStorage.setItem(KEY_END, endTime);
+  }
+
+  function tick() {
+    var remaining = Math.round((endTime - Date.now()) / 1000);
+
+    if (remaining <= 0) {
+      minEl.textContent = '00';
+      secEl.textContent = '00';
+      box.style.borderColor = 'rgba(192,57,43,0.9)';
+      box.style.background  = 'rgba(192,57,43,0.22)';
+      note.textContent = '⚠️ Oferta expirada! Finalize seu pedido agora.';
+      note.style.color = '#e74c3c';
+      sessionStorage.removeItem(KEY_END); // limpa para próxima visita reiniciar
+      return;
+    }
+
+    // Pulsa vermelho nos últimos 60s
+    if (remaining <= 60) {
+      box.style.boxShadow = remaining % 2 === 0
+        ? '0 0 40px rgba(192,57,43,0.55)'
+        : '0 0 12px rgba(192,57,43,0.2)';
+    }
+
+    minEl.textContent = pad(Math.floor(remaining / 60));
+    secEl.textContent = pad(remaining % 60);
+    setTimeout(tick, 1000);
+  }
+
+  tick();
+})();
+
+// ---- Video toggle ----
+function toggleVideo(btn) {
+  var wrap = btn.closest('.tvid-wrap');
+  var video = wrap.querySelector('video');
+  var ph = wrap.querySelector('.tvid-placeholder');
+  if (!video) return; // placeholder mode — no video src yet
+  if (video.paused) {
+    // pause all others first
+    document.querySelectorAll('.tvid-wrap video').forEach(function(v){ if(v !== video){ v.pause(); v.closest('.tvid-wrap').querySelector('.tvid-play-btn svg path').setAttribute('d','M8 5v14l11-7z'); } });
+    video.play();
+    btn.querySelector('svg path').setAttribute('d','M6 19h4V5H6v14zm8-14v14h4V5h-4z'); // pause icon
+    if (ph) ph.style.display = 'none';
+  } else {
+    video.pause();
+    btn.querySelector('svg path').setAttribute('d','M8 5v14l11-7z'); // play icon
+  }
+}
+
+
+  //tvidwarp2 vsl
+  function toggleVideo2(btn) {
+  var wrap = btn.closest('.tvid-wrap2');
+  var video = wrap.querySelector('video');
+  var ph = wrap.querySelector('.tvid-placeholder');
+  if (!video) return; // placeholder mode — no video src yet
+  if (video.paused) {
+    // pause all others first
+    document.querySelectorAll('.tvid-wrap2 video').forEach(function(v){ if(v !== video){ v.pause(); v.closest('.tvid-wrap2').querySelector('.tvid-play-btn svg path').setAttribute('d','M8 5v14l11-7z'); } });
+    video.play();
+    btn.querySelector('svg path').setAttribute('d','M6 19h4V5H6v14zm8-14v14h4V5h-4z'); // pause icon
+    if (ph) ph.style.display = 'none';
+  } else {
+    video.pause();
+    btn.querySelector('svg path').setAttribute('d','M8 5v14l11-7z'); // play icon
+  }
+}
+</script>
+  
+  
 <div class="whatsapp-fixo">
-
 <a href="https://wa.me/5551999999999" target="_blank">
-
-<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
-
+<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
 </a>
-
 </div>
 
+<div class="frete-fixo">
+FRETE GRÁTIS
+</div> 
 </body>
 </html>

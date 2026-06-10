@@ -1,0 +1,845 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyLinkBio — Transforme Sua Bio em Uma Máquina de Vendas</title>
+<meta name="description" content="Crie sua página profissional, reúna todos os seus links, WhatsApp, redes sociais, vídeos e produtos em um único lugar. Apareça no Google e venda mais.">
+<meta property="og:title" content="MyLinkBio — Transforme Sua Bio em Uma Máquina de Vendas">
+<meta property="og:description" content="Centralize seus links, venda mais e apareça no Google.">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+  :root {
+    --purple: #7c3aed;
+    --purple-dark: #4c1d95;
+    --purple-light: #a78bfa;
+    --blue: #2563eb;
+    --blue-light: #60a5fa;
+    --lilac: #c4b5fd;
+    --white: #ffffff;
+    --gray-light: #f3f0ff;
+    --grad-main: linear-gradient(135deg, #4c1d95 0%, #7c3aed 40%, #2563eb 100%);
+    --grad-card: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(37,99,235,0.15));
+    --grad-cta: linear-gradient(90deg, #7c3aed, #2563eb);
+    --dark-bg: #0d0618;
+    --dark-card: #130a2a;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: var(--dark-bg);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+  h1, h2, h3, .logo-text { font-family: 'Orbitron', sans-serif; }
+
+  /* ===== CANVAS BG ===== */
+  #bg-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; opacity: 0.35; }
+
+  /* ===== STICKY CTA BAR (mobile) ===== */
+  .sticky-cta {
+    display: none;
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+    background: var(--grad-cta); padding: 14px 20px; text-align: center;
+    box-shadow: 0 -4px 30px rgba(124,58,237,0.6);
+  }
+  .sticky-cta a {
+    color: #fff; font-family: 'Orbitron', sans-serif; font-size: 14px;
+    font-weight: 700; text-decoration: none; letter-spacing: 1px;
+  }
+  @media(max-width:768px){ .sticky-cta { display: block; } }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: rgba(13,6,24,0.85); backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(124,58,237,0.3);
+    padding: 14px 40px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo-wrap { display: flex; align-items: center; gap: 10px; }
+  .logo-icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    background: var(--grad-cta); display: flex; align-items: center; justify-content: center;
+    font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 14px; color: #fff;
+    box-shadow: 0 0 20px rgba(124,58,237,0.8);
+  }
+  .logo-text { font-size: 18px; font-weight: 700; background: var(--grad-cta); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .nav-cta {
+    background: var(--grad-cta); color: #fff; border: none; padding: 10px 24px;
+    border-radius: 50px; font-family: 'Orbitron', sans-serif; font-size: 12px;
+    font-weight: 700; cursor: pointer; letter-spacing: 1px;
+    box-shadow: 0 0 20px rgba(124,58,237,0.5); transition: all 0.3s; text-decoration: none;
+  }
+  .nav-cta:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(124,58,237,0.8); }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative; z-index: 1; min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 120px 20px 80px;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(124,58,237,0.2); border: 1px solid rgba(124,58,237,0.5);
+    border-radius: 50px; padding: 8px 20px; margin-bottom: 30px;
+    font-size: 13px; color: var(--lilac); letter-spacing: 2px; text-transform: uppercase;
+    animation: fadeInDown 0.8s ease;
+  }
+  .hero h1 {
+    font-size: clamp(28px, 5vw, 58px); font-weight: 900; line-height: 1.15;
+    background: linear-gradient(135deg, #fff 0%, var(--lilac) 50%, var(--blue-light) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 20px; animation: fadeInUp 1s ease 0.2s both;
+    max-width: 900px;
+  }
+  .hero-sub {
+    font-size: clamp(15px, 2vw, 20px); color: rgba(255,255,255,0.75); max-width: 620px;
+    line-height: 1.7; margin-bottom: 36px; animation: fadeInUp 1s ease 0.4s both;
+  }
+  .hero-benefits {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 12px;
+    margin-bottom: 44px; animation: fadeInUp 1s ease 0.5s both;
+  }
+  .hero-benefits span {
+    background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.4);
+    border-radius: 50px; padding: 8px 18px; font-size: 13px; color: #c4b5fd;
+  }
+  .vsl-box {
+    width: 100%; max-width: 700px; aspect-ratio: 16/9;
+    background: linear-gradient(135deg, rgba(124,58,237,0.3), rgba(37,99,235,0.3));
+    border: 2px solid rgba(124,58,237,0.5); border-radius: 20px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    margin: 0 auto 44px; position: relative; overflow: hidden;
+    box-shadow: 0 0 60px rgba(124,58,237,0.4);
+    animation: fadeInUp 1s ease 0.6s both;
+  }
+  .vsl-box::before {
+    content: ''; position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 50px, rgba(124,58,237,0.05) 50px, rgba(124,58,237,0.05) 51px),
+                repeating-linear-gradient(90deg, transparent, transparent 50px, rgba(124,58,237,0.05) 50px, rgba(124,58,237,0.05) 51px);
+  }
+  .vsl-play {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: var(--grad-cta); display: flex; align-items: center; justify-content: center;
+    font-size: 28px; box-shadow: 0 0 40px rgba(124,58,237,0.7); cursor: pointer;
+    transition: transform 0.3s; position: relative; z-index: 1;
+  }
+  .vsl-play:hover { transform: scale(1.1); }
+  .vsl-label { margin-top: 16px; font-size: 13px; color: var(--lilac); font-style: italic; z-index: 1; }
+  .btn-hero {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--grad-cta); color: #fff; padding: 20px 50px;
+    border-radius: 60px; font-family: 'Orbitron', sans-serif; font-size: clamp(13px,2vw,16px);
+    font-weight: 700; letter-spacing: 2px; text-decoration: none;
+    box-shadow: 0 0 40px rgba(124,58,237,0.7), 0 0 80px rgba(37,99,235,0.3);
+    animation: pulse-glow 2s infinite, fadeInUp 1s ease 0.8s both;
+    transition: transform 0.3s;
+  }
+  .btn-hero:hover { transform: scale(1.05); }
+  @keyframes pulse-glow {
+    0%,100%{ box-shadow: 0 0 40px rgba(124,58,237,0.7), 0 0 80px rgba(37,99,235,0.3); }
+    50%{ box-shadow: 0 0 60px rgba(124,58,237,1), 0 0 120px rgba(37,99,235,0.6); }
+  }
+
+  /* ===== TIMER ===== */
+  .timer-bar {
+    position: relative; z-index: 2; text-align: center; padding: 24px 20px;
+    background: linear-gradient(90deg, rgba(124,58,237,0.2), rgba(37,99,235,0.2));
+    border-top: 1px solid rgba(124,58,237,0.3); border-bottom: 1px solid rgba(124,58,237,0.3);
+  }
+  .timer-label { font-size: 13px; color: var(--lilac); letter-spacing: 2px; margin-bottom: 12px; text-transform: uppercase; }
+  .timer-digits { display: flex; justify-content: center; gap: 10px; margin-bottom: 10px; }
+  .timer-block {
+    background: rgba(124,58,237,0.3); border: 1px solid rgba(124,58,237,0.6);
+    border-radius: 12px; padding: 12px 20px; min-width: 70px; text-align: center;
+  }
+  .timer-num { font-family: 'Orbitron', sans-serif; font-size: 32px; font-weight: 900; color: #fff; }
+  .timer-unit { font-size: 10px; color: var(--lilac); letter-spacing: 1px; text-transform: uppercase; }
+  .timer-msg { font-size: 13px; color: rgba(255,255,255,0.6); }
+  .timer-expired { color: #f97316; font-size: 13px; font-weight: 600; display: none; }
+
+  /* ===== SECTION BASE ===== */
+  section { position: relative; z-index: 1; }
+  .section-inner { max-width: 1100px; margin: 0 auto; padding: 90px 24px; }
+  .section-tag {
+    display: inline-block; background: rgba(124,58,237,0.2); border: 1px solid rgba(124,58,237,0.5);
+    border-radius: 50px; padding: 6px 18px; font-size: 11px; color: var(--lilac);
+    letter-spacing: 3px; text-transform: uppercase; margin-bottom: 18px;
+  }
+  .section-title {
+    font-size: clamp(24px,4vw,42px); font-weight: 900; line-height: 1.2;
+    background: linear-gradient(135deg, #fff, var(--lilac));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    margin-bottom: 16px;
+  }
+  .section-sub { font-size: 16px; color: rgba(255,255,255,0.65); max-width: 600px; line-height: 1.7; }
+
+  /* ===== PROBLEM ===== */
+  .problem-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 20px; margin-top: 50px; }
+  .problem-card {
+    background: rgba(255,50,50,0.07); border: 1px solid rgba(255,80,80,0.25);
+    border-radius: 16px; padding: 28px 24px; text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .problem-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(255,50,50,0.15); }
+  .problem-card .icon { font-size: 36px; margin-bottom: 14px; }
+  .problem-card h4 { font-size: 15px; color: #fca5a5; margin-bottom: 8px; }
+  .problem-card p { font-size: 13px; color: rgba(255,255,255,0.5); }
+  .problem-result {
+    margin-top: 40px; background: rgba(255,50,50,0.1); border: 1px solid rgba(255,80,80,0.3);
+    border-radius: 16px; padding: 28px; text-align: center;
+    font-size: 18px; color: #fca5a5; font-weight: 600; line-height: 1.6;
+  }
+
+  /* ===== FEATURES ===== */
+  .features-section { background: linear-gradient(180deg, transparent, rgba(124,58,237,0.06), transparent); }
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 20px; margin-top: 50px; }
+  .feature-card {
+    background: var(--grad-card); border: 1px solid rgba(124,58,237,0.3);
+    border-radius: 18px; padding: 30px 24px; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .feature-card::before {
+    content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 70%);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .feature-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(124,58,237,0.3); border-color: rgba(124,58,237,0.6); }
+  .feature-card:hover::before { opacity: 1; }
+  .feature-card .fi { font-size: 32px; margin-bottom: 14px; display: block; }
+  .feature-card h4 { font-size: 15px; font-weight: 700; color: var(--lilac); margin-bottom: 8px; }
+  .feature-card p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+  /* ===== BENEFITS ===== */
+  .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(230px,1fr)); gap: 24px; margin-top: 50px; }
+  .benefit-card {
+    background: var(--dark-card); border: 1px solid rgba(124,58,237,0.25);
+    border-radius: 20px; padding: 36px 28px; text-align: center;
+    position: relative; overflow: hidden; transition: all 0.4s;
+  }
+  .benefit-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--grad-cta); transform: scaleX(0); transition: transform 0.4s;
+  }
+  .benefit-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px rgba(124,58,237,0.25); border-color: rgba(124,58,237,0.5); }
+  .benefit-card:hover::after { transform: scaleX(1); }
+  .benefit-num { font-family: 'Orbitron', sans-serif; font-size: 48px; font-weight: 900; background: var(--grad-cta); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px; }
+  .benefit-card h4 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+  .benefit-card p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonials-section { background: linear-gradient(180deg, transparent, rgba(37,99,235,0.06), transparent); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 28px; margin-top: 50px; }
+  .testimonial-card {
+    background: var(--dark-card); border: 1px solid rgba(124,58,237,0.25);
+    border-radius: 20px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .testimonial-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(124,58,237,0.2); }
+  .testimonial-video {
+    aspect-ratio: 16/9; background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(37,99,235,0.2));
+    display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;
+  }
+  .testimonial-video .play-btn {
+    width: 60px; height: 60px; border-radius: 50%; background: var(--grad-cta);
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+    box-shadow: 0 0 30px rgba(124,58,237,0.7); transition: transform 0.3s;
+  }
+  .testimonial-video:hover .play-btn { transform: scale(1.15); }
+  .testimonial-body { padding: 22px 24px; }
+  .stars { color: #fbbf24; font-size: 16px; margin-bottom: 10px; }
+  .testimonial-body p { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.6; font-style: italic; margin-bottom: 14px; }
+  .testimonial-author { display: flex; align-items: center; gap: 10px; }
+  .author-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--grad-cta); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; }
+  .author-name { font-size: 13px; font-weight: 700; color: var(--lilac); }
+  .author-role { font-size: 11px; color: rgba(255,255,255,0.45); }
+
+  /* ===== COMPARISON ===== */
+  .comparison-table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 50px; overflow: hidden; border-radius: 16px; border: 1px solid rgba(124,58,237,0.3); }
+  .comparison-table th { background: rgba(124,58,237,0.3); padding: 18px 24px; font-family: 'Orbitron', sans-serif; font-size: 13px; letter-spacing: 1px; }
+  .comparison-table th:first-child { text-align: left; }
+  .comparison-table td { padding: 16px 24px; border-top: 1px solid rgba(124,58,237,0.15); font-size: 14px; }
+  .comparison-table td:first-child { font-weight: 600; color: rgba(255,255,255,0.8); }
+  .comparison-table td:not(:first-child) { text-align: center; font-size: 20px; }
+  .comparison-table tr:hover td { background: rgba(124,58,237,0.07); }
+  .comparison-table .col-us { background: rgba(124,58,237,0.08); }
+
+  /* ===== GUARANTEE ===== */
+  .guarantee-box {
+    background: linear-gradient(135deg, rgba(250,204,21,0.08), rgba(251,146,60,0.08));
+    border: 2px solid rgba(250,204,21,0.4); border-radius: 24px;
+    padding: 50px 40px; display: flex; align-items: center; gap: 40px; flex-wrap: wrap;
+    margin-top: 50px; position: relative; overflow: hidden;
+  }
+  .guarantee-box::before {
+    content: ''; position: absolute; top: -50%; right: -20%; width: 300px; height: 300px;
+    border-radius: 50%; background: radial-gradient(circle, rgba(250,204,21,0.08), transparent); pointer-events: none;
+  }
+  .guarantee-seal {
+    min-width: 130px; height: 130px; border-radius: 50%;
+    background: linear-gradient(135deg, #f59e0b, #fbbf24, #f59e0b);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    box-shadow: 0 0 40px rgba(250,204,21,0.4); flex-shrink: 0;
+  }
+  .guarantee-seal i { font-size: 38px; color: #fff; }
+  .guarantee-seal span { font-family: 'Orbitron', sans-serif; font-size: 9px; color: #fff; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+  .guarantee-content h3 { font-size: 26px; color: #fbbf24; margin-bottom: 14px; }
+  .guarantee-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .guarantee-list li { display: flex; align-items: center; gap: 10px; font-size: 15px; color: rgba(255,255,255,0.8); }
+  .guarantee-list li i { color: #4ade80; }
+
+  /* ===== PRICING ===== */
+  .pricing-section { background: linear-gradient(180deg, transparent, rgba(124,58,237,0.08), transparent); }
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 28px; margin-top: 50px; }
+  .pricing-card {
+    background: var(--dark-card); border: 1px solid rgba(124,58,237,0.3);
+    border-radius: 24px; padding: 40px 32px; text-align: center; position: relative; transition: all 0.3s;
+  }
+  .pricing-card.featured {
+    border: 2px solid var(--purple); background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(37,99,235,0.1));
+    transform: scale(1.03);
+    box-shadow: 0 0 60px rgba(124,58,237,0.4);
+  }
+  .pricing-card:hover { transform: scale(1.04); box-shadow: 0 0 40px rgba(124,58,237,0.3); }
+  .pricing-card.featured:hover { transform: scale(1.06); }
+  .badge-featured {
+    position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
+    background: var(--grad-cta); color: #fff; padding: 6px 20px;
+    border-radius: 50px; font-size: 11px; font-weight: 700; letter-spacing: 1px; white-space: nowrap;
+  }
+  .plan-name { font-family: 'Orbitron', sans-serif; font-size: 18px; font-weight: 700; color: var(--lilac); margin-bottom: 8px; }
+  .plan-desc { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 24px; }
+  .plan-old { font-size: 15px; color: rgba(255,255,255,0.4); text-decoration: line-through; margin-bottom: 4px; }
+  .plan-price { font-family: 'Orbitron', sans-serif; font-size: 42px; font-weight: 900; background: var(--grad-cta); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
+  .plan-period { font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 28px; }
+  .plan-features { list-style: none; text-align: left; margin-bottom: 32px; display: flex; flex-direction: column; gap: 12px; }
+  .plan-features li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,0.75); }
+  .plan-features li i { color: #4ade80; min-width: 16px; }
+  .btn-plan {
+    display: block; background: var(--grad-cta); color: #fff; padding: 16px 32px;
+    border-radius: 50px; font-family: 'Orbitron', sans-serif; font-size: 13px;
+    font-weight: 700; letter-spacing: 1px; text-decoration: none;
+    box-shadow: 0 0 25px rgba(124,58,237,0.5); transition: all 0.3s;
+  }
+  .btn-plan:hover { box-shadow: 0 0 40px rgba(124,58,237,0.8); transform: translateY(-2px); }
+  .plan-perks { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  .plan-perks span { font-size: 11px; color: rgba(255,255,255,0.45); display: flex; align-items: center; gap: 5px; }
+
+  /* ===== CTA FINAL ===== */
+  .cta-final {
+    background: linear-gradient(135deg, #1a0533, #1e0857, #0c1a4a);
+    text-align: center; padding: 100px 24px; position: relative; overflow: hidden;
+  }
+  .cta-final::before {
+    content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(124,58,237,0.3), transparent 70%); pointer-events: none;
+  }
+  .cta-final h2 { font-size: clamp(24px,4vw,46px); font-weight: 900; color: #fff; margin-bottom: 20px; max-width: 800px; margin-left: auto; margin-right: auto; position: relative; z-index: 1; }
+  .cta-final p { font-size: 18px; color: rgba(255,255,255,0.7); max-width: 550px; margin: 0 auto 40px; position: relative; z-index: 1; line-height: 1.7; }
+  .btn-final {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--grad-cta); color: #fff; padding: 22px 60px;
+    border-radius: 60px; font-family: 'Orbitron', sans-serif; font-size: clamp(14px,2vw,18px);
+    font-weight: 900; letter-spacing: 2px; text-decoration: none;
+    box-shadow: 0 0 60px rgba(124,58,237,0.8), 0 0 120px rgba(37,99,235,0.4);
+    animation: pulse-glow 2s infinite; transition: transform 0.3s; position: relative; z-index: 1;
+  }
+  .btn-final:hover { transform: scale(1.05); }
+  .security-badges { display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin-top: 36px; position: relative; z-index: 1; }
+  .security-badge { display: flex; align-items: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.45); }
+  .security-badge i { color: #4ade80; }
+
+  /* ===== SOCIAL PROOF TOAST ===== */
+  #social-toast {
+    position: fixed; bottom: 70px; left: 20px; z-index: 9999;
+    background: var(--dark-card); border: 1px solid rgba(124,58,237,0.4);
+    border-radius: 14px; padding: 14px 18px; max-width: 280px;
+    display: flex; align-items: center; gap: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    transform: translateX(-120%); transition: transform 0.4s ease;
+  }
+  #social-toast.show { transform: translateX(0); }
+  .toast-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--grad-cta); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+  .toast-text { font-size: 12px; color: rgba(255,255,255,0.8); line-height: 1.4; }
+  .toast-text strong { color: var(--lilac); }
+
+  /* ===== EXIT POPUP ===== */
+  #exit-popup {
+    display: none; position: fixed; inset: 0; z-index: 99999;
+    background: rgba(0,0,0,0.85); align-items: center; justify-content: center; padding: 20px;
+  }
+  #exit-popup.active { display: flex; }
+  .exit-box {
+    background: linear-gradient(135deg, #1a0533, #130a2a);
+    border: 2px solid rgba(124,58,237,0.5); border-radius: 24px;
+    padding: 50px 40px; max-width: 520px; width: 100%; text-align: center; position: relative;
+    box-shadow: 0 0 80px rgba(124,58,237,0.4);
+    animation: scaleIn 0.3s ease;
+  }
+  @keyframes scaleIn { from{transform:scale(0.85);opacity:0} to{transform:scale(1);opacity:1} }
+  .exit-close {
+    position: absolute; top: 16px; right: 20px; background: none; border: none;
+    color: rgba(255,255,255,0.4); font-size: 22px; cursor: pointer; transition: color 0.2s;
+  }
+  .exit-close:hover { color: #fff; }
+  .exit-box h3 { font-size: 26px; color: #fbbf24; margin-bottom: 14px; }
+  .exit-box p { font-size: 15px; color: rgba(255,255,255,0.7); margin-bottom: 28px; line-height: 1.6; }
+  .exit-box .btn-plan { font-size: 14px; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: #07030f; border-top: 1px solid rgba(124,58,237,0.2);
+    padding: 50px 24px 100px; text-align: center;
+  }
+  .footer-inner { max-width: 800px; margin: 0 auto; }
+  .footer-links { display: flex; justify-content: center; gap: 24px; margin: 20px 0; flex-wrap: wrap; }
+  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--lilac); }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeInDown { from{opacity:0;transform:translateY(-20px)} to{opacity:1;transform:translateY(0)} }
+  .reveal { opacity: 0; transform: translateY(40px); transition: all 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-left { opacity: 0; transform: translateX(-40px); transition: all 0.7s ease; }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+  .reveal-right { opacity: 0; transform: translateX(40px); transition: all 0.7s ease; }
+  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+  /* ===== SCROLLBAR ===== */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #0d0618; }
+  ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<!-- BG Canvas -->
+<canvas id="bg-canvas"></canvas>
+
+<!-- Sticky CTA (mobile) -->
+<div class="sticky-cta">
+  <a href="#pricing">🚀 CRIAR MINHA BIO AGORA — A PARTIR DE R$ 150</a>
+</div>
+
+<!-- Social Proof Toast -->
+<div id="social-toast">
+  <div class="toast-avatar">🎉</div>
+  <div class="toast-text"><strong id="toast-name">Ana Paula</strong> acabou de criar sua bio<br><span style="color:rgba(255,255,255,0.4);font-size:11px">Há poucos minutos</span></div>
+</div>
+
+<!-- Exit Popup -->
+<div id="exit-popup">
+  <div class="exit-box">
+    <button class="exit-close" onclick="document.getElementById('exit-popup').classList.remove('active')"><i class="fas fa-times"></i></button>
+    <div style="font-size:50px;margin-bottom:16px">😱</div>
+    <h3>Espera! Não vá embora ainda...</h3>
+    <p>Você está prestes a perder a oportunidade de transformar sua bio em uma máquina de vendas. Essa condição especial pode encerrar a qualquer momento.</p>
+    <a href="#pricing" class="btn-plan" onclick="document.getElementById('exit-popup').classList.remove('active')">🔥 QUERO APROVEITAR AGORA</a>
+    <p style="margin-top:14px;font-size:12px;color:rgba(255,255,255,0.3);cursor:pointer" onclick="document.getElementById('exit-popup').classList.remove('active')">Não, prefiro continuar perdendo vendas.</p>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo-wrap">
+    <div class="logo-icon">ML</div>
+    <span class="logo-text">MyLinkBio</span>
+  </div>
+  <a href="#pricing" class="nav-cta">CRIAR MINHA BIO</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-badge"><i class="fas fa-bolt"></i> A PLATAFORMA #1 DE LINK NA BIO DO BRASIL</div>
+  <h1>Transforme Sua Bio em Uma<br>Máquina de Vendas<br>24 Horas Por Dia</h1>
+  <p class="hero-sub">Crie sua página profissional, reúna todos os seus links, WhatsApp, redes sociais, vídeos e produtos em um único lugar.</p>
+  <div class="hero-benefits">
+    <span>✅ Apareça no Google</span>
+    <span>✅ Receba mais cliques</span>
+    <span>✅ Venda mais produtos</span>
+    <span>✅ Integre WhatsApp</span>
+    <span>✅ Fácil de configurar</span>
+  </div>
+  <div class="vsl-box">
+    <div class="vsl-play">▶</div>
+    <p class="vsl-label">▶ Assista ao vídeo e descubra como funciona</p>
+  </div>
+  <a href="#pricing" class="btn-hero">🔥 CRIAR MINHA BIO AGORA</a>
+</section>
+
+<!-- ===== TIMER ===== -->
+<div class="timer-bar">
+  <p class="timer-label">⏰ Oferta Especial Disponível Apenas Nesta Sessão</p>
+  <div class="timer-digits">
+    <div class="timer-block"><div class="timer-num" id="t-min">05</div><div class="timer-unit">min</div></div>
+    <div style="font-size:28px;font-weight:900;align-self:center;color:var(--purple-light)">:</div>
+    <div class="timer-block"><div class="timer-num" id="t-sec">00</div><div class="timer-unit">seg</div></div>
+  </div>
+  <p class="timer-msg">Garanta sua vaga com preço especial antes que o tempo acabe</p>
+  <p class="timer-expired" id="timer-expired">⚠️ Esta condição promocional pode encerrar a qualquer momento.</p>
+</div>
+
+<!-- ===== PROBLEM ===== -->
+<section>
+  <div class="section-inner">
+    <div style="text-align:center" class="reveal">
+      <span class="section-tag">O PROBLEMA</span>
+      <h2 class="section-title">Você está perdendo seguidores,<br>clientes e vendas...</h2>
+      <p class="section-sub" style="margin:0 auto">...porque possui apenas um único link na bio? Todos os dias potenciais clientes entram no seu Instagram e não encontram rapidamente:</p>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card reveal"><div class="icon">❌</div><h4>Seu WhatsApp</h4><p>Clientes somem sem conseguir falar com você</p></div>
+      <div class="problem-card reveal"><div class="icon">❌</div><h4>Seus Produtos</h4><p>Perdem o interesse antes de comprar</p></div>
+      <div class="problem-card reveal"><div class="icon">❌</div><h4>Seus Vídeos</h4><p>Conteúdo valioso fica escondido</p></div>
+      <div class="problem-card reveal"><div class="icon">❌</div><h4>Seus Serviços</h4><p>Oportunidades desperdiçadas todo dia</p></div>
+      <div class="problem-card reveal"><div class="icon">❌</div><h4>Seus Contatos</h4><p>Leads perdidos para sempre</p></div>
+    </div>
+    <div class="problem-result reveal">
+      <strong>Resultado:</strong> menos cliques, menos vendas e menos oportunidades.<br>
+      <span style="color:rgba(255,255,255,0.5);font-size:15px">Cada dia sem o MyLinkBio é dinheiro deixado na mesa.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="features-section">
+  <div class="section-inner">
+    <div style="text-align:center" class="reveal">
+      <span class="section-tag">CONHEÇA O MYLINKBIO</span>
+      <h2 class="section-title">Tudo Que Você Precisa<br>em Um Só Lugar</h2>
+      <p class="section-sub" style="margin:0 auto">Uma plataforma completa para centralizar sua presença digital e transformar visitantes em compradores.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal"><span class="fi">🔗</span><h4>Links Ilimitados</h4><p>Adicione quantos links quiser sem restrições</p></div>
+      <div class="feature-card reveal"><span class="fi">🛍️</span><h4>Mini Loja Integrada</h4><p>Venda produtos diretamente da sua bio</p></div>
+      <div class="feature-card reveal"><span class="fi">🖼️</span><h4>Galeria de Fotos</h4><p>Exiba seu portfólio de forma elegante</p></div>
+      <div class="feature-card reveal"><span class="fi">🎬</span><h4>Vídeos Incorporados</h4><p>Incorpore YouTube, Reels e muito mais</p></div>
+      <div class="feature-card reveal"><span class="fi">📊</span><h4>Analytics Completo</h4><p>Acompanhe cliques e visitas em tempo real</p></div>
+      <div class="feature-card reveal"><span class="fi">🔍</span><h4>Aparição no Google</h4><p>Seja encontrado nas buscas do Google</p></div>
+      <div class="feature-card reveal"><span class="fi">🎨</span><h4>Personalização Total</h4><p>Cores, fontes e layouts exclusivos</p></div>
+      <div class="feature-card reveal"><span class="fi">📱</span><h4>QR Code</h4><p>Compartilhe offline com QR Code gerado</p></div>
+      <div class="feature-card reveal"><span class="fi">🌐</span><h4>Domínio Personalizado</h4><p>Use seu próprio domínio profissional</p></div>
+      <div class="feature-card reveal"><span class="fi">📲</span><h4>Redes Sociais</h4><p>Integre Instagram, TikTok, YouTube e mais</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BENEFITS ===== -->
+<section>
+  <div class="section-inner">
+    <div style="text-align:center" class="reveal">
+      <span class="section-tag">BENEFÍCIOS</span>
+      <h2 class="section-title">Por Que Escolher o MyLinkBio?</h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card reveal">
+        <div class="benefit-num">+300%</div>
+        <h4>Mais Cliques</h4>
+        <p>Centralize tudo em uma única página e multiplique seus cliques</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-num">⭐</div>
+        <h4>Mais Autoridade</h4>
+        <p>Sua marca fica mais profissional e confiável</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-num">💰</div>
+        <h4>Mais Vendas</h4>
+        <p>Transforme visitantes em compradores com funis integrados</p>
+      </div>
+      <div class="benefit-card reveal">
+        <div class="benefit-num">📈</div>
+        <h4>Mais Controle</h4>
+        <p>Acompanhe estatísticas em tempo real e tome decisões assertivas</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials-section">
+  <div class="section-inner">
+    <div style="text-align:center" class="reveal">
+      <span class="section-tag">DEPOIMENTOS</span>
+      <h2 class="section-title">Veja o Que Nossos Clientes<br>Estão Falando</h2>
+      <div style="color:#fbbf24;font-size:20px;margin-top:10px">⭐⭐⭐⭐⭐ <span style="font-size:14px;color:rgba(255,255,255,0.5);margin-left:8px">+2.400 clientes satisfeitos</span></div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-video">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="testimonial-body">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p>"Minhas vendas aumentaram após usar o MyLinkBio. Agora todos os meus clientes chegam pelo link da bio!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar">M</div>
+            <div><div class="author-name">Maria Fernanda</div><div class="author-role">Empreendedora Digital</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-video" style="background:linear-gradient(135deg,rgba(37,99,235,0.2),rgba(124,58,237,0.2))">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="testimonial-body">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p>"Agora meus clientes encontram tudo em um só lugar. WhatsApp, produtos e redes sociais centralizados!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background:linear-gradient(135deg,#2563eb,#7c3aed)">R</div>
+            <div><div class="author-name">Rodrigo Silva</div><div class="author-role">Personal Trainer</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <div class="testimonial-video" style="background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(196,181,253,0.15))">
+          <div class="play-btn">▶</div>
+        </div>
+        <div class="testimonial-body">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p>"Melhor investimento para meu Instagram. Minha bio virou uma landing page profissional!"</p>
+          <div class="testimonial-author">
+            <div class="author-avatar" style="background:linear-gradient(135deg,#7c3aed,#c4b5fd)">J</div>
+            <div><div class="author-name">Juliana Costa</div><div class="author-role">Influenciadora</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPARISON ===== -->
+<section>
+  <div class="section-inner">
+    <div style="text-align:center" class="reveal">
+      <span class="section-tag">COMPARAÇÃO</span>
+      <h2 class="section-title">MyLinkBio vs. Concorrentes</h2>
+      <p class="section-sub" style="margin:0 auto">Veja por que somos a escolha número 1 no Brasil</p>
+    </div>
+    <div style="overflow-x:auto;margin-top:50px" class="reveal">
+      <table class="comparison-table">
+        <thead>
+          <tr>
+            <th>Recursos</th>
+            <th style="background:rgba(124,58,237,0.5);color:#c4b5fd">MyLinkBio ✨</th>
+            <th>Concorrentes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Google SEO</td><td class="col-us">✅</td><td>❌</td></tr>
+          <tr><td>Mini Loja</td><td class="col-us">✅</td><td>❌</td></tr>
+          <tr><td>Vídeos Incorporados</td><td class="col-us">✅</td><td>❌</td></tr>
+          <tr><td>Analytics Completo</td><td class="col-us">✅</td><td style="color:rgba(255,255,255,0.4)">Limitado</td></tr>
+          <tr><td>Personalização Total</td><td class="col-us">✅</td><td style="color:rgba(255,255,255,0.4)">Limitado</td></tr>
+          <tr><td>Suporte em Português</td><td class="col-us">✅</td><td>❌</td></tr>
+          <tr><td>QR Code Grátis</td><td class="col-us">✅</td><td>❌</td></tr>
+          <tr><td>Domínio Personalizado</td><td class="col-us">✅</td><td style="color:rgba(255,255,255,0.4)">Pago Extra</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GUARANTEE ===== -->
+<section>
+  <div class="section-inner">
+    <div style="text-align:center" class="reveal">
+      <span class="section-tag">GARANTIA</span>
+      <h2 class="section-title">Sua Segurança É Nossa Prioridade</h2>
+    </div>
+    <div class="guarantee-box reveal">
+      <div class="guarantee-seal">
+        <i class="fas fa-shield-alt"></i>
+        <span>Garantia</span>
+      </div>
+      <div class="guarantee-content">
+        <h3>Garantia de Satisfação</h3>
+        <ul class="guarantee-list">
+          <li><i class="fas fa-check-circle"></i> Experimente sem riscos — cancele quando quiser</li>
+          <li><i class="fas fa-check-circle"></i> Suporte especializado em português</li>
+          <li><i class="fas fa-check-circle"></i> Configuração simples em menos de 5 minutos</li>
+          <li><i class="fas fa-check-circle"></i> Resultados imediatos desde o primeiro acesso</li>
+          <li><i class="fas fa-check-circle"></i> Atualizações constantes e novas funcionalidades</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section class="pricing-section" id="pricing">
+  <div class="section-inner">
+    <div style="text-align:center" class="reveal">
+      <span class="section-tag">OFERTA ESPECIAL</span>
+      <h2 class="section-title">Plano Completo MyLinkBio</h2>
+      <p class="section-sub" style="margin:0 auto">Escolha o plano ideal para o seu negócio e comece agora mesmo</p>
+    </div>
+    <div class="pricing-grid">
+      <!-- Básico -->
+      <div class="pricing-card reveal">
+        <div class="plan-name">Plano Básico</div>
+        <div class="plan-desc">3 links na bio — Ideal para começar</div>
+        <div class="plan-old">DE: R$ 200,00</div>
+        <div class="plan-price">R$150</div>
+        <div class="plan-period">pagamento único</div>
+        <ul class="plan-features">
+          <li><i class="fas fa-check"></i> 3 Links na Bio</li>
+          <li><i class="fas fa-check"></i> Aparição no Google</li>
+          <li><i class="fas fa-check"></i> Integração WhatsApp</li>
+          <li><i class="fas fa-check"></i> Analytics Básico</li>
+          <li><i class="fas fa-check"></i> QR Code</li>
+          <li><i class="fas fa-check"></i> Personalização de cores</li>
+          <li><i class="fas fa-check"></i> Suporte por chat</li>
+        </ul>
+        <a href="#" class="btn-plan">🔥 CONTRATAR BÁSICO</a>
+        <div class="plan-perks">
+          <span><i class="fas fa-lock"></i> Sem fidelidade</span>
+          <span><i class="fas fa-times-circle"></i> Cancele fácil</span>
+          <span><i class="fas fa-sync"></i> Atualizações grátis</span>
+        </div>
+      </div>
+      <!-- Premium -->
+      <div class="pricing-card featured reveal">
+        <div class="badge-featured">⭐ MAIS POPULAR</div>
+        <div class="plan-name">Plano Premium</div>
+        <div class="plan-desc">4 links bio + 1 Landing Page</div>
+        <div class="plan-old">DE: R$ 400,00</div>
+        <div class="plan-price">R$250</div>
+        <div class="plan-period">pagamento único</div>
+        <ul class="plan-features">
+          <li><i class="fas fa-check"></i> <strong>4 Links na Bio</strong></li>
+          <li><i class="fas fa-check"></i> <strong>1 Landing Page Completa</strong></li>
+          <li><i class="fas fa-check"></i> Mini Loja Integrada</li>
+          <li><i class="fas fa-check"></i> Galeria de Fotos</li>
+          <li><i class="fas fa-check"></i> Vídeos Incorporados</li>
+          <li><i class="fas fa-check"></i> <strong>Analytics Avançado</strong></li>
+          <li><i class="fas fa-check"></i> Domínio Personalizado</li>
+          <li><i class="fas fa-check"></i> <strong>Suporte Prioritário</strong></li>
+          <li><i class="fas fa-check"></i> QR Code Premium</li>
+          <li><i class="fas fa-check"></i> Todas as integrações</li>
+        </ul>
+        <a href="#" class="btn-plan" style="font-size:15px;padding:18px">🚀 CONTRATAR PREMIUM</a>
+        <div class="plan-perks">
+          <span><i class="fas fa-lock"></i> Sem fidelidade</span>
+          <span><i class="fas fa-times-circle"></i> Cancele fácil</span>
+          <span><i class="fas fa-sync"></i> Atualizações grátis</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA FINAL ===== -->
+<section class="cta-final">
+  <h2>Sua Próxima Venda Pode Estar<br>a Um Clique de Distância</h2>
+  <p>Pare de perder clientes e transforme sua bio em uma máquina de conversão que trabalha por você 24 horas por dia.</p>
+  <a href="#pricing" class="btn-final">🚀 COMPRAR AGORA</a>
+  <div class="security-badges">
+    <div class="security-badge"><i class="fas fa-lock"></i> Pagamento 100% Seguro</div>
+    <div class="security-badge"><i class="fas fa-shield-alt"></i> Dados Protegidos</div>
+    <div class="security-badge"><i class="fas fa-check-circle"></i> Configuração em 5 min</div>
+    <div class="security-badge"><i class="fas fa-headset"></i> Suporte em PT-BR</div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-inner">
+    <div class="logo-wrap" style="justify-content:center;margin-bottom:16px">
+      <div class="logo-icon">ML</div>
+      <span class="logo-text" style="font-size:22px">MyLinkBio</span>
+    </div>
+    <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:20px">Transforme sua bio em uma máquina de vendas</p>
+    <div class="footer-links">
+      <a href="#">Termos de Uso</a>
+      <a href="#">Política de Privacidade</a>
+      <a href="#">Contato</a>
+      <a href="#">Suporte</a>
+    </div>
+    <p class="footer-copy">© 2026 MyLinkBio — Todos os Direitos Reservados.</p>
+  </div>
+</footer>
+
+<script>
+// ===== BG CANVAS =====
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+resize(); window.addEventListener('resize', resize);
+class Particle {
+  constructor(){
+    this.x = Math.random()*W; this.y = Math.random()*H;
+    this.vx = (Math.random()-0.5)*0.5; this.vy = (Math.random()-0.5)*0.5;
+    this.r = Math.random()*2+0.5;
+    this.color = Math.random()>0.5 ? 'rgba(124,58,237,' : 'rgba(37,99,235,';
+    this.alpha = Math.random()*0.6+0.2;
+  }
+  update(){ this.x+=this.vx; this.y+=this.vy; if(this.x<0||this.x>W)this.vx*=-1; if(this.y<0||this.y>H)this.vy*=-1; }
+  draw(){ ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2); ctx.fillStyle=this.color+this.alpha+')'; ctx.fill(); }
+}
+for(let i=0;i<120;i++) particles.push(new Particle());
+function drawLines(){
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y, d=Math.sqrt(dx*dx+dy*dy);
+      if(d<130){ ctx.beginPath(); ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.strokeStyle='rgba(124,58,237,'+(0.15*(1-d/130))+')'; ctx.lineWidth=0.5; ctx.stroke(); }
+    }
+  }
+}
+function animate(){ ctx.clearRect(0,0,W,H); particles.forEach(p=>{p.update();p.draw();}); drawLines(); requestAnimationFrame(animate); }
+animate();
+
+// ===== TIMER 5 MIN =====
+let total = 5*60;
+function updateTimer(){
+  const min = Math.floor(total/60), sec = total%60;
+  document.getElementById('t-min').textContent = String(min).padStart(2,'0');
+  document.getElementById('t-sec').textContent = String(sec).padStart(2,'0');
+  if(total>0){ total--; setTimeout(updateTimer,1000); }
+  else{ document.getElementById('timer-expired').style.display='block'; }
+}
+updateTimer();
+
+// ===== SCROLL REVEAL =====
+const revealEls = document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+const observer = new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); }); },{threshold:0.12});
+revealEls.forEach(el=>observer.observe(el));
+
+// ===== SOCIAL PROOF TOASTS =====
+const names = ['Ana Paula','Carlos Eduardo','Juliana Lima','Marcos Vinicius','Fernanda Costa','Rafael Souza','Beatriz Mendes','Diego Alves'];
+const actions = ['acabou de criar sua bio','ativou o Plano Premium','aumentou seus cliques em 3x','conectou sua loja','ativou o QR Code'];
+let toastIdx = 0;
+function showToast(){
+  const toast = document.getElementById('social-toast');
+  document.getElementById('toast-name').textContent = names[Math.floor(Math.random()*names.length)];
+  toast.querySelector('.toast-text').innerHTML = '<strong>'+names[Math.floor(Math.random()*names.length)]+'</strong> '+actions[Math.floor(Math.random()*actions.length)]+'<br><span style="color:rgba(255,255,255,0.4);font-size:11px">Há poucos minutos</span>';
+  toast.classList.add('show');
+  setTimeout(()=>toast.classList.remove('show'), 4000);
+}
+setTimeout(()=>{ showToast(); setInterval(showToast, 12000); }, 5000);
+
+// ===== EXIT POPUP =====
+let exitShown = false;
+document.addEventListener('mouseleave', function(e){
+  if(e.clientY<10 && !exitShown){ exitShown=true; document.getElementById('exit-popup').classList.add('active'); }
+});
+
+// ===== META PIXEL STUB =====
+window.fbq = window.fbq || function(){ console.log('Meta Pixel:', arguments); };
+
+// ===== GOOGLE ANALYTICS STUB =====
+window.gtag = window.gtag || function(){ console.log('GA:', arguments); };
+
+// ===== SMOOTH CTA SCROLL =====
+document.querySelectorAll('a[href="#pricing"]').forEach(a=>{
+  a.addEventListener('click',function(e){ e.preventDefault(); document.getElementById('pricing').scrollIntoView({behavior:'smooth'}); });
+});
+</script>
+</body>
+</html>

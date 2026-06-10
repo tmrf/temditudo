@@ -59,13 +59,15 @@
     border-bottom: 1px solid rgba(124,58,237,0.3);
     padding: 14px 40px; display: flex; align-items: center; justify-content: space-between;
   }
-  .logo-wrap { display: flex; align-items: center; gap: 10px; }
+.logo-wrap { display: flex; align-items: center; gap: 10px; }
   .logo-icon {
-    width: 64px; height: 64px; border-radius: 10px;
-    background: rgba(255,255,255,0.8); display: flex; align-items: center; justify-content: center;
+    width: 38px; height: 38px; border-radius: 10px;
+    background: var(--grad-cta); display: flex; align-items: center; justify-content: center;
     font-family: 'Orbitron', sans-serif; font-weight: 900; font-size: 14px; color: #fff;
+    box-shadow: 0 0 20px rgba(124,58,237,0.8);
   }
-.logo-icon img {
+  
+  .logo-icon img {
   width: 100%;
   height: 100%;
   object-fit: contain; /* mantém a logo inteira */
@@ -460,7 +462,7 @@
     <div class="logo-icon">
   <img src="../images/campanhamylinkbio/logo mylinkbio.png" alt="Logo MyLinkBio">
 </div>
-    <span class="logo-text"></span>
+    <span class="logo-text">MyLinkBio</span>
   </div>
   <a href="#pricing" class="nav-cta">CRIAR MINHA BIO</a>
 </nav>

@@ -478,7 +478,7 @@
   /* ===== CTA FINAL ===== */
   .cta-final {
     background: linear-gradient(135deg, #1a0533, #1e0857, #0c1a4a);
-    text-align: center; padding: 100px 24px; position: relative; overflow: hidden;
+    text-align: center; padding: 20px 24px 20px; position: relative; overflow: hidden;
   }
   .cta-final::before {
     content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
@@ -540,13 +540,13 @@
   /* ===== FOOTER ===== */
   footer {
     background: #07030f; border-top: 1px solid rgba(124,58,237,0.2);
-    padding: 50px 24px 100px; text-align: center;
+    padding: 20px 24px 40px; text-align: center;
   }
   .footer-inner { max-width: 800px; margin: 0 auto; }
   .footer-links { display: flex; justify-content: center; gap: 24px; margin: 20px 0; flex-wrap: wrap; }
-  .footer-links a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+  .footer-links a { font-size: 16px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
   .footer-links a:hover { color: var(--lilac); }
-  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.25); }
+  .footer-copy { font-size: 16px; color: rgba(255,255,255,0.25); }
 
   /* ===== ANIMATIONS ===== */
   @keyframes fadeInUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
@@ -570,7 +570,37 @@
 
 
 
+  .whatsapp-fixo{
+position:fixed;
+right:20px;
+bottom:20px;
+z-index:9999;
+}
 
+.whatsapp-fixo a{
+display:flex;
+align-items:center;
+gap:12px;
+background:#25D366;
+color:#fff;
+text-decoration:none;
+padding:16px 22px;
+border-radius:60px;
+font-family:'Poppins',sans-serif;
+font-weight:700;
+font-size:18px;
+box-shadow:0 10px 30px rgba(0,0,0,.25);
+transition:.3s;
+}
+
+.whatsapp-fixo a:hover{
+transform:scale(1.05);
+}
+
+.whatsapp-fixo img{
+width:32px;
+height:32px;
+}
   
 </style>
 </head>
@@ -1122,5 +1152,9 @@ function toggleVideo(btn) {
 
   
 </script>
+  <div class="whatsapp-fixo">
+<a href="https://wa.me/555183556545" target="_blank">
+
+<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
 </body>
 </html>

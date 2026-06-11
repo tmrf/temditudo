@@ -581,7 +581,6 @@
   right: 20px;
   bottom: 20px;
   z-index: 9999;
-
     animation: whatsappPulse 2s infinite;
 }
 
@@ -602,10 +601,15 @@
   transition: all .3s ease;
 }
 
-.whatsapp-fixo img{
-  width: 68px;
-  height: 68px;
-  display: block;
+.whatsapp-fixo i{
+  font-size: 64px;
+  color: #25D366;
+  line-height: 1;
+  transition: .3s;
+}
+
+  .whatsapp-fixo i:hover{
+  transform: scale(1.1);
 }
 
 .whatsapp-fixo a:hover{
@@ -1162,11 +1166,11 @@ function toggleVideo(btn) {
 
   
 </script>
-  <div class="whatsapp-fixo">
-<a href="https://wa.me/555183556545">
-  <img src="../images/whats.png" alt="WhatsApp">
-</a>
+<div class="whatsapp-fixo">
+  <a href="https://wa.me/555183556545" target="_blank">
+    <i class="fab fa-whatsapp"></i>
   </a>
-  </div>
+</div>
+
 </body>
 </html>

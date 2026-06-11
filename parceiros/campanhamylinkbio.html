@@ -134,7 +134,7 @@
   .hero {
     position: relative; z-index: 1; min-height: 100vh;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; padding: 120px 20px 80px;
+    text-align: center; padding: 200px 100px 100px;
   }
   .hero-badge {
     display: inline-flex; align-items: center; gap: 8px;
@@ -168,13 +168,7 @@
   }
   
 
-
-.testimonials2 {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-top: 44px;
-}
+  .testimonials2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; margin-top: 44px; text-align: left; }
   /* ── TESTIMONIAL VIDEO CARDS ── */
 .tcard2 { background: var(--surface2); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;  width: 100%;
   max-width: 500px; }

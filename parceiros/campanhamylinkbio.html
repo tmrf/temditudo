@@ -166,6 +166,18 @@
     background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.4);
     border-radius: 50px; padding: 8px 18px; font-size: 13px; color: #c4b5fd;
   }
+  
+
+  .testimonials2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; margin-top: 44px; text-align: left; }
+
+  /* ── TESTIMONIAL VIDEO CARDS ── */
+.tcard2 { background: var(--surface2); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+.tvid-wrap2 { position: relative; width:100%; padding-top: 63%; background: #000; }
+  .tvid-wrap video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  .tvid-wrap2 video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+  
+  
+  
   .vsl-box {
     width: 100%; max-width: 700px; aspect-ratio: 16/9;
     background: linear-gradient(135deg, rgba(124,58,237,0.3), rgba(37,99,235,0.3));
@@ -473,6 +485,16 @@
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: #0d0618; }
   ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 3px; }
+
+
+
+
+
+
+
+
+
+  
 </style>
 </head>
 <body>
@@ -526,13 +548,30 @@
     <span>✅ Integre WhatsApp</span>
     <span>✅ Fácil de configurar</span>
   </div>
-  <div class="vsl-box">
-      <video controls width="100%">
-    <source src="../video/campanhamylinkbio/vsl.mp4" type="video/mp4">
-
-  </video>
-    <div class="vsl-play">▶</div>
-    <p class="vsl-label">▶ Assista ao vídeo e descubra como funciona</p>
+   <div class="vsl-wrap">
+    <div class="vsl-label">▶ Assista antes de comprar</div>
+    
+    <div class="testimonials2">
+      <div class="tcard2">
+        <div class="tvid-wrap2">
+          <div class="tvid-placeholder">
+            <div class="tvid-ph-pattern"></div>
+            <div class="tvid-ph-icon"></div>
+            <div class="tvid-ph-text"></div> 
+          </div>
+          <video src="../video/gelvolumetrao/vsl.mp4"></video>
+          <div class="tvid-overlay">
+        
+            <strong center>▶ Assista ao vídeo e descubra como funciona</strong>
+             
+          </div>
+          <div class="tvid-play-btn" onclick="toggleVideo2(this)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   </div>
   <a href="#pricing" class="btn-hero">🔥 CRIAR MINHA BIO AGORA</a>
 </section>
@@ -904,6 +943,106 @@ window.gtag = window.gtag || function(){ console.log('GA:', arguments); };
 document.querySelectorAll('a[href="#pricing"]').forEach(a=>{
   a.addEventListener('click',function(e){ e.preventDefault(); document.getElementById('pricing').scrollIntoView({behavior:'smooth'}); });
 });
+
+
+
+(function() {
+  var DURATION = 10 * 60; // 10 minutos em segundos
+  var KEY_END  = 'vsl_cd_end'; // sessionStorage key
+
+  var minEl = document.getElementById('cd-min');
+  var secEl = document.getElementById('cd-sec');
+  var box   = document.querySelector('.countdown-box');
+  var note  = document.querySelector('.countdown-note');
+
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+  // Calcula ou recupera o timestamp de término
+  var endTime;
+  var stored = sessionStorage.getItem(KEY_END);
+  if (stored) {
+    endTime = parseInt(stored, 10);
+    // Se já expirou na sessão anterior, reinicia
+    if (Date.now() >= endTime) {
+      endTime = Date.now() + DURATION * 1000;
+      sessionStorage.setItem(KEY_END, endTime);
+    }
+  } else {
+    // Primeira visita da sessão — inicia do zero
+    endTime = Date.now() + DURATION * 1000;
+    sessionStorage.setItem(KEY_END, endTime);
+  }
+
+  function tick() {
+    var remaining = Math.round((endTime - Date.now()) / 1000);
+
+    if (remaining <= 0) {
+      minEl.textContent = '00';
+      secEl.textContent = '00';
+      box.style.borderColor = 'rgba(192,57,43,0.9)';
+      box.style.background  = 'rgba(192,57,43,0.22)';
+      note.textContent = '⚠️ Oferta expirada! Finalize seu pedido agora.';
+      note.style.color = '#e74c3c';
+      sessionStorage.removeItem(KEY_END); // limpa para próxima visita reiniciar
+      return;
+    }
+
+    // Pulsa vermelho nos últimos 60s
+    if (remaining <= 60) {
+      box.style.boxShadow = remaining % 2 === 0
+        ? '0 0 40px rgba(192,57,43,0.55)'
+        : '0 0 12px rgba(192,57,43,0.2)';
+    }
+
+    minEl.textContent = pad(Math.floor(remaining / 60));
+    secEl.textContent = pad(remaining % 60);
+    setTimeout(tick, 1000);
+  }
+
+  tick();
+})();
+
+// ---- Video toggle ----
+function toggleVideo(btn) {
+  var wrap = btn.closest('.tvid-wrap');
+  var video = wrap.querySelector('video');
+  var ph = wrap.querySelector('.tvid-placeholder');
+  if (!video) return; // placeholder mode — no video src yet
+  if (video.paused) {
+    // pause all others first
+    document.querySelectorAll('.tvid-wrap video').forEach(function(v){ if(v !== video){ v.pause(); v.closest('.tvid-wrap').querySelector('.tvid-play-btn svg path').setAttribute('d','M8 5v14l11-7z'); } });
+    video.play();
+    btn.querySelector('svg path').setAttribute('d','M6 19h4V5H6v14zm8-14v14h4V5h-4z'); // pause icon
+    if (ph) ph.style.display = 'none';
+  } else {
+    video.pause();
+    btn.querySelector('svg path').setAttribute('d','M8 5v14l11-7z'); // play icon
+  }
+}
+
+
+  //tvidwarp2 vsl
+  function toggleVideo2(btn) {
+  var wrap = btn.closest('.tvid-wrap2');
+  var video = wrap.querySelector('video');
+  var ph = wrap.querySelector('.tvid-placeholder');
+  if (!video) return; // placeholder mode — no video src yet
+  if (video.paused) {
+    // pause all others first
+    document.querySelectorAll('.tvid-wrap2 video').forEach(function(v){ if(v !== video){ v.pause(); v.closest('.tvid-wrap2').querySelector('.tvid-play-btn svg path').setAttribute('d','M8 5v14l11-7z'); } });
+    video.play();
+    btn.querySelector('svg path').setAttribute('d','M6 19h4V5H6v14zm8-14v14h4V5h-4z'); // pause icon
+    if (ph) ph.style.display = 'none';
+  } else {
+    video.pause();
+    btn.querySelector('svg path').setAttribute('d','M8 5v14l11-7z'); // play icon
+  }
+}
+
+
+
+
+  
 </script>
 </body>
 </html>

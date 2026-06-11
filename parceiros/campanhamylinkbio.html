@@ -171,8 +171,9 @@
   .testimonials2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; margin-top: 44px; text-align: left; }
 
   /* ── TESTIMONIAL VIDEO CARDS ── */
-.tcard2 { background: var(--surface2); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
-.tvid-wrap2 { position: relative; width:100%; padding-top: 63%; background: #000; }
+.tcard2 { background: var(--surface2); border: 1px solid var(--border); border-radius: 16px; overflow: hidden;  width: 100%;
+  max-width: 500px; }
+.tvid-wrap2 { position: relative; width:100%; padding-top: 100%; background: #000; }
   .tvid-wrap video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .tvid-wrap2 video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
 .tvid-overlay {

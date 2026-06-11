@@ -175,6 +175,43 @@
 .tvid-wrap2 { position: relative; width:100%; padding-top: 63%; background: #000; }
   .tvid-wrap video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
   .tvid-wrap2 video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.tvid-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 45%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 16px;
+  pointer-events: none;
+}
+.tvid-stars { color: var(--gold); font-size: 0.9rem; margin-bottom: 6px; }
+.tvid-name { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.9rem; color: #fff; }
+.tvid-loc { font-size: 0.73rem; color: #bbb; margin-top: 2px; }
+.tvid-play-btn {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  width: 56px; height: 56px; border-radius: 50%;
+  background: rgba(192,57,43,0.85); border: 2px solid rgba(255,255,255,0.3);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: transform .2s, background .2s;
+  pointer-events: all;
+}
+.tvid-play-btn:hover { transform: translate(-50%,-50%) scale(1.12); background: var(--primary); }
+.tvid-play-btn svg { margin-left: 4px; }
+.tvid-placeholder {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  background: linear-gradient(135deg, #1a0000, #111);
+}
+.tvid-ph-pattern {
+  position: absolute; inset: 0; opacity: 0.05;
+  background-image: repeating-linear-gradient(45deg,#fff 0,#fff 1px,transparent 0,transparent 50%);
+  background-size: 16px 16px;
+}
+.tvid-ph-icon { font-size: 2.8rem; position: relative; z-index:1; }
+.tvid-ph-text { font-family:'Montserrat',sans-serif; font-size:0.75rem; color:#777; position:relative;z-index:1; letter-spacing:1px; text-transform:uppercase; }
+
+
+
+  
+
   
   
   

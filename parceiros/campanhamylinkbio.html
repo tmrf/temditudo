@@ -381,30 +381,112 @@
   .benefit-card p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.6; }
 
   /* ===== TESTIMONIALS ===== */
-  .testimonials-section { background: linear-gradient(180deg, transparent, rgba(37,99,235,0.06), transparent); }
-  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 28px; margin-top: 50px; }
-  .testimonial-card {
-    background: var(--dark-card); border: 1px solid rgba(124,58,237,0.25);
-    border-radius: 20px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .testimonial-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(124,58,237,0.2); }
-  .testimonial-video {
-    aspect-ratio: 16/9; background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(37,99,235,0.2));
-    display: flex; align-items: center; justify-content: center; position: relative; cursor: pointer;
-  }
-  .testimonial-video .play-btn {
-    width: 60px; height: 60px; border-radius: 50%; background: var(--grad-cta);
-    display: flex; align-items: center; justify-content: center; font-size: 20px;
-    box-shadow: 0 0 30px rgba(124,58,237,0.7); transition: transform 0.3s;
-  }
-  .testimonial-video:hover .play-btn { transform: scale(1.15); }
-  .testimonial-body { padding: 22px 24px; }
-  .stars { color: #fbbf24; font-size: 16px; margin-bottom: 10px; }
-  .testimonial-body p { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.6; font-style: italic; margin-bottom: 14px; }
-  .testimonial-author { display: flex; align-items: center; gap: 10px; }
-  .author-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--grad-cta); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; }
-  .author-name { font-size: 13px; font-weight: 700; color: var(--lilac); }
-  .author-role { font-size: 11px; color: rgba(255,255,255,0.45); }
+ /* ===== TESTIMONIALS ===== */
+
+.testimonials-section{
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(37,99,235,.06),
+    transparent
+  );
+}
+
+.testimonials-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:28px;
+  margin-top:50px;
+}
+
+.tcard{
+  background: var(--dark-card);
+  border:1px solid rgba(124,58,237,.25);
+  border-radius:20px;
+  overflow:hidden;
+  transition:.3s;
+}
+
+.tcard:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 50px rgba(124,58,237,.2);
+}
+
+.tvid-wrap{
+  position:relative;
+  width:100%;
+  padding-top:177.78%;
+  background:#000;
+}
+
+.tvid-wrap video{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.tvid-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(
+    to top,
+    rgba(0,0,0,.75) 0%,
+    transparent 45%
+  );
+
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:16px;
+
+  pointer-events:none;
+}
+
+.tvid-stars{
+  color:#fbbf24;
+  font-size:15px;
+  margin-bottom:6px;
+}
+
+.tvid-name{
+  font-size:15px;
+  font-weight:700;
+  color:var(--lilac);
+}
+
+.tvid-loc{
+  font-size:12px;
+  color:rgba(255,255,255,.65);
+  margin-top:3px;
+}
+
+.tvid-play-btn{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+
+  width:60px;
+  height:60px;
+  border-radius:50%;
+
+  background:var(--grad-cta);
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  cursor:pointer;
+
+  box-shadow:0 0 30px rgba(124,58,237,.7);
+  transition:.3s;
+}
+
+.tvid-play-btn:hover{
+  transform:translate(-50%,-50%) scale(1.15);
+}
 
   /* ===== COMPARISON ===== */
   .comparison-table { width: 100%; border-collapse: separate; border-spacing: 0; margin-top: 50px; overflow: hidden; border-radius: 16px; border: 1px solid rgba(124,58,237,0.3); }
@@ -788,55 +870,92 @@
 <!-- ===== TESTIMONIALS ===== -->
 <section class="testimonials-section">
   <div class="section-inner">
+
     <div style="text-align:center" class="reveal">
       <span class="section-tag">DEPOIMENTOS</span>
-      <h2 class="section-title">Veja o Que Nossos Clientes<br>Estão Falando</h2>
-      <div style="color:#fbbf24;font-size:20px;margin-top:10px">⭐⭐⭐⭐⭐ <span style="font-size:14px;color:rgba(255,255,255,0.5);margin-left:8px">+2.400 clientes satisfeitos</span></div>
+      <h2 class="section-title">
+        Veja o Que Nossos Clientes<br>Estão Falando
+      </h2>
+
+      <div style="color:#fbbf24;font-size:20px;margin-top:10px">
+        ⭐⭐⭐⭐⭐
+        <span style="font-size:14px;color:rgba(255,255,255,.5);margin-left:8px">
+          +2.400 clientes satisfeitos
+        </span>
+      </div>
     </div>
+
     <div class="testimonials-grid">
-      <div class="testimonial-card reveal">
-        <div class="testimonial-video">
-          <div class="play-btn">▶</div>
-        </div>
-        <div class="testimonial-body">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p>"Minhas vendas aumentaram após usar o MyLinkBio. Agora todos os meus clientes chegam pelo link da bio!"</p>
-          <div class="testimonial-author">
-            <div class="author-avatar">M</div>
-            <div><div class="author-name">Maria Fernanda</div><div class="author-role">Empreendedora Digital</div></div>
+
+      <!-- Vídeo 1 -->
+      <div class="tcard">
+        <div class="tvid-wrap">
+
+          <video src="../video/campanhamylinkbio/dep1.mp4"></video>
+
+          <div class="tvid-overlay">
+            <div class="tvid-stars">★★★★★</div>
+             <p>"Minhas vendas aumentaram após usar o MyLinkBio. Agora todos os meus clientes chegam pelo link da bio!"</p>
+            <div class="tvid-name">Maria Fernanda</div>
+            <div class="tvid-loc">Empreendedora Digital</div>
           </div>
+
+          <div class="tvid-play-btn" onclick="toggleVideo(this)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+
         </div>
       </div>
-      <div class="testimonial-card reveal">
-        <div class="testimonial-video" style="background:linear-gradient(135deg,rgba(37,99,235,0.2),rgba(124,58,237,0.2))">
-          <div class="play-btn">▶</div>
-        </div>
-        <div class="testimonial-body">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p>"Agora meus clientes encontram tudo em um só lugar. WhatsApp, produtos e redes sociais centralizados!"</p>
-          <div class="testimonial-author">
-            <div class="author-avatar" style="background:linear-gradient(135deg,#2563eb,#7c3aed)">R</div>
-            <div><div class="author-name">Rodrigo Silva</div><div class="author-role">Personal Trainer</div></div>
+
+      <!-- Vídeo 2 -->
+      <div class="tcard">
+        <div class="tvid-wrap">
+
+          <video src="../video/campanhamylinkbio/dep2.mp4"></video>
+
+          <div class="tvid-overlay">
+            <div class="tvid-stars">★★★★★</div>
+                <p>"Agora meus clientes encontram tudo em um só lugar. WhatsApp, produtos e redes sociais centralizados!"</p>
+            <div class="tvid-name">Rodrigo Silva</div>
+            <div class="tvid-loc">Personal Trainer</div>
           </div>
+
+          <div class="tvid-play-btn" onclick="toggleVideo(this)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+
         </div>
       </div>
-      <div class="testimonial-card reveal">
-        <div class="testimonial-video" style="background:linear-gradient(135deg,rgba(124,58,237,0.15),rgba(196,181,253,0.15))">
-          <video src="../video/campanhamylinkbio/dep3.mp4"></video><div class="play-btn">▶</div>
-        </div>
-        <div class="testimonial-body">
-          <div class="stars">⭐⭐⭐⭐⭐</div>
-          <p>"Melhor investimento para meu Instagram. Minha bio virou uma landing page profissional!"</p>
-          <div class="testimonial-author">
-            <div class="author-avatar" style="background:linear-gradient(135deg,#7c3aed,#c4b5fd)">J</div>
-            <div><div class="author-name">Juliana Costa</div><div class="author-role">Influenciadora</div></div>
+
+      <!-- Vídeo 3 -->
+      <div class="tcard">
+        <div class="tvid-wrap">
+
+          <video src="../video/campanhamylinkbio/dep3.mp4"></video>
+
+          <div class="tvid-overlay">
+            <div class="tvid-stars">★★★★★</div>
+            <p>"Melhor investimento para meu Instagram. Minha bio virou uma landing page profissional!"</p>
+            <div class="tvid-name">Juliana Costa</div>
+            <div class="tvid-loc">Influenciadora</div>
           </div>
+
+          <div class="tvid-play-btn" onclick="toggleVideo(this)">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+
         </div>
       </div>
+
     </div>
   </div>
 </section>
-
 <!-- ===== COMPARISON ===== -->
 <section>
   <div class="section-inner">

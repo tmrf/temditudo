@@ -1270,6 +1270,7 @@ function toggleVideo(btn) {
           .querySelector('.tvid-play-btn');
 
         otherBtn.classList.remove('hidden');
+        btn.style.display = 'flex';
       }
     });
 
@@ -1283,6 +1284,8 @@ function toggleVideo(btn) {
 
     video.pause();
     btn.classList.remove('hidden');
+    btn.style.display = 'none';
+    
 
   }
 
@@ -1292,11 +1295,13 @@ function toggleVideo(btn) {
 
       video.play();
       btn.classList.add('hidden');
+      btn.style.display = 'none';
 
     } else {
 
       video.pause();
       btn.classList.remove('hidden');
+      btn.style.display = 'flex';
 
     }
   };

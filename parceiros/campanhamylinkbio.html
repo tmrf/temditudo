@@ -637,8 +637,19 @@
   .plan-name { font-family: 'Orbitron', sans-serif; font-size: 18px; font-weight: 700; color: var(--lilac); margin-bottom: 8px; }
   .plan-desc { font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 24px; }
   .plan-old { font-size: 15px; color: rgba(255,255,255,0.4); text-decoration: line-through; margin-bottom: 4px; }
-  .plan-price { font-family: 'Orbitron', sans-serif; font-size: 42px; font-weight: 900; background: var(--grad-cta); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; }
-  .plan-period { font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 28px; }
+  .plan-price{
+  font-family: 'Orbitron', sans-serif;
+  font-size: 42px;
+  font-weight: 900;
+
+  background: var(--grad-cta);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  -webkit-text-stroke: 1px rgba(255,255,255,0.8);
+
+  line-height: 1;
+}.plan-period { font-size: 13px; color: rgba(255,255,255,0.4); margin-bottom: 28px; }
   .plan-features { list-style: none; text-align: left; margin-bottom: 32px; display: flex; flex-direction: column; gap: 12px; }
   .plan-features li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,0.75); }
   .plan-features li i { color: #4ade80; min-width: 16px; }
@@ -1147,8 +1158,8 @@
       <div class="pricing-card reveal">
         <div class="plan-name">Plano Básico</div>
         <div class="plan-desc">3 links na bio — Ideal para começar</div>
-        <div class="plan-old">DE: R$199,99</div>
-        <div class="plan-price">R$149,99</div>
+        <div class="plan-old">DE: R$199</div>
+        <div class="plan-price">R$149</div>
         <div class="plan-period">Cobrado anualmente</div>
         <ul class="plan-features">
           <li><i class="fas fa-check"></i> 3 Links na Bio</li>
@@ -1170,8 +1181,8 @@
         <div class="badge-featured">⭐ MAIS POPULAR</div>
         <div class="plan-name">Plano Advanced</div>
         <div class="plan-desc">4 links bio + 1 Landing Page</div>
-        <div class="plan-old">DE: R$ 399,99</div>
-        <div class="plan-price">R$249,99</div>
+        <div class="plan-old">DE: R$ 399</div>
+        <div class="plan-price">R$249</div>
         <div class="plan-period">Cobrado anualmente</div>
         <ul class="plan-features">
           <li><i class="fas fa-check"></i> <strong>4 Links na Bio</strong></li>
@@ -1195,8 +1206,8 @@
       <div class="pricing-card reveal">
         <div class="plan-name">Plano Premium</div>
         <div class="plan-desc">5 links na bio + land page + mini site — Ideal para começar</div>
-        <div class="plan-old">DE: R$ 599,99</div>
-        <div class="plan-price">R$499,99</div>
+        <div class="plan-old">DE: R$ 599</div>
+        <div class="plan-price">R$499</div>
         <div class="plan-period">Cobrado anualmente</div>
         <ul class="plan-features">
           <li><i class="fas fa-check"></i> 5 Links na Bio</li>

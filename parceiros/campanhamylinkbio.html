@@ -589,11 +589,44 @@
     background: var(--dark-card); border: 1px solid rgba(124,58,237,0.3);
     border-radius: 24px; padding: 40px 32px; text-align: center; position: relative; transition: all 0.3s;
   }
-  .pricing-card.featured {
-    border: 2px solid var(--purple); background: linear-gradient(135deg, rgba(124,58,237,0.2), rgba(37,99,235,0.1));
-    transform: scale(1.03);
-    box-shadow: 0 0 60px rgba(124,58,237,0.4);
-  }
+ .pricing-card.featured {
+  border: 2px solid rgba(250,204,21,0.4);
+  background: linear-gradient(
+    135deg,
+    rgba(250,204,21,0.12),
+    rgba(251,146,60,0.12)
+  );
+
+  transform: scale(1.03);
+
+  box-shadow:
+    0 0 30px rgba(250,204,21,0.25),
+    0 0 60px rgba(251,146,60,0.15);
+}
+  .pricing-card.featured .plan-price{
+  background: linear-gradient(
+    135deg,
+    #facc15,
+    #fb923c
+  );
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.pricing-card.featured .badge-featured{
+  background: linear-gradient(
+    135deg,
+    #facc15,
+    #fb923c
+  );
+
+  color: #1a1a1a;
+  font-weight: 800;
+}
+
+
+
+  
   .pricing-card:hover { transform: scale(1.04); box-shadow: 0 0 40px rgba(124,58,237,0.3); }
   .pricing-card.featured:hover { transform: scale(1.06); }
   .badge-featured {

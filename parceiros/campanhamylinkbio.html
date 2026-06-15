@@ -794,18 +794,12 @@
   ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 3px; }
 
 
-
-
-
-
-
-
+ /* =====  whatsapp ===== */ 
 @keyframes whatsappPulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.08); }
   100% { transform: scale(1); }
 }
-
 .whatsapp-fixo{
   position: fixed;
   right: 20px;
@@ -813,14 +807,12 @@
   z-index: 9999;
     animation: whatsappPulse 2s infinite;
 }
-
 .whatsapp-fixo a{
   display: block;
   width: 70px;
   height: 70px;
   transition: all .3s ease;
 }
-
 .whatsapp-fixo img{
   width: 100%;
   height: 100%;
@@ -829,17 +821,59 @@
 
   transition: transform .3s ease;
 }
-
-
-  
   .whatsapp-fixo img:hover{
   transform: scale(1.1);
 }
-
 .whatsapp-fixo a:hover{
   transform: scale(1.1);
 }
-  
+  /* ===== pop up ===== */ 
+.legal-modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.85);
+  z-index:99999;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+}
+.legal-modal.active{
+  display:flex;
+}
+.legal-modal-content{
+  width:100%;
+  max-width:1000px;
+  height:90vh;
+  background:#0d0618;
+  border:1px solid rgba(124,58,237,.4);
+  border-radius:20px;
+  overflow:hidden;
+  position:relative;
+}
+.legal-modal iframe{
+  width:100%;
+  height:100%;
+  border:none;
+}
+.legal-close{
+  position:absolute;
+  top:15px;
+  right:15px;
+  width:40px;
+  height:40px;
+  border:none;
+  border-radius:50%;
+  background:#7c3aed;
+  color:#fff;
+  font-size:18px;
+  cursor:pointer;
+  z-index:2;
+}
+
+.legal-close:hover{
+  transform:scale(1.08);
+}
   
 </style>
 </head>
@@ -1270,10 +1304,13 @@
     </div>
     <p style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:20px">Transforme sua bio em uma máquina de vendas</p>
     <div class="footer-links">
-      <a href="#">Termos de Uso</a>
-      <a href="#">Política de Privacidade</a>
-      <a href="#">Contato</a>
-      <a href="#">Suporte</a>
+<a href="#" onclick="openModal('https://temditudo.shop/parceiros/campanhamylinkbio/campanhamylinkbiotermosdeuso.txt'); return false;">
+  Termos de Uso
+</a>
+
+<a href="#" onclick="openModal('https://temditudo.shop/parceiros/campanhamylinkbio/campanhamylinkbiopoliticadeprivacidade.txt'); return false;">
+  Política de Privacidade
+</a>
     </div>
     <p class="footer-copy">© 2026 MyLinkBio — Todos os Direitos Reservados.</p>
   </div>
@@ -1506,16 +1543,42 @@ function toggleVideo2(btn) {
   };
 }
 
-
-
-
+//  Modal
+function openModal(url){
+  document.getElementById('legalFrame').src = url;
+  document.getElementById('legalModal').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal(){
+  document.getElementById('legalModal').classList.remove('active');
+  document.getElementById('legalFrame').src = '';
+  document.body.style.overflow = 'auto';
+}
+document.getElementById('legalModal').addEventListener('click', function(e){
+  if(e.target === this){
+    closeModal();
+  }
+});
   
 </script>
+
+      <!-- Whatsapp  -->
 <div class="whatsapp-fixo">
   <a href="https://wa.me/555183556545" target="_blank">
     <img src="../images/whats.png">
   </a>
 </div>
 
+<!-- Modal  -->
+  <div id="legalModal" class="legal-modal">
+  <div class="legal-modal-content">
+    <button class="legal-close" onclick="closeModal()">
+      ✕
+    </button>
+    <iframe id="legalFrame" src=""></iframe>
+  </div>
+</div>
+
+  
 </body>
 </html>

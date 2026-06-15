@@ -1,130 +1,4 @@
 POLÍTICA DE PRIVACIDADE
-
-MyLinkBio – Plataforma de Mini Sites e Link na Bio
-
-Última atualização: 15 de junho de 2026
-
-Esta Política de Privacidade descreve como são coletados, utilizados, armazenados e protegidos os dados pessoais dos usuários que acessam a página MyLinkBio disponível em:
-
-MyLinkBio
-
-Ao utilizar nossos serviços, você concorda com os termos desta Política de Privacidade.
-
-1. QUEM SOMOS
-
-A MyLinkBio é uma plataforma destinada à criação de mini sites, páginas de divulgação e links na bio para empreendedores, afiliados, influenciadores digitais e empresas que desejam fortalecer sua presença online.
-
-2. DADOS COLETADOS
-
-Podemos coletar as seguintes informações:
-
-Dados fornecidos pelo usuário
-Nome completo;
-E-mail;
-Telefone/WhatsApp;
-Nome de usuário;
-Informações de pagamento;
-Informações enviadas por formulários de contato.
-Dados coletados automaticamente
-Endereço IP;
-Navegador utilizado;
-Sistema operacional;
-Data e hora de acesso;
-Páginas visitadas;
-Cookies e tecnologias semelhantes.
-3. FINALIDADE DA COLETA DOS DADOS
-
-Os dados coletados poderão ser utilizados para:
-
-Criar e gerenciar contas de usuários;
-Processar pagamentos;
-Fornecer suporte ao cliente;
-Melhorar a experiência do usuário;
-Enviar informações sobre produtos e serviços;
-Realizar análises estatísticas;
-Cumprir obrigações legais e regulatórias;
-Prevenir fraudes e atividades ilícitas.
-4. COMPARTILHAMENTO DE DADOS
-
-Seus dados poderão ser compartilhados apenas quando necessário com:
-
-Processadores de pagamento;
-Ferramentas de hospedagem e armazenamento;
-Ferramentas de análise e marketing;
-Autoridades públicas quando exigido por lei.
-
-Não comercializamos nem alugamos dados pessoais para terceiros.
-
-5. COOKIES
-
-Utilizamos cookies para:
-
-Manter o funcionamento adequado da plataforma;
-Armazenar preferências do usuário;
-Analisar estatísticas de acesso;
-Personalizar conteúdos e anúncios.
-
-O usuário pode desativar os cookies diretamente em seu navegador, embora algumas funcionalidades possam ser afetadas.
-
-6. BASE LEGAL (LGPD)
-
-O tratamento de dados pessoais é realizado com fundamento na Lei nº 13.709/2018 (Lei Geral de Proteção de Dados – LGPD), com base em:
-
-Consentimento do titular;
-Execução de contrato;
-Cumprimento de obrigação legal;
-Legítimo interesse.
-7. ARMAZENAMENTO E SEGURANÇA
-
-Adotamos medidas técnicas e administrativas para proteger os dados pessoais contra:
-
-Acesso não autorizado;
-Alteração indevida;
-Divulgação;
-Perda ou destruição.
-
-Apesar dos esforços empregados, nenhum sistema é totalmente seguro, sendo impossível garantir segurança absoluta.
-
-8. DIREITOS DO TITULAR
-
-Nos termos da LGPD, você poderá solicitar:
-
-Confirmação da existência de tratamento;
-Acesso aos dados;
-Correção de dados incompletos ou desatualizados;
-Anonimização ou exclusão de dados;
-Portabilidade dos dados;
-Revogação do consentimento.
-9. RETENÇÃO DOS DADOS
-
-Os dados pessoais serão armazenados pelo período necessário para:
-
-Cumprimento das finalidades desta política;
-Atendimento de obrigações legais;
-Exercício regular de direitos.
-
-Após esse período, os dados poderão ser excluídos ou anonimizados.
-
-10. LINKS PARA TERCEIROS
-
-Nossa plataforma pode conter links para sites externos. Não somos responsáveis pelas práticas de privacidade desses terceiros, sendo recomendável a leitura de suas respectivas políticas.
-
-11. ALTERAÇÕES NESTA POLÍTICA
-
-Esta Política de Privacidade poderá ser alterada a qualquer momento para refletir mudanças legais, operacionais ou tecnológicas.
-
-A versão atualizada estará sempre disponível em nosso site.
-
-12. CONTATO
-
-Para dúvidas, solicitações ou exercício dos direitos relacionados aos seus dados pessoais, entre em contato através dos canais oficiais disponibilizados na plataforma.
-
-E-mail para privacidade: privacidade@temditudo.shop
-
-Ao utilizar a plataforma MyLinkBio, você declara estar ciente e concordar com esta Política de Privacidade.
-
-crie umdocumento de politica de privacidade para este link https://mylinkbio.shop
-POLÍTICA DE PRIVACIDADE
 MyLinkBio
 
 Última atualização: 15 de junho de 2026
@@ -213,6 +87,7 @@ Execução de contrato;
 Cumprimento de obrigação legal;
 Exercício regular de direitos;
 Legítimo interesse.
+
 7. SEGURANÇA DAS INFORMAÇÕES
 
 Adotamos medidas técnicas e organizacionais adequadas para proteger os dados pessoais contra:
@@ -263,15 +138,13 @@ A presente Política de Privacidade poderá ser atualizada periodicamente para r
 
 A versão mais recente estará sempre disponível em:
 
-MyLinkBio Oficial
+https://mylinkbio.shop
 
 13. CONTATO
 
 Para dúvidas, solicitações ou assuntos relacionados à proteção de dados pessoais, entre em contato através dos canais oficiais disponibilizados no site.
 
 Site Oficial:
-MyLinkBio
+https://mylinkbio.shop
 
 Ao utilizar a plataforma MyLinkBio, você declara ter lido, compreendido e concordado com os termos desta Política de Privacidade.
-
-crie umdocumento de termos de uso para este link https://mylinkbio.shop

@@ -7,7 +7,7 @@ Bem-vindo à MyLinkBio.
 
 Os presentes Termos de Uso regulam o acesso e a utilização dos serviços disponibilizados pela plataforma:
 
-MyLinkBio
+https://mylinkbio.shop
 
 Ao acessar, cadastrar-se ou utilizar qualquer serviço da plataforma, o usuário declara ter lido, compreendido e concordado integralmente com estes Termos.
 
@@ -22,6 +22,7 @@ Páginas de vendas;
 Catálogos digitais;
 Ferramentas de divulgação online;
 Recursos relacionados ao marketing digital.
+
 2. ACEITAÇÃO DOS TERMOS
 
 Ao utilizar a plataforma, o usuário concorda em cumprir todas as disposições destes Termos de Uso, bem como a legislação aplicável.
@@ -51,6 +52,7 @@ Os valores serão aqueles informados no momento da contratação;
 O acesso aos recursos poderá depender da confirmação do pagamento;
 O cancelamento não garante reembolso, salvo quando previsto em lei;
 Os preços poderão ser alterados mediante aviso prévio.
+
 5. DIREITO DE ARREPENDIMENTO
 
 Para compras realizadas pela internet, o consumidor poderá exercer o direito de arrependimento no prazo de 7 (sete) dias corridos após a contratação, conforme previsto no Código de Defesa do Consumidor, desde que a legislação aplicável assim determine.
@@ -100,6 +102,7 @@ Atualizações;
 Manutenções;
 Correções técnicas;
 Melhorias na plataforma.
+
 9. LIMITAÇÃO DE RESPONSABILIDADE
 
 A MyLinkBio não será responsável por:
@@ -121,6 +124,7 @@ A MyLinkBio não controla e não se responsabiliza por:
 Conteúdo externo;
 Políticas de privacidade de terceiros;
 Produtos ou serviços oferecidos por terceiros.
+
 11. SUSPENSÃO E ENCERRAMENTO DE CONTAS
 
 A MyLinkBio poderá suspender ou encerrar contas que:
@@ -154,6 +158,7 @@ Código Civil Brasileiro;
 Código de Defesa do Consumidor;
 Lei Geral de Proteção de Dados (Lei nº 13.709/2018);
 Marco Civil da Internet (Lei nº 12.965/2014).
+
 15. FORO
 
 Fica eleito o foro da comarca da sede da empresa responsável pela MyLinkBio para dirimir quaisquer controvérsias oriundas destes Termos, salvo disposição legal em contrário.
@@ -162,6 +167,8 @@ Fica eleito o foro da comarca da sede da empresa responsável pela MyLinkBio par
 
 Para dúvidas, suporte ou informações relacionadas a estes Termos de Uso, entre em contato pelos canais oficiais da plataforma:
 
-MyLinkBio Oficial
+Site: https://mylinkbio.shop
+ou
+Whatsapp: +55 (51) 9 8355-6545
 
 Ao acessar ou utilizar a MyLinkBio, o usuário declara ter lido, compreendido e aceitado integralmente os presentes Termos de Uso.

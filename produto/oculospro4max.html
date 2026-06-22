@@ -365,11 +365,13 @@ color:#999;
 .tcard { background: var(--surface2); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
 .tvid-wrap { position: relative; width: 100%; padding-top: 177.78%; /* 9:16 portrait */ background: #000; }
 
-.tvid-wrap2 {
+.tvid-wrap2 video {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    aspect-ratio: 9 / 16;
-    background: #000;
-    position: relative;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .tvid-wrap2 video {

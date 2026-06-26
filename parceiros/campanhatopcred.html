@@ -1399,99 +1399,68 @@
       }
     });
   });
+// ── FORM SUBMIT
+async function handleSubmit(e) {
+  e.preventDefault();
 
-  // ── FORM SUBMIT
-  async function handleSubmit(e) {
-    e.preventDefault();
-    const form = e.target;
-    const btn = form.querySelector('.btn-submit');
-    btn.textContent = 'Enviando...';
-    btn.disabled = true;
+  const form = e.target;
+  const btn = form.querySelector(".btn-submit");
 
-    const data = Object.fromEntries(new FormData(form));
+  btn.textContent = "Enviando...";
+  btn.disabled = true;
 
-    const body = `
-Novo Cadastro - Compra de Veículo
+  const formData = new FormData(form);
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📋 DADOS DO CLIENTE
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-👤 Nome: ${data.nome || '—'}
-📱 WhatsApp: ${data.whatsapp || '—'}
-📍 Cidade: ${data.cidade || '—'}
+  // ===== WEB3FORMS =====
+  formData.append("access_key", "2beb0976-47b6-4ad8-a5b8-c64e0be760ea");
+  formData.append("subject", "🚗 Novo Cadastro - Compra de Veículo");
+  formData.append("from_name", "Landing Page TOPCRED");
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🚗 DADOS DO VEÍCULO
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🔹 Modelo: ${data.modelo || '—'}
-🔹 Ano: ${data.ano || '—'}
-🔹 Banco Financiador: ${data.banco || '—'}
-🔹 Total de Parcelas: ${data.totalParcelas || '—'}
-🔹 Parcelas Pagas: ${data.parcelasPagas || '—'}
-🔹 Parcelas em Atraso: ${data.parcelasAtraso || '—'}
-🔹 Valor da Parcela: ${data.valorParcela || '—'}
-🔹 Dívida IPVA/Multas: ${data.ipvaMultas || '—'}
-🔹 Avarias: ${data.avarias || '—'}
+  try {
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💰 PRETENSÃO
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-💵 Valor Pretendido: ${data.valorPretendido || '—'}
+    const resp = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData
+    });
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-Enviado via Landing Page TOPCRED Assessoria
-    `.trim();
+    const result = await resp.json();
 
-    // Formspree / EmailJS approach — using Formspree endpoint
-    try {
-      const resp = await fetch('https://formspree.io/f/xvgavwkj', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          _replyto: 'jjminersbr@gmail.com',
-          _subject: 'Novo Cadastro - Compra de Veículo',
-          message: body,
-          nome: data.nome,
-          whatsapp: data.whatsapp,
-          modelo: data.modelo,
-          ano: data.ano,
-          cidade: data.cidade,
-          banco: data.banco,
-          totalParcelas: data.totalParcelas,
-          parcelasPagas: data.parcelasPagas,
-          parcelasAtraso: data.parcelasAtraso,
-          valorParcela: data.valorParcela,
-          ipvaMultas: data.ipvaMultas,
-          avarias: data.avarias,
-          valorPretendido: data.valorPretendido
-        })
-      });
+    if (result.success) {
 
       showPopup();
       form.reset();
-    } catch (err) {
-      // Fallback: mailto
-      const mailBody = encodeURIComponent(body);
-      window.location.href = `mailto:jjminersbr@gmail.com?subject=Novo%20Cadastro%20-%20Compra%20de%20Ve%C3%ADculo&body=${mailBody}`;
-      showPopup();
-      form.reset();
+
+    } else {
+
+      console.error(result);
+      alert("Erro ao enviar o formulário.");
+
     }
 
-    btn.textContent = 'RECEBER MINHA PROPOSTA 🚀';
-    btn.disabled = false;
+  } catch (err) {
+
+    console.error(err);
+    alert("Erro de conexão. Tente novamente.");
+
   }
 
-  function showPopup() {
-    document.getElementById('popupOverlay').classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-  function closePopup() {
-    document.getElementById('popupOverlay').classList.remove('active');
-    document.body.style.overflow = '';
-  }
-  document.getElementById('popupOverlay').addEventListener('click', function(e) {
-    if (e.target === this) closePopup();
-  });
+  btn.textContent = "RECEBER MINHA PROPOSTA 🚀";
+  btn.disabled = false;
+}
+
+function showPopup() {
+  document.getElementById('popupOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePopup() {
+  document.getElementById('popupOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('popupOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closePopup();
+});
 </script>
 </body>
 </html>

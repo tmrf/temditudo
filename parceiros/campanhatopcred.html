@@ -1423,8 +1423,10 @@ async function handleSubmit(e) {
       body: formData
     });
 
-    const result = await resp.json();
+   const result = await resp.json();
 
+console.log(result);
+alert(JSON.stringify(result));
     if (result.success) {
 
       showPopup();

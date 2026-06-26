@@ -118,11 +118,11 @@
       letter-spacing: -1px;
       flex-shrink: 0;
     }
-  .logo-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain; /* ou cover, dependendo do efeito desejado */
-    display: block;
+    .logo-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain; /* ou cover, dependendo do efeito desejado */
+      display: block;
     }
     .logo-text {
       display: flex;
@@ -172,19 +172,19 @@
       position: absolute;
       inset: 0;
       background-image:
-        repeating-linear-gradient(
-          90deg,
-          transparent,
-          transparent 80px,
-          rgba(0,200,83,0.03) 80px,
-          rgba(0,200,83,0.03) 81px
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 80px,
+        rgba(0,200,83,0.03) 80px,
+        rgba(0,200,83,0.03) 81px
         ),
-        repeating-linear-gradient(
-          0deg,
-          transparent,
-          transparent 80px,
-          rgba(0,200,83,0.03) 80px,
-          rgba(0,200,83,0.03) 81px
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 80px,
+        rgba(0,200,83,0.03) 80px,
+        rgba(0,200,83,0.03) 81px
         );
     }
     .hero::after {
@@ -559,7 +559,7 @@
         transparent 40px,
         rgba(0,200,83,0.02) 40px,
         rgba(0,200,83,0.02) 41px
-      );
+        );
     }
     .pain-inner {
       position: relative;
@@ -794,7 +794,7 @@
         transparent 60px,
         rgba(0,0,0,0.04) 60px,
         rgba(0,0,0,0.04) 61px
-      );
+        );
     }
     .final-cta-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
     .final-cta h2 {
@@ -978,460 +978,461 @@
     .reveal.delay-4 { transition-delay: 0.5s; }
 
     
- /* =====  whatsapp ===== */ 
-@keyframes whatsappPulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.08); }
-  100% { transform: scale(1); }
-}
-.whatsapp-fixo{
-  position: fixed;
-  right: 20px;
-  bottom: 20px;
-  z-index: 9999;
-    animation: whatsappPulse 2s infinite;
-}
-.whatsapp-fixo a{
-  display: block;
-  width: 70px;
-  height: 70px;
-  transition: all .3s ease;
-}
-.whatsapp-fixo img{
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
+    /* =====  whatsapp ===== */ 
+    @keyframes whatsappPulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+    .whatsapp-fixo{
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 9999;
+      animation: whatsappPulse 2s infinite;
+    }
+    .whatsapp-fixo a{
+      display: block;
+      width: 70px;
+      height: 70px;
+      transition: all .3s ease;
+    }
+    .whatsapp-fixo img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
 
-  transition: transform .3s ease;
-}
-  .whatsapp-fixo img:hover{
-  transform: scale(1.1);
-}
-.whatsapp-fixo a:hover{
-  transform: scale(1.1);
-}
-  /* ===== pop up ===== */ 
-.legal-modal{
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.85);
-  z-index:99999;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-}
-.legal-modal.active{
-  display:flex;
-}
-.legal-modal-content{
-  width:100%;
-  max-width:1000px;
-  height:90vh;
-  background:#00C853;
-  border:1px solid rgba(124,58,237,.4);
-  border-radius:20px;
-  overflow:hidden;
-  position:relative;
-}
-.legal-modal iframe{
-  width:100%;
-  height:100%;
-  border:none;
-}
-.legal-close{
-  position:absolute;
-  top:15px;
-  right:15px;
-  width:40px;
-  height:40px;
-  border:none;
-  border-radius:50%;
-  background:#00C853;
-  color:#fff;
-  font-size:18px;
-  cursor:pointer;
-  z-index:2;
-}
+      transition: transform .3s ease;
+    }
+    .whatsapp-fixo img:hover{
+      transform: scale(1.1);
+    }
+    .whatsapp-fixo a:hover{
+      transform: scale(1.1);
+    }
+    /* ===== pop up ===== */ 
+    .legal-modal{
+      display:none;
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.85);
+      z-index:99999;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+    .legal-modal.active{
+      display:flex;
+    }
+    .legal-modal-content{
+      width:100%;
+      max-width:1000px;
+      height:90vh;
+      background:#00C853;
+      border:1px solid rgba(124,58,237,.4);
+      border-radius:20px;
+      overflow:hidden;
+      position:relative;
+    }
+    .legal-modal iframe{
+      width:100%;
+      height:100%;
+      border:none;
+    }
+    .legal-close{
+      position:absolute;
+      top:15px;
+      right:15px;
+      width:40px;
+      height:40px;
+      border:none;
+      border-radius:50%;
+      background:#00C853;
+      color:#fff;
+      font-size:18px;
+      cursor:pointer;
+      z-index:2;
+    }
 
-.legal-close:hover{
-  transform:scale(1.08);
-}
+    .legal-close:hover{
+      transform:scale(1.08);
+    }
   </style>
 </head>
 <body>
 
-<!-- SCROLL PROGRESS -->
-<div class="scroll-progress" id="scrollProgress"></div>
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" id="scrollProgress"></div>
 
-<!-- NAVBAR -->
-<nav>
-  <div class="nav-inner">
-    <a href="#" class="logo">
-      <div class="logo-icon"><img src="../images/campanhatopcred/logooficial.png" alt="logo"></img></div>
-      <div class="logo-text">
-        <span>TOPCRED</span>
-        <span>ASSESSORIA</span>
-      </div>
-    </a>
-    <a href="#formulario" class="nav-cta">Receber Proposta</a>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero" id="inicio">
-  <div class="hero-bg-lines">
-    <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
-      <polyline points="0,380 60,340 120,300 180,260 240,200 300,160 360,120 420,80 480,50 540,20 600,0" fill="none" stroke="#00C853" stroke-width="2"/>
-      <polyline points="0,400 80,370 160,340 240,290 320,240 400,190 480,130 560,70 600,40" fill="none" stroke="#00C853" stroke-width="1" opacity="0.5"/>
-      <polyline points="0,400 100,380 200,360 300,320 400,280 500,220 600,160" fill="none" stroke="#00C853" stroke-width="1" opacity="0.3"/>
-    </svg>
-  </div>
-  <div class="hero-inner">
-    <div class="hero-badge animate-fade-up"><span>🚨</span> Atenção: Veículo Financiado em Risco?</div>
-    <h1 class="animate-fade-up delay-1">
-      NÃO DEIXE SEU<br>
-      <span class="highlight">CARRO IR A LEILÃO!</span>
-    </h1>
-    <p class="hero-sub animate-fade-up delay-2">
-      Compramos seu veículo antes que o banco tome e você ainda fique com dívidas.
-    </p>
-
-    <div class="hero-benefits animate-fade-up delay-2">
-      <div class="hero-benefit"><div class="check">✓</div>Não faça entrega amigável</div>
-      <div class="hero-benefit"><div class="check">✓</div>Evite Leilão do veiculo</div>
-      <div class="hero-benefit"><div class="check">✓</div>Seu nome em dia</div>
-      <div class="hero-benefit"><div class="check">✓</div>Sem mais juros</div>
-      <div class="hero-benefit"><div class="check">✓</div>Sem custas judiciais</div>
-      <div class="hero-benefit"><div class="check">✓</div>Evite mais dores de cabeça</div>
-    </div>
-
-    <p class="hero-note animate-fade-up delay-3">
-      Se você possui um veículo financiado com parcelas em atraso, nós podemos comprar seu carro antes da busca e apreensão. Analisamos seu caso rapidamente e fazemos uma proposta justa.
-    </p>
-
-    <a href="#formulario" class="btn-primary animate-fade-up delay-3">
-      QUERO RECEBER UMA PROPOSTA AGORA <span class="btn-arrow">→</span>
-    </a>
-
-    <div class="hero-stats animate-fade-up delay-4">
-      <div class="hero-stat">
-        <strong>+500</strong>
-        <span>Negociações realizadas</span>
-      </div>
-      <div class="hero-stat">
-        <strong>100%</strong>
-        <span>Brasil</span>
-      </div>
-      <div class="hero-stat">
-        <strong>24h</strong>
-        <span>Tempo de resposta</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW IT WORKS -->
-<section class="how" id="como-funciona">
-  <div class="section-inner">
-    <span class="section-tag reveal">Processo</span>
-    <h2 class="section-title reveal delay-1">Como funciona?</h2>
-    <p class="section-sub reveal delay-2">Simples, rápido e transparente. Em 4 passos você resolve sua situação.</p>
-    <div class="how-grid">
-      <div class="how-card reveal delay-1">
-        <div class="how-num">1</div>
-        <div class="how-icon">📋</div>
-        <h3>Preencha o formulário abaixo</h3>
-      </div>
-      <div class="how-card reveal delay-2">
-        <div class="how-num">2</div>
-        <div class="how-icon">🔍</div>
-        <h3>Nossa equipe faz a análise</h3>
-      </div>
-      <div class="how-card reveal delay-3">
-        <div class="how-num">3</div>
-        <div class="how-icon">📲</div>
-        <h3>Entramos em contato rapidamente</h3>
-      </div>
-      <div class="how-card reveal delay-4">
-        <div class="how-num">4</div>
-        <div class="how-icon">🚗</div>
-        <h3>Compramos seu veículo antes que ele vá para leilão</h3>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHY TOPCRED -->
-<section class="why" id="por-que">
-  <div class="section-inner">
-    <div class="why-inner">
-      <div class="why-left">
-        <span class="section-tag reveal">Diferenciais</span>
-        <h2 class="section-title reveal delay-1">Por que escolher<br>a TOPCRED?</h2>
-        <div class="why-grid">
-          <div class="why-item reveal delay-1">
-            <div class="why-check">✅</div>
-            <p>Atendimento rápido</p>
-          </div>
-          <div class="why-item reveal delay-2">
-            <div class="why-check">✅</div>
-            <p>Avaliação sem compromisso</p>
-          </div>
-          <div class="why-item reveal delay-2">
-            <div class="why-check">✅</div>
-            <p>Evite busca e apreensão</p>
-          </div>
-          <div class="why-item reveal delay-3">
-            <div class="why-check">✅</div>
-            <p>Negociação transparente</p>
-          </div>
-          <div class="why-item reveal delay-3">
-            <div class="why-check">✅</div>
-            <p>Compramos veículos financiados</p>
-          </div>
-          <div class="why-item reveal delay-4">
-            <div class="why-check">✅</div>
-            <p>Atendimento em todo o Brasil</p>
-          </div>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <div class="logo-icon"><img src="../images/campanhatopcred/logooficial.png" alt="logo"></img></div>
+        <div class="logo-text">
+          <span>TOPCRED</span>
+          <span>ASSESSORIA</span>
         </div>
-        <div class="why-seal reveal delay-4">
-          <div class="seal-icon">🏆</div>
-          <div class="seal-text">
-            <strong>Confiança Garantida</strong>
-            <span>Mais de centenas de negociações realizadas com segurança e transparência em todo o Brasil.</span>
-          </div>
-        </div>
+      </a>
+      <a href="#formulario" class="nav-cta">Receber Proposta</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg-lines">
+      <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="0,380 60,340 120,300 180,260 240,200 300,160 360,120 420,80 480,50 540,20 600,0" fill="none" stroke="#00C853" stroke-width="2"/>
+        <polyline points="0,400 80,370 160,340 240,290 320,240 400,190 480,130 560,70 600,40" fill="none" stroke="#00C853" stroke-width="1" opacity="0.5"/>
+        <polyline points="0,400 100,380 200,360 300,320 400,280 500,220 600,160" fill="none" stroke="#00C853" stroke-width="1" opacity="0.3"/>
+      </svg>
+    </div>
+    <div class="hero-inner">
+      <div class="hero-badge animate-fade-up"><span>🚨</span> Atenção: Veículo Financiado em Risco?</div>
+      <h1 class="animate-fade-up delay-1">
+        NÃO DEIXE SEU<br>
+        <span class="highlight">CARRO IR A LEILÃO!</span>
+      </h1>
+      <p class="hero-sub animate-fade-up delay-2">
+        Compramos seu veículo antes que o banco tome e você ainda fique com dívidas.
+      </p>
+
+      <div class="hero-benefits animate-fade-up delay-2">
+        <div class="hero-benefit"><div class="check">✓</div>Não faça entrega amigável</div>
+        <div class="hero-benefit"><div class="check">✓</div>Evite Leilão do veiculo</div>
+        <div class="hero-benefit"><div class="check">✓</div>Seu nome em dia</div>
+        <div class="hero-benefit"><div class="check">✓</div>Sem mais juros</div>
+        <div class="hero-benefit"><div class="check">✓</div>Sem custas judiciais</div>
+        <div class="hero-benefit"><div class="check">✓</div>Evite mais dores de cabeça</div>
       </div>
-      <div class="why-right">
-        <div class="why-visual reveal">
-          <div class="big-num">500+</div>
-          <p>Veículos comprados antes do leilão</p>
+
+      <p class="hero-note animate-fade-up delay-3">
+        Se você possui um veículo financiado com parcelas em atraso, nós podemos comprar seu carro antes da busca e apreensão. Analisamos seu caso rapidamente e fazemos uma proposta justa.
+      </p>
+
+      <a href="#formulario" class="btn-primary animate-fade-up delay-3">
+        QUERO RECEBER UMA PROPOSTA AGORA <span class="btn-arrow">→</span>
+      </a>
+
+      <div class="hero-stats animate-fade-up delay-4">
+        <div class="hero-stat">
+          <strong>+500</strong>
+          <span>Negociações realizadas</span>
         </div>
-        <div class="why-fact reveal delay-2">
-          💡 Muitos proprietários não sabem que existe uma saída antes de perder o veículo no leilão e ainda continuar devendo. A TOPCRED oferece essa alternativa com segurança e agilidade.
+        <div class="hero-stat">
+          <strong>100%</strong>
+          <span>Brasil</span>
+        </div>
+        <div class="hero-stat">
+          <strong>24h</strong>
+          <span>Tempo de resposta</span>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- PAIN STRIP -->
-<section class="pain">
-  <div class="section-inner pain-inner">
-    <h2 class="reveal">Quanto mais você espera,<br>maior fica sua dívida.</h2>
-    <p class="reveal delay-1">Cada parcela atrasada aumenta:</p>
-    <div class="pain-items">
-      <div class="pain-item reveal delay-1">
-        <span class="p-icon">📈</span>
-        <span>Juros</span>
-      </div>
-      <div class="pain-item reveal delay-2">
-        <span class="p-icon">💸</span>
-        <span>Multas</span>
-      </div>
-      <div class="pain-item reveal delay-3">
-        <span class="p-icon">⚖️</span>
-        <span>Custas</span>
-      </div>
-      <div class="pain-item reveal delay-4">
-        <span class="p-icon">🔨</span>
-        <span>Risco de Leilão</span>
-      </div>
-    </div>
-    <p class="pain-cta reveal delay-2"><strong>Não espere o banco tomar seu veículo.</strong><br>A solução está a um passo de você.</p>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="testimonials" id="depoimentos">
-  <div class="section-inner">
-    <span class="section-tag reveal" style="display:block;text-align:center;">Depoimentos</span>
-    <h2 class="section-title reveal delay-1">Quem já negociou com a<br>TOPCRED recomenda.</h2>
-    <div class="testi-grid">
-      <div class="testi-card reveal delay-1">
-        <div class="stars">★★★★★</div>
-        <p>"Achei que perderia meu carro no leilão. A TOPCRED resolveu tudo muito rápido. Fui atendido no mesmo dia e recebi uma proposta justa."</p>
-        <div class="testi-author">
-          <div class="author-avatar">C</div>
-          <div class="author-info">
-            <strong>Carlos M.</strong>
-            <span>Cliente verificado</span>
-          </div>
+  <!-- HOW IT WORKS -->
+  <section class="how" id="como-funciona">
+    <div class="section-inner">
+      <span class="section-tag reveal">Processo</span>
+      <h2 class="section-title reveal delay-1">Como funciona?</h2>
+      <p class="section-sub reveal delay-2">Simples, rápido e transparente. Em 4 passos você resolve sua situação.</p>
+      <div class="how-grid">
+        <div class="how-card reveal delay-1">
+          <div class="how-num">1</div>
+          <div class="how-icon">📋</div>
+          <h3>Preencha o formulário abaixo</h3>
         </div>
-      </div>
-      <div class="testi-card reveal delay-2">
-        <div class="stars">★★★★★</div>
-        <p>"Recebi uma proposta justa e consegui evitar mais prejuízos. Estava muito preocupada com o banco e a TOPCRED me ajudou a resolver tudo."</p>
-        <div class="testi-author">
-          <div class="author-avatar">F</div>
-          <div class="author-info">
-            <strong>Fernanda R.</strong>
-            <span>Cliente verificada</span>
-          </div>
+        <div class="how-card reveal delay-2">
+          <div class="how-num">2</div>
+          <div class="how-icon">🔍</div>
+          <h3>Nossa equipe faz a análise</h3>
         </div>
-      </div>
-      <div class="testi-card reveal delay-3">
-        <div class="stars">★★★★★</div>
-        <p>"Equipe muito séria. Atendimento excelente do início ao fim. Recomendo a qualquer pessoa que está passando por essa situação difícil."</p>
-        <div class="testi-author">
-          <div class="author-avatar">J</div>
-          <div class="author-info">
-            <strong>João P.</strong>
-            <span>Cliente verificado</span>
-          </div>
+        <div class="how-card reveal delay-3">
+          <div class="how-num">3</div>
+          <div class="how-icon">📲</div>
+          <h3>Entramos em contato rapidamente</h3>
+        </div>
+        <div class="how-card reveal delay-4">
+          <div class="how-num">4</div>
+          <div class="how-icon">🚗</div>
+          <h3>Compramos seu veículo antes que ele vá para leilão</h3>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- WHY TOPCRED -->
+  <section class="why" id="por-que">
+    <div class="section-inner">
+      <div class="why-inner">
+        <div class="why-left">
+          <span class="section-tag reveal">Diferenciais</span>
+          <h2 class="section-title reveal delay-1">Por que escolher<br>a TOPCRED?</h2>
+          <div class="why-grid">
+            <div class="why-item reveal delay-1">
+              <div class="why-check">✅</div>
+              <p>Atendimento rápido</p>
+            </div>
+            <div class="why-item reveal delay-2">
+              <div class="why-check">✅</div>
+              <p>Avaliação sem compromisso</p>
+            </div>
+            <div class="why-item reveal delay-2">
+              <div class="why-check">✅</div>
+              <p>Evite busca e apreensão</p>
+            </div>
+            <div class="why-item reveal delay-3">
+              <div class="why-check">✅</div>
+              <p>Negociação transparente</p>
+            </div>
+            <div class="why-item reveal delay-3">
+              <div class="why-check">✅</div>
+              <p>Compramos veículos financiados</p>
+            </div>
+            <div class="why-item reveal delay-4">
+              <div class="why-check">✅</div>
+              <p>Atendimento em todo o Brasil</p>
+            </div>
+          </div>
+           <div class="why-right">
+          <div class="why-visual reveal">
+            <div class="big-num">500+</div>
+            <p>Veículos comprados antes do leilão</p>
+          </div>
+          <div class="why-fact reveal delay-2">
+            💡 Muitos proprietários não sabem que existe uma saída antes de perder o veículo no leilão e ainda continuar devendo. A TOPCRED oferece essa alternativa com segurança e agilidade.
+          </div>
+        </div>
+          <div class="why-seal reveal delay-4">
+            <div class="seal-icon">🏆</div>
+            <div class="seal-text">
+              <strong>Confiança Garantida</strong>
+              <span>Mais de centenas de negociações realizadas com segurança e transparência em todo o Brasil.</span>
+            </div>
+          </div>
+        </div>
+       
+      </div>
+    </div>
+  </section>
+
+  <!-- PAIN STRIP -->
+  <section class="pain">
+    <div class="section-inner pain-inner">
+      <h2 class="reveal">Quanto mais você espera,<br>maior fica sua dívida.</h2>
+      <p class="reveal delay-1">Cada parcela atrasada aumenta:</p>
+      <div class="pain-items">
+        <div class="pain-item reveal delay-1">
+          <span class="p-icon">📈</span>
+          <span>Juros</span>
+        </div>
+        <div class="pain-item reveal delay-2">
+          <span class="p-icon">💸</span>
+          <span>Multas</span>
+        </div>
+        <div class="pain-item reveal delay-3">
+          <span class="p-icon">⚖️</span>
+          <span>Custas</span>
+        </div>
+        <div class="pain-item reveal delay-4">
+          <span class="p-icon">🔨</span>
+          <span>Risco de Leilão</span>
+        </div>
+      </div>
+      <p class="pain-cta reveal delay-2"><strong>Não espere o banco tomar seu veículo.</strong><br>A solução está a um passo de você.</p>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="depoimentos">
+    <div class="section-inner">
+      <span class="section-tag reveal" style="display:block;text-align:center;">Depoimentos</span>
+      <h2 class="section-title reveal delay-1">Quem já negociou com a<br>TOPCRED recomenda.</h2>
+      <div class="testi-grid">
+        <div class="testi-card reveal delay-1">
+          <div class="stars">★★★★★</div>
+          <p>"Achei que perderia meu carro no leilão. A TOPCRED resolveu tudo muito rápido. Fui atendido no mesmo dia e recebi uma proposta justa."</p>
+          <div class="testi-author">
+            <div class="author-avatar">C</div>
+            <div class="author-info">
+              <strong>Carlos M.</strong>
+              <span>Cliente verificado</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal delay-2">
+          <div class="stars">★★★★★</div>
+          <p>"Recebi uma proposta justa e consegui evitar mais prejuízos. Estava muito preocupada com o banco e a TOPCRED me ajudou a resolver tudo."</p>
+          <div class="testi-author">
+            <div class="author-avatar">F</div>
+            <div class="author-info">
+              <strong>Fernanda R.</strong>
+              <span>Cliente verificada</span>
+            </div>
+          </div>
+        </div>
+        <div class="testi-card reveal delay-3">
+          <div class="stars">★★★★★</div>
+          <p>"Equipe muito séria. Atendimento excelente do início ao fim. Recomendo a qualquer pessoa que está passando por essa situação difícil."</p>
+          <div class="testi-author">
+            <div class="author-avatar">J</div>
+            <div class="author-info">
+              <strong>João P.</strong>
+              <span>Cliente verificado</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
   
-<!-- FORM -->
-<section class="form-section" id="formulario">
-  <div class="section-inner">
-    <div class="form-wrap reveal">
-      <div class="form-header">
-        <h2>Solicite sua avaliação gratuita</h2>
-        <p>Preencha os dados abaixo e nossa equipe entrará em contato rapidamente.</p>
-      </div>
-      <form id="leadForm" onsubmit="handleSubmit(event)">
-        <div class="form-grid">
-          <div class="field-group">
-            <label>Primeiro Nome *</label>
-            <input type="text" name="nome" placeholder="Seu nome" required />
-          </div>
-          <div class="field-group">
-            <label>WhatsApp *</label>
-            <input type="tel" name="whatsapp" placeholder="(00) 00000-0000" required />
-          </div>
-          <div class="field-group">
-            <label>Modelo do Veículo *</label>
-            <input type="text" name="modelo" placeholder="Ex: Honda Civic 2020" required />
-          </div>
-          <div class="field-group">
-            <label>Ano *</label>
-            <input type="number" name="ano" placeholder="Ex: 2020" min="1990" max="2025" required />
-          </div>
-          <div class="field-group">
-            <label>Cidade *</label>
-            <input type="text" name="cidade" placeholder="Sua cidade / Estado" required />
-          </div>
-          <div class="field-group">
-            <label>Banco Financiador *</label>
-            <input type="text" name="banco" placeholder="Ex: Itaú, Santander, BV..." required />
-          </div>
-          <div class="field-group">
-            <label>Total de Parcelas Financiadas</label>
-            <input type="number" name="totalParcelas" placeholder="Ex: 48" min="1" />
-          </div>
-          <div class="field-group">
-            <label>Parcelas Pagas</label>
-            <input type="number" name="parcelasPagas" placeholder="Ex: 20" min="0" />
-          </div>
-          <div class="field-group">
-            <label>Parcelas em Atraso *</label>
-            <input type="number" name="parcelasAtraso" placeholder="Ex: 5" min="0" required />
-          </div>
-          <div class="field-group">
-            <label>Valor da Parcela (R$)</label>
-            <input type="text" name="valorParcela" placeholder="Ex: R$ 850,00" />
-          </div>
-          <div class="field-group">
-            <label>Dívida de IPVA e Multas</label>
-            <input type="text" name="ipvaMultas" placeholder="Ex: R$ 1.200,00 ou Não há" />
-          </div>
-          <div class="field-group">
-            <label>Valor Pretendido (R$)</label>
-            <input type="text" name="valorPretendido" placeholder="Ex: R$ 35.000,00" />
-          </div>
-          <div class="field-group full">
-            <label>Avarias do Veículo</label>
-            <textarea name="avarias" placeholder="Descreva avarias, batidas, problemas mecânicos ou estéticos (se não houver, escreva 'Sem avarias')"></textarea>
-          </div>
+  <!-- FORM -->
+  <section class="form-section" id="formulario">
+    <div class="section-inner">
+      <div class="form-wrap reveal">
+        <div class="form-header">
+          <h2>Solicite sua avaliação gratuita</h2>
+          <p>Preencha os dados abaixo e nossa equipe entrará em contato rapidamente.</p>
         </div>
-        <button type="submit" class="btn-submit">
-          RECEBER MINHA PROPOSTA <span>🚀</span>
-        </button>
-      </form>
-      <div class="form-trust">
-        <div class="trust-item"><span>🔒</span> Dados protegidos</div>
-        <div class="trust-item"><span>✅</span> Avaliação gratuita</div>
-        <div class="trust-item"><span>⚡</span> Resposta em até 24h</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-<!-- FINAL CTA -->
-<section class="final-cta">
-  <div class="final-cta-inner">
-    <h2 class="reveal">Não espere o banco<br>tomar seu veículo.</h2>
-    <p class="reveal delay-1">Quanto antes você agir, maiores são as chances de fazer um bom negócio. Fale agora com nossa equipe.</p>
-    <a href="#formulario" class="btn-dark reveal delay-2">
-      QUERO RECEBER UMA PROPOSTA AGORA →
-    </a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="#" class="logo">
-          <div class="logo-icon"><img src="../images/campanhatopcred/logooficial.png" alt="logo"></img></div>
-          <div class="logo-text">
-            <span>TOPCRED</span>
-            <span>ASSESSORIA</span>
+        <form id="leadForm" onsubmit="handleSubmit(event)">
+          <div class="form-grid">
+            <div class="field-group">
+              <label>Primeiro Nome *</label>
+              <input type="text" name="nome" placeholder="Seu nome" required />
+            </div>
+            <div class="field-group">
+              <label>WhatsApp *</label>
+              <input type="tel" name="whatsapp" placeholder="(00) 00000-0000" required />
+            </div>
+            <div class="field-group">
+              <label>Modelo do Veículo *</label>
+              <input type="text" name="modelo" placeholder="Ex: Honda Civic 2020" required />
+            </div>
+            <div class="field-group">
+              <label>Ano *</label>
+              <input type="number" name="ano" placeholder="Ex: 2020" min="1990" max="2025" required />
+            </div>
+            <div class="field-group">
+              <label>Cidade *</label>
+              <input type="text" name="cidade" placeholder="Sua cidade / Estado" required />
+            </div>
+            <div class="field-group">
+              <label>Banco Financiador *</label>
+              <input type="text" name="banco" placeholder="Ex: Itaú, Santander, BV..." required />
+            </div>
+            <div class="field-group">
+              <label>Total de Parcelas Financiadas</label>
+              <input type="number" name="totalParcelas" placeholder="Ex: 48" min="1" />
+            </div>
+            <div class="field-group">
+              <label>Parcelas Pagas</label>
+              <input type="number" name="parcelasPagas" placeholder="Ex: 20" min="0" />
+            </div>
+            <div class="field-group">
+              <label>Parcelas em Atraso *</label>
+              <input type="number" name="parcelasAtraso" placeholder="Ex: 5" min="0" required />
+            </div>
+            <div class="field-group">
+              <label>Valor da Parcela (R$)</label>
+              <input type="text" name="valorParcela" placeholder="Ex: R$ 850,00" />
+            </div>
+            <div class="field-group">
+              <label>Dívida de IPVA e Multas</label>
+              <input type="text" name="ipvaMultas" placeholder="Ex: R$ 1.200,00 ou Não há" />
+            </div>
+            <div class="field-group">
+              <label>Valor Pretendido (R$)</label>
+              <input type="text" name="valorPretendido" placeholder="Ex: R$ 35.000,00" />
+            </div>
+            <div class="field-group full">
+              <label>Avarias do Veículo</label>
+              <textarea name="avarias" placeholder="Descreva avarias, batidas, problemas mecânicos ou estéticos (se não houver, escreva 'Sem avarias')"></textarea>
+            </div>
           </div>
-        </a>
-        <p>Compra de veículos financiados. Atendimento em todo o Brasil com transparência e agilidade.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Contato</h4>
-        <a href="https://wa.me/555183556545" target="_blank">📱 WhatsApp</a>
-        <a href="mailto:jjminersbr@gmail.com">✉️ jjminersbr@gmail.com</a>
-      </div>
-      <div class="footer-col">
-        <h4>Links</h4>
-        <a href="#" onclick="openModal('https://temditudo.shop/parceiros/campanhatopcredpoliticadeprivacidade.txt'); return false;">Política de Privacidade</a>
-        <a href="#" onclick="openModal('https://temditudo.shop/parceiros/campanhatopcredtermosdeuso.txt'); return false;">Termos de Uso</a>
-        <a href="#como-funciona">Como Funciona</a>
-        <a href="#formulario">Solicitar Proposta</a>
+          <button type="submit" class="btn-submit">
+            RECEBER MINHA PROPOSTA <span>🚀</span>
+          </button>
+        </form>
+        <div class="form-trust">
+          <div class="trust-item"><span>🔒</span> Dados protegidos</div>
+          <div class="trust-item"><span>✅</span> Avaliação gratuita</div>
+          <div class="trust-item"><span>⚡</span> Resposta em até 24h</div>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© 2025 TOPCRED Assessoria. Todos os direitos reservados.</span>
-      <div>
-        <a href="#" onclick="openModal('https://temditudo.shop/parceiros/campanhatopcredpoliticadeprivacidade.txt'); return false;">Política de Privacidade</a>
-       <a href="#" onclick="openModal('https://temditudo.shop/parceiros/campanhatopcredtermosdeuso.txt'); return false;">Termos de Uso</a>
+  </section>
+
+
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="final-cta-inner">
+      <h2 class="reveal">Não espere o banco<br>tomar seu veículo.</h2>
+      <p class="reveal delay-1">Quanto antes você agir, maiores são as chances de fazer um bom negócio. Fale agora com nossa equipe.</p>
+      <a href="#formulario" class="btn-dark reveal delay-2">
+        QUERO RECEBER UMA PROPOSTA AGORA →
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="logo">
+            <div class="logo-icon"><img src="../images/campanhatopcred/logooficial.png" alt="logo"></img></div>
+            <div class="logo-text">
+              <span>TOPCRED</span>
+              <span>ASSESSORIA</span>
+            </div>
+          </a>
+          <p>Compra de veículos financiados. Atendimento em todo o Brasil com transparência e agilidade.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <a href="https://wa.me/555183556545" target="_blank">📱 WhatsApp</a>
+          <a href="mailto:jjminersbr@gmail.com">✉️ jjminersbr@gmail.com</a>
+        </div>
+        <div class="footer-col">
+          <h4>Links</h4>
+          <a href="#" onclick="openModal('https://temditudo.shop/parceiros/campanhatopcredpoliticadeprivacidade.txt'); return false;">Política de Privacidade</a>
+          <a href="#" onclick="openModal('https://temditudo.shop/parceiros/campanhatopcredtermosdeuso.txt'); return false;">Termos de Uso</a>
+          <a href="#como-funciona">Como Funciona</a>
+          <a href="#formulario">Solicitar Proposta</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 TOPCRED Assessoria. Todos os direitos reservados.</span>
+        <div>
+          <a href="#" onclick="openModal('https://temditudo.shop/parceiros/campanhatopcredpoliticadeprivacidade.txt'); return false;">Política de Privacidade</a>
+          <a href="#" onclick="openModal('https://temditudo.shop/parceiros/campanhatopcredtermosdeuso.txt'); return false;">Termos de Uso</a>
+        </div>
       </div>
     </div>
+  </footer>
+
+  <!-- SUCCESS POPUP -->
+  <div class="popup-overlay" id="popupOverlay">
+    <div class="popup">
+      <div class="popup-icon">✅</div>
+      <h3>Cadastro Recebido!</h3>
+      <p>
+        Recebemos seus dados com sucesso.<br><br>
+        Nossa equipe fará a análise do seu veículo e entrará em contato o mais breve possível pelo <strong>WhatsApp informado</strong>.<br><br>
+        <strong>Obrigado por confiar na TOPCRED Assessoria.</strong>
+      </p>
+      <button class="btn-close" onclick="closePopup()">FECHAR</button>
+    </div>
   </div>
-</footer>
-
-<!-- SUCCESS POPUP -->
-<div class="popup-overlay" id="popupOverlay">
-  <div class="popup">
-    <div class="popup-icon">✅</div>
-    <h3>Cadastro Recebido!</h3>
-    <p>
-      Recebemos seus dados com sucesso.<br><br>
-      Nossa equipe fará a análise do seu veículo e entrará em contato o mais breve possível pelo <strong>WhatsApp informado</strong>.<br><br>
-      <strong>Obrigado por confiar na TOPCRED Assessoria.</strong>
-    </p>
-    <button class="btn-close" onclick="closePopup()">FECHAR</button>
-  </div>
-</div>
 
 
 
-<script>
+  <script>
   // ── SCROLL PROGRESS
   window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;
@@ -1486,7 +1487,7 @@ async function handleSubmit(e) {
       body: formData
     });
 
-   const result = await resp.json();
+    const result = await resp.json();
 
     if (result.success) {
 
@@ -1527,24 +1528,24 @@ document.getElementById('popupOverlay').addEventListener('click', function(e) {
 
 
   //  Modal
-function openModal(url){
-  document.getElementById('legalFrame').src = url;
-  document.getElementById('legalModal').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-function closeModal(){
-  document.getElementById('legalModal').classList.remove('active');
-  document.getElementById('legalFrame').src = '';
-  document.body.style.overflow = 'auto';
-}
-document.getElementById('legalModal').addEventListener('click', function(e){
-  if(e.target === this){
-    closeModal();
+  function openModal(url){
+    document.getElementById('legalFrame').src = url;
+    document.getElementById('legalModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
-});
+  function closeModal(){
+    document.getElementById('legalModal').classList.remove('active');
+    document.getElementById('legalFrame').src = '';
+    document.body.style.overflow = 'auto';
+  }
+  document.getElementById('legalModal').addEventListener('click', function(e){
+    if(e.target === this){
+      closeModal();
+    }
+  });
 </script>
 
-  <!-- Whatsapp  -->
+<!-- Whatsapp  -->
 <div class="whatsapp-fixo">
   <a href="https://wa.me/555183556545" target="_blank">
     <img src="../images/whats.png">
@@ -1552,7 +1553,7 @@ document.getElementById('legalModal').addEventListener('click', function(e){
 </div>
 
 <!-- Modal  -->
-  <div id="legalModal" class="legal-modal">
+<div id="legalModal" class="legal-modal">
   <div class="legal-modal-content">
     <button class="legal-close" onclick="closeModal()">
       ✕
@@ -1561,6 +1562,6 @@ document.getElementById('legalModal').addEventListener('click', function(e){
   </div>
 </div>
 
-  
+
 </body>
 </html>

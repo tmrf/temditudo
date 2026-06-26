@@ -1,0 +1,1497 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TOPCRED Assessoria | Compramos seu veículo antes do leilão</title>
+  <meta name="description" content="Venda seu veículo financiado antes da busca e apreensão. Evite leilão, reduza prejuízos e receba uma proposta rápida da TOPCRED Assessoria." />
+  <meta name="keywords" content="comprar veículo financiado, carro com parcelas atrasadas, evitar leilão de veículo, busca e apreensão, vender carro financiado, quitar financiamento, compra de veículos, TOPCRED Assessoria" />
+  <meta property="og:title" content="TOPCRED Assessoria | Compramos seu veículo antes do leilão" />
+  <meta property="og:description" content="Evite busca e apreensão. Receba uma proposta justa pela TOPCRED." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #00C853;
+      --green-dark: #00a844;
+      --green-light: #e6fff1;
+      --black: #0a0a0a;
+      --gray-dark: #1a1a1a;
+      --gray-mid: #2d2d2d;
+      --gray-light: #f4f4f4;
+      --gray-border: #e0e0e0;
+      --white: #ffffff;
+      --text-muted: #666;
+      --shadow: 0 4px 24px rgba(0,0,0,0.10);
+      --shadow-lg: 0 8px 48px rgba(0,0,0,0.18);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(32px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.92); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0,200,83,0.4); }
+      50%       { box-shadow: 0 0 0 12px rgba(0,200,83,0); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-8px); }
+    }
+    @keyframes lineGrow {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+
+    .animate-fade-up   { animation: fadeUp 0.7s ease both; }
+    .animate-fade-in   { animation: fadeIn 0.7s ease both; }
+    .animate-scale-in  { animation: scaleIn 0.6s ease both; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.35s; }
+    .delay-4 { animation-delay: 0.5s; }
+    .delay-5 { animation-delay: 0.65s; }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(10,10,10,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,200,83,0.15);
+      animation: slideDown 0.5s ease both;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 40px; height: 40px;
+      background: var(--green);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 18px;
+      color: var(--black);
+      letter-spacing: -1px;
+      flex-shrink: 0;
+    }
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .logo-text span:first-child {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: 1px;
+    }
+    .logo-text span:last-child {
+      font-size: 9px;
+      font-weight: 400;
+      color: var(--green);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .nav-cta {
+      background: var(--green);
+      color: var(--black);
+      font-weight: 700;
+      font-size: 13px;
+      padding: 10px 22px;
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: 0.3px;
+      transition: background 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--green-dark); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding: 100px 24px 60px;
+    }
+    /* Financial background pattern */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 80px,
+          rgba(0,200,83,0.03) 80px,
+          rgba(0,200,83,0.03) 81px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 80px,
+          rgba(0,200,83,0.03) 80px,
+          rgba(0,200,83,0.03) 81px
+        );
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 200px;
+      background: linear-gradient(to top, rgba(0,200,83,0.06), transparent);
+    }
+    /* Ascending lines decoration */
+    .hero-bg-lines {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .hero-bg-lines svg {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 60%;
+      opacity: 0.07;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,200,83,0.12);
+      border: 1px solid rgba(0,200,83,0.3);
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+      letter-spacing: 0.5px;
+    }
+    .hero-badge span { font-size: 16px; }
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 12px;
+      letter-spacing: -1px;
+    }
+    h1 .highlight {
+      color: var(--green);
+      position: relative;
+    }
+    h1 .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--green);
+      border-radius: 2px;
+      transform-origin: left;
+      animation: lineGrow 0.8s 0.6s ease both;
+    }
+    .hero-sub {
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 36px;
+      max-width: 680px;
+      line-height: 1.6;
+    }
+    .hero-benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin-bottom: 40px;
+      max-width: 700px;
+    }
+    .hero-benefit {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      font-weight: 500;
+    }
+    .hero-benefit .check {
+      width: 22px; height: 22px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      flex-shrink: 0;
+    }
+    .hero-note {
+      color: rgba(255,255,255,0.55);
+      font-size: 14px;
+      margin-bottom: 36px;
+      max-width: 560px;
+      line-height: 1.6;
+      border-left: 2px solid var(--green);
+      padding-left: 16px;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--green);
+      color: var(--black);
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 18px 36px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      animation: pulse-glow 2.5s 1.2s infinite;
+    }
+    .btn-primary:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,200,83,0.4);
+      animation: none;
+    }
+    .btn-arrow { font-size: 18px; }
+    .hero-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 48px;
+      flex-wrap: wrap;
+    }
+    .hero-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .hero-stat strong {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--green);
+    }
+    .hero-stat span {
+      font-size: 12px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ── SECTION COMMONS ── */
+    section { position: relative; }
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .section-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(1.7rem, 3.5vw, 2.8rem);
+      font-weight: 900;
+      color: var(--black);
+      line-height: 1.15;
+      letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+    .section-title.white { color: var(--white); }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 580px;
+      line-height: 1.6;
+      margin-bottom: 48px;
+    }
+
+    /* ── HOW IT WORKS ── */
+    .how {
+      padding: 96px 0;
+      background: var(--white);
+    }
+    .how .section-title { text-align: center; }
+    .how .section-sub { text-align: center; margin-left: auto; margin-right: auto; }
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .how-card {
+      background: var(--white);
+      border: 1px solid var(--gray-border);
+      border-radius: 16px;
+      padding: 36px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    }
+    .how-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--green);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .how-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--green); }
+    .how-card:hover::before { transform: scaleX(1); }
+    .how-num {
+      width: 52px; height: 52px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: var(--black);
+      margin: 0 auto 20px;
+    }
+    .how-icon {
+      font-size: 2rem;
+      margin-bottom: 8px;
+    }
+    .how-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.4;
+    }
+
+    /* ── WHY TOPCRED ── */
+    .why {
+      padding: 96px 0;
+      background: var(--gray-light);
+    }
+    .why-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .why-left { }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .why-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 18px 16px;
+      border: 1px solid var(--gray-border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .why-item:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .why-check {
+      width: 28px; height: 28px;
+      background: var(--green-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .why-item p {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--black);
+      line-height: 1.3;
+    }
+    .why-seal {
+      background: var(--black);
+      border-radius: 16px;
+      padding: 28px 24px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .seal-icon {
+      font-size: 3rem;
+      flex-shrink: 0;
+    }
+    .seal-text strong {
+      display: block;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--green);
+      margin-bottom: 4px;
+    }
+    .seal-text span {
+      font-size: 13px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.5;
+    }
+    .why-right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .why-visual {
+      background: var(--black);
+      border-radius: 20px;
+      padding: 40px 32px;
+      color: var(--white);
+      text-align: center;
+      border: 1px solid rgba(0,200,83,0.2);
+      animation: float 4s ease-in-out infinite;
+    }
+    .why-visual .big-num {
+      font-size: 4rem;
+      font-weight: 900;
+      color: var(--green);
+      line-height: 1;
+    }
+    .why-visual p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.6);
+      margin-top: 8px;
+    }
+    .why-fact {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 24px;
+      border-left: 4px solid var(--green);
+      font-size: 15px;
+      color: var(--gray-mid);
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    /* ── PAIN STRIP ── */
+    .pain {
+      padding: 80px 0;
+      background: var(--black);
+      position: relative;
+      overflow: hidden;
+    }
+    .pain::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 40px,
+        rgba(0,200,83,0.02) 40px,
+        rgba(0,200,83,0.02) 41px
+      );
+    }
+    .pain-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .pain-inner h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 900;
+      color: var(--white);
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    .pain-inner p {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 36px;
+    }
+    .pain-items {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .pain-item {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      min-width: 120px;
+    }
+    .pain-item .p-icon { font-size: 1.8rem; }
+    .pain-item span {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+    }
+    .pain-cta {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.75);
+      font-weight: 500;
+    }
+    .pain-cta strong { color: var(--green); }
+
+    /* ── FORM ── */
+    .form-section {
+      padding: 96px 0;
+      background: var(--gray-light);
+      position: relative;
+    }
+    .form-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--green), #00ff88, var(--green));
+    }
+    .form-wrap {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 48px;
+      box-shadow: var(--shadow-lg);
+      max-width: 860px;
+      margin: 0 auto;
+      border: 1px solid var(--gray-border);
+    }
+    .form-header { text-align: center; margin-bottom: 40px; }
+    .form-header h2 { font-size: 2rem; font-weight: 900; color: var(--black); margin-bottom: 8px; }
+    .form-header p { color: var(--text-muted); font-size: 1rem; }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .form-grid .full { grid-column: 1 / -1; }
+    .field-group { display: flex; flex-direction: column; gap: 6px; }
+    .field-group label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gray-mid);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .field-group input,
+    .field-group select,
+    .field-group textarea {
+      border: 1.5px solid var(--gray-border);
+      border-radius: 8px;
+      padding: 13px 16px;
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      color: var(--black);
+      background: #fafafa;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      width: 100%;
+    }
+    .field-group input:focus,
+    .field-group select:focus,
+    .field-group textarea:focus {
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(0,200,83,0.12);
+      background: var(--white);
+    }
+    .field-group textarea { min-height: 90px; resize: vertical; }
+    .btn-submit {
+      width: 100%;
+      background: var(--green);
+      color: var(--black);
+      font-weight: 900;
+      font-size: 1.1rem;
+      padding: 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      margin-top: 28px;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .btn-submit:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,200,83,0.35);
+    }
+    .form-trust {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .trust-item span { font-size: 14px; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials {
+      padding: 96px 0;
+      background: var(--white);
+    }
+    .testimonials .section-title { text-align: center; }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .testi-card {
+      background: var(--white);
+      border: 1px solid var(--gray-border);
+      border-radius: 16px;
+      padding: 32px;
+      position: relative;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .testi-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+    .testi-card::before {
+      content: '"';
+      position: absolute;
+      top: 16px; right: 24px;
+      font-size: 5rem;
+      line-height: 1;
+      color: rgba(0,200,83,0.12);
+      font-family: Georgia, serif;
+    }
+    .stars { font-size: 1.2rem; margin-bottom: 16px; color: #FFB900; }
+    .testi-card p {
+      font-size: 15px;
+      color: var(--gray-mid);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .testi-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .author-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: var(--black);
+      flex-shrink: 0;
+    }
+    .author-info strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--black);
+    }
+    .author-info span {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* ── FINAL CTA ── */
+    .final-cta {
+      padding: 96px 24px;
+      background: var(--green);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 60px,
+        rgba(0,0,0,0.04) 60px,
+        rgba(0,0,0,0.04) 61px
+      );
+    }
+    .final-cta-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+    .final-cta h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 900;
+      color: var(--black);
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+    .final-cta p { font-size: 1.05rem; color: rgba(0,0,0,0.7); margin-bottom: 36px; }
+    .btn-dark {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--black);
+      color: var(--white);
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 18px 36px;
+      border-radius: 8px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.3px;
+    }
+    .btn-dark:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(0,0,0,0.3);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      color: rgba(255,255,255,0.6);
+      padding: 60px 24px 32px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand p {
+      font-size: 14px;
+      line-height: 1.7;
+      margin-top: 16px;
+      max-width: 280px;
+    }
+    .footer-col h4 {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--white);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: var(--green); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 12px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .footer-bottom a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      margin-left: 16px;
+      transition: color 0.2s;
+    }
+    .footer-bottom a:hover { color: var(--green); }
+
+    /* ── POPUP ── */
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(6px);
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .popup-overlay.active { display: flex; animation: fadeIn 0.3s ease; }
+    .popup {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 48px 40px;
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+      animation: scaleIn 0.4s ease;
+      position: relative;
+    }
+    .popup-icon { font-size: 4rem; margin-bottom: 16px; }
+    .popup h3 {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+    .popup p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 28px;
+    }
+    .popup p strong { color: var(--black); }
+    .btn-close {
+      background: var(--green);
+      color: var(--black);
+      font-weight: 800;
+      font-size: 1rem;
+      padding: 14px 36px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-close:hover { background: var(--green-dark); transform: translateY(-1px); }
+
+    /* ── SCROLL INDICATOR ── */
+    .scroll-progress {
+      position: fixed;
+      top: 68px;
+      left: 0;
+      height: 3px;
+      background: var(--green);
+      z-index: 999;
+      transition: width 0.1s linear;
+    }
+
+    /* ── FLOATING WA ── */
+    .float-wa {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: float 3s ease-in-out infinite;
+    }
+    .float-wa:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 32px rgba(37,211,102,0.5);
+      animation: none;
+    }
+    .float-wa svg { width: 32px; height: 32px; fill: white; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .why-inner { grid-template-columns: 1fr; gap: 40px; }
+      .why-right { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 640px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .form-grid .full { grid-column: 1; }
+      .form-wrap { padding: 28px 20px; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .hero-stats { gap: 20px; }
+      .why-grid { grid-template-columns: 1fr; }
+      .nav-cta { font-size: 12px; padding: 8px 14px; }
+      .pain-items { gap: 12px; }
+    }
+
+    /* ── INTERSECTION OBSERVER ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal.delay-1 { transition-delay: 0.1s; }
+    .reveal.delay-2 { transition-delay: 0.2s; }
+    .reveal.delay-3 { transition-delay: 0.35s; }
+    .reveal.delay-4 { transition-delay: 0.5s; }
+  </style>
+</head>
+<body>
+
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">
+      <div class="logo-icon">TC</div>
+      <div class="logo-text">
+        <span>TOPCRED</span>
+        <span>ASSESSORIA</span>
+      </div>
+    </a>
+    <a href="#formulario" class="nav-cta">Receber Proposta</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="hero-bg-lines">
+    <svg viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+      <polyline points="0,380 60,340 120,300 180,260 240,200 300,160 360,120 420,80 480,50 540,20 600,0" fill="none" stroke="#00C853" stroke-width="2"/>
+      <polyline points="0,400 80,370 160,340 240,290 320,240 400,190 480,130 560,70 600,40" fill="none" stroke="#00C853" stroke-width="1" opacity="0.5"/>
+      <polyline points="0,400 100,380 200,360 300,320 400,280 500,220 600,160" fill="none" stroke="#00C853" stroke-width="1" opacity="0.3"/>
+    </svg>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-badge animate-fade-up"><span>🚨</span> Atenção: Veículo Financiado em Risco?</div>
+    <h1 class="animate-fade-up delay-1">
+      NÃO DEIXE SEU<br>
+      <span class="highlight">CARRO IR A LEILÃO!</span>
+    </h1>
+    <p class="hero-sub animate-fade-up delay-2">
+      Compramos seu veículo antes que o banco tome e você ainda fique com dívidas.
+    </p>
+
+    <div class="hero-benefits animate-fade-up delay-2">
+      <div class="hero-benefit"><div class="check">✓</div>Entrega amigável</div>
+      <div class="hero-benefit"><div class="check">✓</div>Evite leilão</div>
+      <div class="hero-benefit"><div class="check">✓</div>Nome protegido</div>
+      <div class="hero-benefit"><div class="check">✓</div>Sem mais juros</div>
+      <div class="hero-benefit"><div class="check">✓</div>Sem custas judiciais</div>
+      <div class="hero-benefit"><div class="check">✓</div>Sem pagar sem ter o carro</div>
+    </div>
+
+    <p class="hero-note animate-fade-up delay-3">
+      Se você possui um veículo financiado com parcelas em atraso, nós podemos comprar seu carro antes da busca e apreensão. Analisamos seu caso rapidamente e fazemos uma proposta justa.
+    </p>
+
+    <a href="#formulario" class="btn-primary animate-fade-up delay-3">
+      QUERO RECEBER UMA PROPOSTA AGORA <span class="btn-arrow">→</span>
+    </a>
+
+    <div class="hero-stats animate-fade-up delay-4">
+      <div class="hero-stat">
+        <strong>+500</strong>
+        <span>Negociações realizadas</span>
+      </div>
+      <div class="hero-stat">
+        <strong>100%</strong>
+        <span>Brasil</span>
+      </div>
+      <div class="hero-stat">
+        <strong>24h</strong>
+        <span>Tempo de resposta</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="como-funciona">
+  <div class="section-inner">
+    <span class="section-tag reveal">Processo</span>
+    <h2 class="section-title reveal delay-1">Como funciona?</h2>
+    <p class="section-sub reveal delay-2">Simples, rápido e transparente. Em 4 passos você resolve sua situação.</p>
+    <div class="how-grid">
+      <div class="how-card reveal delay-1">
+        <div class="how-num">1</div>
+        <div class="how-icon">📋</div>
+        <h3>Você envia os dados do veículo</h3>
+      </div>
+      <div class="how-card reveal delay-2">
+        <div class="how-num">2</div>
+        <div class="how-icon">🔍</div>
+        <h3>Nossa equipe faz a análise</h3>
+      </div>
+      <div class="how-card reveal delay-3">
+        <div class="how-num">3</div>
+        <div class="how-icon">📲</div>
+        <h3>Entramos em contato rapidamente</h3>
+      </div>
+      <div class="how-card reveal delay-4">
+        <div class="how-num">4</div>
+        <div class="how-icon">🚗</div>
+        <h3>Compramos seu veículo antes que ele vá para leilão</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY TOPCRED -->
+<section class="why" id="por-que">
+  <div class="section-inner">
+    <div class="why-inner">
+      <div class="why-left">
+        <span class="section-tag reveal">Diferenciais</span>
+        <h2 class="section-title reveal delay-1">Por que escolher<br>a TOPCRED?</h2>
+        <div class="why-grid">
+          <div class="why-item reveal delay-1">
+            <div class="why-check">✅</div>
+            <p>Atendimento rápido</p>
+          </div>
+          <div class="why-item reveal delay-2">
+            <div class="why-check">✅</div>
+            <p>Avaliação sem compromisso</p>
+          </div>
+          <div class="why-item reveal delay-2">
+            <div class="why-check">✅</div>
+            <p>Evite busca e apreensão</p>
+          </div>
+          <div class="why-item reveal delay-3">
+            <div class="why-check">✅</div>
+            <p>Negociação transparente</p>
+          </div>
+          <div class="why-item reveal delay-3">
+            <div class="why-check">✅</div>
+            <p>Compramos veículos financiados</p>
+          </div>
+          <div class="why-item reveal delay-4">
+            <div class="why-check">✅</div>
+            <p>Atendimento em todo o Brasil</p>
+          </div>
+        </div>
+        <div class="why-seal reveal delay-4">
+          <div class="seal-icon">🏆</div>
+          <div class="seal-text">
+            <strong>Confiança Garantida</strong>
+            <span>Mais de centenas de negociações realizadas com segurança e transparência em todo o Brasil.</span>
+          </div>
+        </div>
+      </div>
+      <div class="why-right">
+        <div class="why-visual reveal">
+          <div class="big-num">500+</div>
+          <p>Veículos comprados antes do leilão</p>
+        </div>
+        <div class="why-fact reveal delay-2">
+          💡 Muitos proprietários não sabem que existe uma saída antes de perder o veículo no leilão e ainda continuar devendo. A TOPCRED oferece essa alternativa com segurança e agilidade.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN STRIP -->
+<section class="pain">
+  <div class="section-inner pain-inner">
+    <h2 class="reveal">Quanto mais você espera,<br>maior fica sua dívida.</h2>
+    <p class="reveal delay-1">Cada parcela atrasada aumenta:</p>
+    <div class="pain-items">
+      <div class="pain-item reveal delay-1">
+        <span class="p-icon">📈</span>
+        <span>Juros</span>
+      </div>
+      <div class="pain-item reveal delay-2">
+        <span class="p-icon">💸</span>
+        <span>Multas</span>
+      </div>
+      <div class="pain-item reveal delay-3">
+        <span class="p-icon">⚖️</span>
+        <span>Custas</span>
+      </div>
+      <div class="pain-item reveal delay-4">
+        <span class="p-icon">🔨</span>
+        <span>Risco de Leilão</span>
+      </div>
+    </div>
+    <p class="pain-cta reveal delay-2"><strong>Não espere o banco tomar seu veículo.</strong><br>A solução está a um passo de você.</p>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="formulario">
+  <div class="section-inner">
+    <div class="form-wrap reveal">
+      <div class="form-header">
+        <h2>Solicite sua avaliação gratuita</h2>
+        <p>Preencha os dados abaixo e nossa equipe entrará em contato rapidamente.</p>
+      </div>
+      <form id="leadForm" onsubmit="handleSubmit(event)">
+        <div class="form-grid">
+          <div class="field-group">
+            <label>Primeiro Nome *</label>
+            <input type="text" name="nome" placeholder="Seu nome" required />
+          </div>
+          <div class="field-group">
+            <label>WhatsApp *</label>
+            <input type="tel" name="whatsapp" placeholder="(00) 00000-0000" required />
+          </div>
+          <div class="field-group">
+            <label>Modelo do Veículo *</label>
+            <input type="text" name="modelo" placeholder="Ex: Honda Civic 2020" required />
+          </div>
+          <div class="field-group">
+            <label>Ano *</label>
+            <input type="number" name="ano" placeholder="Ex: 2020" min="1990" max="2025" required />
+          </div>
+          <div class="field-group">
+            <label>Cidade *</label>
+            <input type="text" name="cidade" placeholder="Sua cidade / Estado" required />
+          </div>
+          <div class="field-group">
+            <label>Banco Financiador *</label>
+            <input type="text" name="banco" placeholder="Ex: Itaú, Santander, BV..." required />
+          </div>
+          <div class="field-group">
+            <label>Total de Parcelas Financiadas</label>
+            <input type="number" name="totalParcelas" placeholder="Ex: 48" min="1" />
+          </div>
+          <div class="field-group">
+            <label>Parcelas Pagas</label>
+            <input type="number" name="parcelasPagas" placeholder="Ex: 20" min="0" />
+          </div>
+          <div class="field-group">
+            <label>Parcelas em Atraso *</label>
+            <input type="number" name="parcelasAtraso" placeholder="Ex: 5" min="0" required />
+          </div>
+          <div class="field-group">
+            <label>Valor da Parcela (R$)</label>
+            <input type="text" name="valorParcela" placeholder="Ex: R$ 850,00" />
+          </div>
+          <div class="field-group">
+            <label>Dívida de IPVA e Multas</label>
+            <input type="text" name="ipvaMultas" placeholder="Ex: R$ 1.200,00 ou Não há" />
+          </div>
+          <div class="field-group">
+            <label>Valor Pretendido (R$)</label>
+            <input type="text" name="valorPretendido" placeholder="Ex: R$ 35.000,00" />
+          </div>
+          <div class="field-group full">
+            <label>Avarias do Veículo</label>
+            <textarea name="avarias" placeholder="Descreva avarias, batidas, problemas mecânicos ou estéticos (se não houver, escreva 'Sem avarias')"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="btn-submit">
+          RECEBER MINHA PROPOSTA <span>🚀</span>
+        </button>
+      </form>
+      <div class="form-trust">
+        <div class="trust-item"><span>🔒</span> Dados protegidos</div>
+        <div class="trust-item"><span>✅</span> Avaliação gratuita</div>
+        <div class="trust-item"><span>⚡</span> Resposta em até 24h</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="depoimentos">
+  <div class="section-inner">
+    <span class="section-tag reveal" style="display:block;text-align:center;">Depoimentos</span>
+    <h2 class="section-title reveal delay-1">Quem já negociou com a<br>TOPCRED recomenda.</h2>
+    <div class="testi-grid">
+      <div class="testi-card reveal delay-1">
+        <div class="stars">★★★★★</div>
+        <p>"Achei que perderia meu carro no leilão. A TOPCRED resolveu tudo muito rápido. Fui atendido no mesmo dia e recebi uma proposta justa."</p>
+        <div class="testi-author">
+          <div class="author-avatar">C</div>
+          <div class="author-info">
+            <strong>Carlos M.</strong>
+            <span>Cliente verificado</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal delay-2">
+        <div class="stars">★★★★★</div>
+        <p>"Recebi uma proposta justa e consegui evitar mais prejuízos. Estava muito preocupada com o banco e a TOPCRED me ajudou a resolver tudo."</p>
+        <div class="testi-author">
+          <div class="author-avatar">F</div>
+          <div class="author-info">
+            <strong>Fernanda R.</strong>
+            <span>Cliente verificada</span>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal delay-3">
+        <div class="stars">★★★★★</div>
+        <p>"Equipe muito séria. Atendimento excelente do início ao fim. Recomendo a qualquer pessoa que está passando por essa situação difícil."</p>
+        <div class="testi-author">
+          <div class="author-avatar">J</div>
+          <div class="author-info">
+            <strong>João P.</strong>
+            <span>Cliente verificado</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="final-cta-inner">
+    <h2 class="reveal">Não espere o banco<br>tomar seu veículo.</h2>
+    <p class="reveal delay-1">Quanto antes você agir, maiores são as chances de fazer um bom negócio. Fale agora com nossa equipe.</p>
+    <a href="#formulario" class="btn-dark reveal delay-2">
+      QUERO RECEBER UMA PROPOSTA AGORA →
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="logo">
+          <div class="logo-icon">TC</div>
+          <div class="logo-text">
+            <span>TOPCRED</span>
+            <span>ASSESSORIA</span>
+          </div>
+        </a>
+        <p>Compra de veículos financiados. Atendimento em todo o Brasil com transparência e agilidade.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <a href="https://wa.me/5500000000000" target="_blank">📱 WhatsApp</a>
+        <a href="mailto:jjminersbr@gmail.com">✉️ jjminersbr@gmail.com</a>
+      </div>
+      <div class="footer-col">
+        <h4>Links</h4>
+        <a href="#politica">Política de Privacidade</a>
+        <a href="#termos">Termos de Uso</a>
+        <a href="#como-funciona">Como Funciona</a>
+        <a href="#formulario">Solicitar Proposta</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 TOPCRED Assessoria. Todos os direitos reservados.</span>
+      <div>
+        <a href="#politica">Política de Privacidade</a>
+        <a href="#termos">Termos de Uso</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- SUCCESS POPUP -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup">
+    <div class="popup-icon">✅</div>
+    <h3>Cadastro Recebido!</h3>
+    <p>
+      Recebemos seus dados com sucesso.<br><br>
+      Nossa equipe fará a análise do seu veículo e entrará em contato o mais breve possível pelo <strong>WhatsApp informado</strong>.<br><br>
+      <strong>Obrigado por confiar na TOPCRED Assessoria.</strong>
+    </p>
+    <button class="btn-close" onclick="closePopup()">FECHAR</button>
+  </div>
+</div>
+
+<!-- FLOATING WHATSAPP -->
+<a href="https://wa.me/5500000000000" target="_blank" class="float-wa" title="Falar no WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script>
+  // ── SCROLL PROGRESS
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = (scrollTop / docHeight) * 100;
+    document.getElementById('scrollProgress').style.width = pct + '%';
+  });
+
+  // ── INTERSECTION OBSERVER
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── SMOOTH SCROLL
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // ── FORM SUBMIT
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('.btn-submit');
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+
+    const data = Object.fromEntries(new FormData(form));
+
+    const body = `
+Novo Cadastro - Compra de Veículo
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📋 DADOS DO CLIENTE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+👤 Nome: ${data.nome || '—'}
+📱 WhatsApp: ${data.whatsapp || '—'}
+📍 Cidade: ${data.cidade || '—'}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚗 DADOS DO VEÍCULO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔹 Modelo: ${data.modelo || '—'}
+🔹 Ano: ${data.ano || '—'}
+🔹 Banco Financiador: ${data.banco || '—'}
+🔹 Total de Parcelas: ${data.totalParcelas || '—'}
+🔹 Parcelas Pagas: ${data.parcelasPagas || '—'}
+🔹 Parcelas em Atraso: ${data.parcelasAtraso || '—'}
+🔹 Valor da Parcela: ${data.valorParcela || '—'}
+🔹 Dívida IPVA/Multas: ${data.ipvaMultas || '—'}
+🔹 Avarias: ${data.avarias || '—'}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💰 PRETENSÃO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+💵 Valor Pretendido: ${data.valorPretendido || '—'}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Enviado via Landing Page TOPCRED Assessoria
+    `.trim();
+
+    // Formspree / EmailJS approach — using Formspree endpoint
+    try {
+      const resp = await fetch('https://formspree.io/f/xvgavwkj', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          _replyto: 'jjminersbr@gmail.com',
+          _subject: 'Novo Cadastro - Compra de Veículo',
+          message: body,
+          nome: data.nome,
+          whatsapp: data.whatsapp,
+          modelo: data.modelo,
+          ano: data.ano,
+          cidade: data.cidade,
+          banco: data.banco,
+          totalParcelas: data.totalParcelas,
+          parcelasPagas: data.parcelasPagas,
+          parcelasAtraso: data.parcelasAtraso,
+          valorParcela: data.valorParcela,
+          ipvaMultas: data.ipvaMultas,
+          avarias: data.avarias,
+          valorPretendido: data.valorPretendido
+        })
+      });
+
+      showPopup();
+      form.reset();
+    } catch (err) {
+      // Fallback: mailto
+      const mailBody = encodeURIComponent(body);
+      window.location.href = `mailto:jjminersbr@gmail.com?subject=Novo%20Cadastro%20-%20Compra%20de%20Ve%C3%ADculo&body=${mailBody}`;
+      showPopup();
+      form.reset();
+    }
+
+    btn.textContent = 'RECEBER MINHA PROPOSTA 🚀';
+    btn.disabled = false;
+  }
+
+  function showPopup() {
+    document.getElementById('popupOverlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closePopup() {
+    document.getElementById('popupOverlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('popupOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closePopup();
+  });
+</script>
+</body>
+</html>

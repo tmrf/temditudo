@@ -437,110 +437,55 @@
       line-height: 1.4;
     }
 
-    /* ── WHY TOPCRED ── */
-    .why {
-      padding: 96px 0;
-      background: var(--gray-light);
-    }
-    .why-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: start;
-    }
-    .why-left { }
-    .why-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-      margin-bottom: 36px;
-    }
-    .why-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      background: var(--white);
-      border-radius: 12px;
-      padding: 18px 16px;
-      border: 1px solid var(--gray-border);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    .why-item:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
-    .why-check {
-      width: 28px; height: 28px;
-      background: var(--green-light);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      flex-shrink: 0;
-    }
-    .why-item p {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--black);
-      line-height: 1.3;
-    }
-    .why-seal {
-      background: var(--black);
-      border-radius: 16px;
-      padding: 28px 24px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .seal-icon {
-      font-size: 3rem;
-      flex-shrink: 0;
-    }
-    .seal-text strong {
-      display: block;
-      font-size: 1rem;
-      font-weight: 800;
-      color: var(--green);
-      margin-bottom: 4px;
-    }
-    .seal-text span {
-      font-size: 13px;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.5;
-    }
-    .why-right {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .why-visual {
-      background: var(--black);
-      border-radius: 20px;
-      padding: 40px 32px;
-      color: var(--white);
-      text-align: center;
-      border: 1px solid rgba(0,200,83,0.2);
-      animation: float 4s ease-in-out infinite;
-    }
-    .why-visual .big-num {
-      font-size: 4rem;
-      font-weight: 900;
-      color: var(--green);
-      line-height: 1;
-    }
-    .why-visual p {
-      font-size: 14px;
-      color: rgba(255,255,255,0.6);
-      margin-top: 8px;
-    }
-    .why-fact {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 24px;
-      border-left: 4px solid var(--green);
-      font-size: 15px;
-      color: var(--gray-mid);
-      line-height: 1.6;
-      font-weight: 500;
-    }
+ .why{
+    padding:96px 0;
+    background:var(--gray-light);
+}
+
+.section-inner{
+    max-width:1200px;
+    margin:0 auto;
+    padding:0 24px;
+}
+
+.why-inner{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    grid-template-areas:
+        "tag visual"
+        "title visual"
+        "grid fact"
+        "seal fact";
+    gap:28px 56px;
+    align-items:start;
+}
+
+.section-tag{
+    grid-area:tag;
+}
+
+.section-title{
+    grid-area:title;
+}
+
+.why-grid{
+    grid-area:grid;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+}
+
+.why-seal{
+    grid-area:seal;
+}
+
+.why-visual{
+    grid-area:visual;
+}
+
+.why-fact{
+    grid-area:fact;
+}
 
     /* ── PAIN STRIP ── */
     .pain {
@@ -1166,57 +1111,70 @@
   <!-- WHY TOPCRED -->
   <section class="why" id="por-que">
     <div class="section-inner">
-      <div class="why-inner">
-        <div class="why-left">
-          <span class="section-tag reveal">Diferenciais</span>
-          <h2 class="section-title reveal delay-1">Por que escolher<br>a TOPCRED?</h2>
-          <div class="why-grid">
-            <div class="why-item reveal delay-1">
-              <div class="why-check">✅</div>
-              <p>Atendimento rápido</p>
+        <div class="why-inner">
+
+            <span class="section-tag reveal">Diferenciais</span>
+
+            <div class="why-visual reveal">
+                <div class="big-num">500+</div>
+                <p>Veículos comprados antes do leilão</p>
             </div>
-            <div class="why-item reveal delay-2">
-              <div class="why-check">✅</div>
-              <p>Avaliação sem compromisso</p>
+
+            <h2 class="section-title reveal delay-1">
+                Por que escolher<br>a TOPCRED?
+            </h2>
+
+            <div class="why-fact reveal delay-2">
+                💡 Muitos proprietários não sabem que existe uma saída antes de perder o veículo no leilão e ainda continuar devendo. A TOPCRED oferece essa alternativa com segurança e agilidade.
             </div>
-            <div class="why-item reveal delay-2">
-              <div class="why-check">✅</div>
-              <p>Evite busca e apreensão</p>
+
+            <div class="why-grid">
+                <div class="why-item reveal delay-1">
+                    <div class="why-check">✅</div>
+                    <p>Atendimento rápido</p>
+                </div>
+
+                <div class="why-item reveal delay-2">
+                    <div class="why-check">✅</div>
+                    <p>Avaliação sem compromisso</p>
+                </div>
+
+                <div class="why-item reveal delay-2">
+                    <div class="why-check">✅</div>
+                    <p>Evite busca e apreensão</p>
+                </div>
+
+                <div class="why-item reveal delay-3">
+                    <div class="why-check">✅</div>
+                    <p>Negociação transparente</p>
+                </div>
+
+                <div class="why-item reveal delay-3">
+                    <div class="why-check">✅</div>
+                    <p>Compramos veículos financiados</p>
+                </div>
+
+                <div class="why-item reveal delay-4">
+                    <div class="why-check">✅</div>
+                    <p>Atendimento em todo o Brasil</p>
+                </div>
             </div>
-            <div class="why-item reveal delay-3">
-              <div class="why-check">✅</div>
-              <p>Negociação transparente</p>
+
+            <div class="why-seal reveal delay-4">
+                <div class="seal-icon">🏆</div>
+
+                <div class="seal-text">
+                    <strong>Confiança Garantida</strong>
+                    <span>
+                        Mais de centenas de negociações realizadas com segurança
+                        e transparência em todo o Brasil.
+                    </span>
+                </div>
             </div>
-            <div class="why-item reveal delay-3">
-              <div class="why-check">✅</div>
-              <p>Compramos veículos financiados</p>
-            </div>
-            <div class="why-item reveal delay-4">
-              <div class="why-check">✅</div>
-              <p>Atendimento em todo o Brasil</p>
-            </div>
-          </div>
-           <div class="why-right">
-          <div class="why-visual reveal">
-            <div class="big-num">500+</div>
-            <p>Veículos comprados antes do leilão</p>
-          </div>
-          <div class="why-fact reveal delay-2">
-            💡 Muitos proprietários não sabem que existe uma saída antes de perder o veículo no leilão e ainda continuar devendo. A TOPCRED oferece essa alternativa com segurança e agilidade.
-          </div>
+
         </div>
-          <div class="why-seal reveal delay-4">
-            <div class="seal-icon">🏆</div>
-            <div class="seal-text">
-              <strong>Confiança Garantida</strong>
-              <span>Mais de centenas de negociações realizadas com segurança e transparência em todo o Brasil.</span>
-            </div>
-          </div>
-        </div>
-       
-      </div>
     </div>
-  </section>
+</section>
 
   <!-- PAIN STRIP -->
   <section class="pain">
@@ -1392,11 +1350,6 @@
             </div>
           </a>
           <p>Compra de veículos financiados. Atendimento em todo o Brasil com transparência e agilidade.</p>
-        </div>
-        <div class="footer-col">
-          <h4>Contato</h4>
-          <a href="https://wa.me/555183556545" target="_blank">📱 WhatsApp</a>
-          <a href="mailto:jjminersbr@gmail.com">✉️ jjminersbr@gmail.com</a>
         </div>
         <div class="footer-col">
           <h4>Links</h4>

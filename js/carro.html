@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estúdio de IA - Multi-Provedores </title>
+    <title>Estúdio de IA - Multi-Provedores</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding: 20px; background: #0f0f12; color: #e0e0e6; }
         .container { max-width: 600px; margin: 0 auto; background: #1a1a24; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
@@ -24,7 +24,6 @@
 <div class="container">
     <h1>Estúdio de Imagens IA</h1>
     
-    <!-- O prompt e o estilo ficam salvos automaticamente -->
     <textarea id="prompt" placeholder="Descreva sua imagem em detalhes (inglês funciona melhor)..." oninput="saveData()"></textarea>
     
     <div>
@@ -39,7 +38,6 @@
         <button onclick="generateImage()">Gerar na IA Atual</button>
     </div>
 
-    <!-- Seletor manual para trocar de provedor caso um caia -->
     <select id="provider" class="ia-selector" onchange="saveData()">
         <option value="pollinations_flux">Provedor 1: Pollinations (Modelo FLUX - Alta Qualidade)</option>
         <option value="pollinations_turbo">Provedor 2: Pollinations (Modelo Turbo - Rápido)</option>
@@ -55,14 +53,12 @@
 </div>
 
 <script>
-    // Carrega os dados salvos assim que a página abre
     window.onload = function() {
         if(localStorage.getItem('ia_prompt')) document.getElementById('prompt').value = localStorage.getItem('ia_prompt');
         if(localStorage.getItem('ia_style')) document.getElementById('style').value = localStorage.getItem('ia_style');
         if(localStorage.getItem('ia_provider')) document.getElementById('provider').value = localStorage.getItem('ia_provider');
     }
 
-    // Salva o texto toda vez que o usuário digita ou troca de opção
     function saveData() {
         localStorage.setItem('ia_prompt', document.getElementById('prompt').value);
         localStorage.setItem('ia_style', document.getElementById('style').value);
@@ -78,16 +74,15 @@
 
         if (!rawPrompt) return alert('Por favor, digite um prompt primeiro!');
 
-        // Junta o prompt do usuário com as palavras-chave do estilo selecionado
         const fullPrompt = encodeURIComponent(rawPrompt + style);
-        const seed = Math.floor(Math.random() * 9999999); // Gera variações aleatórias
+        const seed = Math.floor(Math.random() * 9999999);
 
         status.innerHTML = "⏳ Enviando requisição para os servidores da IA...";
         resultBox.innerHTML = "Processando...";
 
         let url = "";
 
-        // Lógica de Rotas do Rodízio Gratuito
+        // LINKS CORRIGIDOS ABAIXO COM A SINTAXE DE URL EXATA (/p/PROMPT)
         switch(provider) {
             case "pollinations_flux":
                 url = `https://pollinations.ai{fullPrompt}?width=1024&height=1024&model=flux&seed=${seed}&nologo=true`;
@@ -96,11 +91,9 @@
                 url = `https://pollinations.ai{fullPrompt}?width=1024&height=1024&model=turbo&seed=${seed}&nologo=true`;
                 break;
             case "stable_diffusion_free":
-                // Rota direta usando servidores espelhados de SD sem autenticação
                 url = `https://pollinations.ai{fullPrompt}?width=1024&height=1024&model=any-dark&seed=${seed}`;
                 break;
             case "picsart_public":
-                // Segunda linha de contingência usando CDN aberto
                 url = `https://pollinations.ai{fullPrompt}?width=1024&height=1024&enhance=true&seed=${seed}`;
                 break;
         }
@@ -108,7 +101,6 @@
         try {
             status.innerHTML = "🎨 Renderizando imagem (isso pode levar até 15 segundos)...";
             
-            // Cria um elemento de imagem oculto para carregar a resposta da API antes de exibir
             const img = new Image();
             img.src = url;
             

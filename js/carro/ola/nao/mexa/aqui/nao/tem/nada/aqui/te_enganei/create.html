@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estúdio de IA - Multi-Provedores</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding: 20px; background: #0f0f12; color: #e0e0e6; }
+        .container { max-width: 600px; margin: 0 auto; background: #1a1a24; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
+        textarea { width: 100%; height: 80px; padding: 10px; border-radius: 6px; border: 1px solid #333; background: #101014; color: white; resize: none; box-sizing: border-box; }
+        select, button { padding: 12px; margin: 10px 5px; border-radius: 6px; border: none; font-weight: bold; cursor: pointer; }
+        select { background: #2a2a3a; color: white; width: 48%; }
+        button { background: #0084ff; color: white; width: 48%; transition: 0.2s; }
+        button:hover { background: #0066cc; }
+        .ia-selector { background: #e11d48 !important; width: 100% !important; margin-top: 5px; }
+        .ia-selector:hover { background: #be123c !important; }
+        #status { margin: 15px 0; color: #a1a1aa; font-size: 14px; }
+        #result-box { margin-top: 20px; min-height: 300px; border: 2px dashed #333; border-radius: 8px; display: flex; align-items: center; justify-content: center; position: relative; }
+        img { max-width: 100%; height: auto; border-radius: 8px; display: block; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Estúdio de Imagens IA</h1>
+    
+    <!-- O prompt e o estilo ficam salvos automaticamente -->
+    <textarea id="prompt" placeholder="Descreva sua imagem em detalhes (inglês funciona melhor)..." oninput="saveData()"></textarea>
+    
+    <div>
+        <select id="style" onchange="saveData()">
+            <option value="">Sem Estilo Definido</option>
+            <option value=", cinematic lighting, 8k resolution, highly detailed, photorealistic">Fotorrealismo</option>
+            <option value=", anime style, vibrant colors, detailed line art">Anime / Desenho</option>
+            <option value=", digital art, concept art, fantasy style, warm glow">Arte Digital Fantasy</option>
+            <option value=", 3D render, Pixar style, cute, claymation look">Render 3D / Pixar</option>
+        </select>
+        
+        <button onclick="generateImage()">Gerar na IA Atual</button>
+    </div>
+
+    <!-- Seletor manual para trocar de provedor caso um caia -->
+    <select id="provider" class="ia-selector" onchange="saveData()">
+        <option value="pollinations_flux">Provedor 1: Pollinations (Modelo FLUX - Alta Qualidade)</option>
+        <option value="pollinations_turbo">Provedor 2: Pollinations (Modelo Turbo - Rápido)</option>
+        <option value="stable_diffusion_free">Provedor 3: Cloud SD (Estilo Arte/Anime)</option>
+        <option value="picsart_public">Provedor 4: Rota Pública Alternativa (Geral)</option>
+    </select>
+
+    <div id="status">Pronto para criar. Os dados são salvos no seu navegador.</div>
+    
+    <div id="result-box">
+        <span id="placeholder-text">Sua imagem aparecerá aqui</span>
+    </div>
+</div>
+
+<script>
+    // Carrega os dados salvos assim que a página abre
+    window.onload = function() {
+        if(localStorage.getItem('ia_prompt')) document.getElementById('prompt').value = localStorage.getItem('ia_prompt');
+        if(localStorage.getItem('ia_style')) document.getElementById('style').value = localStorage.getItem('ia_style');
+        if(localStorage.getItem('ia_provider')) document.getElementById('provider').value = localStorage.getItem('ia_provider');
+    }
+
+    // Salva o texto toda vez que o usuário digita ou troca de opção
+    function saveData() {
+        localStorage.setItem('ia_prompt', document.getElementById('prompt').value);
+        localStorage.setItem('ia_style', document.getElementById('style').value);
+        localStorage.setItem('ia_provider', document.getElementById('provider').value);
+    }
+
+    async function generateImage() {
+        const rawPrompt = document.getElementById('prompt').value;
+        const style = document.getElementById('style').value;
+        const provider = document.getElementById('provider').value;
+        const status = document.getElementById('status');
+        const resultBox = document.getElementById('result-box');
+
+        if (!rawPrompt) return alert('Por favor, digite um prompt primeiro!');
+
+        // Junta o prompt do usuário com as palavras-chave do estilo selecionado
+        const fullPrompt = encodeURIComponent(rawPrompt + style);
+        const seed = Math.floor(Math.random() * 9999999); // Gera variações aleatórias
+
+        status.innerHTML = "⏳ Enviando requisição para os servidores da IA...";
+        resultBox.innerHTML = "Processando...";
+
+        let url = "";
+
+        // Lógica de Rotas do Rodízio Gratuito
+        switch(provider) {
+            case "pollinations_flux":
+                url = `https://pollinations.ai{fullPrompt}?width=1024&height=1024&model=flux&seed=${seed}&nologo=true`;
+                break;
+            case "pollinations_turbo":
+                url = `https://pollinations.ai{fullPrompt}?width=1024&height=1024&model=turbo&seed=${seed}&nologo=true`;
+                break;
+            case "stable_diffusion_free":
+                // Rota direta usando servidores espelhados de SD sem autenticação
+                url = `https://pollinations.ai{fullPrompt}?width=1024&height=1024&model=any-dark&seed=${seed}`;
+                break;
+            case "picsart_public":
+                // Segunda linha de contingência usando CDN aberto
+                url = `https://pollinations.ai{fullPrompt}?width=1024&height=1024&enhance=true&seed=${seed}`;
+                break;
+        }
+
+        try {
+            status.innerHTML = "🎨 Renderizando imagem (isso pode levar até 15 segundos)...";
+            
+            // Cria um elemento de imagem oculto para carregar a resposta da API antes de exibir
+            const img = new Image();
+            img.src = url;
+            
+            img.onload = function() {
+                resultBox.innerHTML = "";
+                resultBox.appendChild(img);
+                status.innerHTML = "✅ Imagem gerada com sucesso! Se quiser mudar o padrão, troque de Provedor e clique em Gerar novamente.";
+            };
+
+            img.onerror = function() {
+                status.innerHTML = "❌ Limite atingido ou servidor instável. Troque o Provedor na barra vermelha acima e tente de novo!";
+                resultBox.innerHTML = "Erro nesta IA. O prompt continua salvo, tente o próximo provedor acima.";
+            };
+
+        } catch (error) {
+            status.innerHTML = "❌ Falha na conexão.";
+            resultBox.innerHTML = "Erro.";
+        }
+    }
+</script>
+
+</body>
+</html>

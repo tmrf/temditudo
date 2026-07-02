@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Estúdio de IA - Multi-Provedores</title>
+    <title>Estúdio de IA Pro - Multi-Provedores</title>
     <style>
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding: 20px; background: #0f0f12; color: #e0e0e6; }
         .container { max-width: 600px; margin: 0 auto; background: #1a1a24; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
@@ -15,8 +15,15 @@
         .ia-selector { background: #e11d48 !important; width: 100% !important; margin-top: 5px; }
         .ia-selector:hover { background: #be123c !important; }
         #status { margin: 15px 0; color: #a1a1aa; font-size: 14px; }
-        #result-box { margin-top: 20px; min-height: 300px; border: 2px dashed #333; border-radius: 8px; display: flex; align-items: center; justify-content: center; position: relative; }
+        #result-box { margin-top: 20px; min-height: 300px; border: 2px dashed #333; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; padding: 15px; }
         img { max-width: 100%; height: auto; border-radius: 8px; display: block; }
+        .btn-download { background: #10b981 !important; margin-top: 15px; width: 200px !important; display: none; }
+        .btn-download:hover { background: #059669 !important; }
+        .history-box { margin-top: 20px; text-align: left; background: #101014; padding: 15px; border-radius: 6px; border: 1px solid #333; }
+        .history-box h3 { margin-top: 0; font-size: 16px; color: #a1a1aa; }
+        .history-list { max-height: 120px; overflow-y: auto; padding-left: 20px; margin: 0; font-size: 13px; }
+        .history-item { color: #38bdf8; cursor: pointer; margin-bottom: 6px; text-decoration: underline; }
+        .history-item:hover { color: #7dd3fc; }
     </style>
 </head>
 <body>
@@ -28,7 +35,7 @@
     
     <div>
         <select id="style" onchange="saveData()">
-            <option value="">Sem Estilo Definido </option>
+            <option value="">Sem Estilo Definido</option>
             <option value=", cinematic lighting, 8k resolution, highly detailed, photorealistic">Fotorrealismo</option>
             <option value=", anime style, vibrant colors, detailed line art">Anime / Desenho</option>
             <option value=", digital art, concept art, fantasy style, warm glow">Arte Digital Fantasy</option>
@@ -50,13 +57,23 @@
     <div id="result-box">
         <span id="placeholder-text">Sua imagem aparecerá aqui</span>
     </div>
+    
+    <button id="download-btn" class="btn-download" onclick="downloadImage()">📥 Baixar Imagem</button>
+
+    <div class="history-box">
+        <h3>Recentemente Criados (Clique para usar de novo):</h3>
+        <ul id="history-list" class="history-list"></ul>
+    </div>
 </div>
 
 <script>
+    let currentImgUrl = "";
+
     window.onload = function() {
         if(localStorage.getItem('ia_prompt')) document.getElementById('prompt').value = localStorage.getItem('ia_prompt');
         if(localStorage.getItem('ia_style')) document.getElementById('style').value = localStorage.getItem('ia_style');
         if(localStorage.getItem('ia_provider')) document.getElementById('provider').value = localStorage.getItem('ia_provider');
+        renderHistory();
     }
 
     function saveData() {
@@ -65,20 +82,50 @@
         localStorage.setItem('ia_provider', document.getElementById('provider').value);
     }
 
+    function saveToHistory(promptText) {
+        let history = JSON.parse(localStorage.getItem('ia_history')) || [];
+        if (!history.includes(promptText)) {
+            history.unshift(promptText);
+            if (history.length > 10) history.pop();
+            localStorage.setItem('ia_history', JSON.stringify(history));
+            renderHistory();
+        }
+    }
+
+    function renderHistory() {
+        const list = document.getElementById('history-list');
+        const history = JSON.parse(localStorage.getItem('ia_history')) || [];
+        list.innerHTML = history.length === 0 ? "<span style='color:#52525b'>Nenhum prompt salvo ainda.</span>" : "";
+        history.forEach(item => {
+            const li = document.createElement('li');
+            li.className = "history-item";
+            li.innerText = item.length > 60 ? item.substring(0, 60) + "..." : item;
+            li.onclick = () => {
+                document.getElementById('prompt').value = item;
+                saveData();
+            };
+            list.appendChild(li);
+        });
+    }
+
     async function generateImage() {
         const rawPrompt = document.getElementById('prompt').value;
         const style = document.getElementById('style').value;
         const provider = document.getElementById('provider').value;
         const status = document.getElementById('status');
         const resultBox = document.getElementById('result-box');
+        const downloadBtn = document.getElementById('download-btn');
 
         if (!rawPrompt) return alert('Por favor, digite um prompt primeiro!');
+
+        saveToHistory(rawPrompt);
 
         const fullPrompt = encodeURIComponent(rawPrompt + style);
         const seed = Math.floor(Math.random() * 9999999);
 
         status.innerHTML = "⏳ Enviando requisição para os servidores da IA...";
         resultBox.innerHTML = "Processando...";
+        downloadBtn.style.display = "none";
 
         let url = "";
 
@@ -102,11 +149,14 @@
             
             const img = new Image();
             img.src = url;
+            img.crossOrigin = "anonymous"; 
             
             img.onload = function() {
                 resultBox.innerHTML = "";
                 resultBox.appendChild(img);
-                status.innerHTML = "✅ Imagem gerada com sucesso! Se quiser mudar o padrão, troque de Provedor e clique em Gerar novamente.";
+                currentImgUrl = url;
+                downloadBtn.style.display = "inline-block";
+                status.innerHTML = "✅ Imagem gerada com sucesso! Clique em Baixar ou mude o Provedor se quiser outra versão.";
             };
 
             img.onerror = function() {
@@ -117,6 +167,27 @@
         } catch (error) {
             status.innerHTML = "❌ Falha na conexão.";
             resultBox.innerHTML = "Erro.";
+        }
+    }
+
+    async function downloadImage() {
+        if (!currentImgUrl) return;
+        const status = document.getElementById('status');
+        status.innerHTML = "📥 Preparando download...";
+        try {
+            const response = await fetch(currentImgUrl);
+            const blob = await response.blob();
+            const blobUrl = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = blobUrl;
+            a.download = `ia-imagem-${Date.now()}.png`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(blobUrl);
+            status.innerHTML = "✅ Download concluído!";
+        } catch (error) {
+            alert("Não foi possível baixar automaticamente por regras de segurança do navegador. Clique com o botão direito na imagem e selecione 'Salvar imagem como...'.");
         }
     }
 </script>

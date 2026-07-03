@@ -706,22 +706,25 @@
             const w = uploadedImageSize ? uploadedImageSize.width : 1024;
             const h = uploadedImageSize ? uploadedImageSize.height : 1024;
 
+            markQueuedTiles();
             for (let i = 0; i < VARIANT_COUNT; i++) {
+                status.innerHTML = `🎨 Editando imagem ${i + 1} de ${VARIANT_COUNT}...`;
                 const urlBuilder = () => {
                     const seed = Math.floor(Math.random() * 9999999);
                     return `https://image.pollinations.ai/prompt/${fullPromptEncoded}?model=kontext&image=${encodeURIComponent(imageSource)}&width=${w}&height=${h}&seed=${seed}&nologo=true`;
                 };
-                setTimeout(() => loadIntoTile(i, urlBuilder), i * 900);
+                await loadIntoTilePromise(i, urlBuilder);
             }
-            status.innerHTML = publicUrl
-                ? "🎨 Editando imagem a partir da URL informada (enviando uma de cada vez)..."
-                : "🎨 Editando imagem enviada (se falhar, use a URL pública abaixo do canvas)...";
+            status.innerHTML = "✅ Concluído! Clique em uma imagem para selecioná-la.";
             genBtn.classList.remove('generating');
             return;
         }
 
         // ---- Provedores por URL (Pollinations txt2img, LoremFlickr) ----
+        // Envio um de cada vez: o serviço gratuito só aceita ~1 geração simultânea por IP.
+        markQueuedTiles();
         for (let i = 0; i < VARIANT_COUNT; i++) {
+            status.innerHTML = `🎨 Gerando imagem ${i + 1} de ${VARIANT_COUNT}...`;
             const urlBuilder = () => {
                 const seed = Math.floor(Math.random() * 9999999);
                 switch (provider) {
@@ -734,29 +737,48 @@
                         return `https://loremflickr.com/1024/1024/${encodeURIComponent(tags)}?lock=${seed}`;
                 }
             };
-            setTimeout(() => loadIntoTile(i, urlBuilder), i * 900);
+            await loadIntoTilePromise(i, urlBuilder);
         }
-        status.innerHTML = "🎨 Renderizando 5 imagens, uma de cada vez para evitar bloqueios (pode levar até 40 segundos)...";
+        status.innerHTML = "✅ Concluído! Clique em uma imagem para selecioná-la.";
         genBtn.classList.remove('generating');
+    }
+
+    function markQueuedTiles() {
+        for (let i = 1; i < VARIANT_COUNT; i++) {
+            const tile = document.getElementById('tile-' + i);
+            if (tile) tile.innerHTML = tileStatusHTML(i, "Na fila...");
+        }
     }
 
     const MAX_AUTO_RETRIES = 2;
 
+    // Versão "fogo e esqueça" usada pelo botão de retentativa manual em um quadro específico.
     function loadIntoTile(i, urlBuilder, attempt) {
+        loadIntoTilePromise(i, urlBuilder, attempt);
+    }
+
+    // Retorna uma Promise que só resolve quando o quadro `i` termina (sucesso ou falha definitiva),
+    // para que o próximo pedido só seja disparado depois — evita estourar o limite de 1 geração
+    // simultânea por IP do provedor gratuito.
+    function loadIntoTilePromise(i, urlBuilder, attempt) {
         attempt = attempt || 0;
-        const url = urlBuilder();
-        const img = new Image();
-        img.onload = () => fillTile(i, url);
-        img.onerror = () => {
-            if (attempt < MAX_AUTO_RETRIES) {
-                const tile = document.getElementById('tile-' + i);
-                if (tile) tile.innerHTML = tileStatusHTML(i, `Tentando de novo (${attempt + 1}/${MAX_AUTO_RETRIES})...`);
-                setTimeout(() => loadIntoTile(i, urlBuilder, attempt + 1), 1400 * (attempt + 1));
-            } else {
-                failTile(i, urlBuilder);
-            }
-        };
-        img.src = url;
+        return new Promise((resolve) => {
+            const url = urlBuilder();
+            const tile = document.getElementById('tile-' + i);
+            if (tile && attempt === 0) tile.innerHTML = tileStatusHTML(i, "Gerando...");
+            const img = new Image();
+            img.onload = () => { fillTile(i, url); resolve(true); };
+            img.onerror = () => {
+                if (attempt < MAX_AUTO_RETRIES) {
+                    if (tile) tile.innerHTML = tileStatusHTML(i, `Tentando de novo (${attempt + 1}/${MAX_AUTO_RETRIES})...`);
+                    setTimeout(() => { loadIntoTilePromise(i, urlBuilder, attempt + 1).then(resolve); }, 1600 * (attempt + 1));
+                } else {
+                    failTile(i, urlBuilder);
+                    resolve(false);
+                }
+            };
+            img.src = url;
+        });
     }
 
     async function downloadUrl(url, index) {

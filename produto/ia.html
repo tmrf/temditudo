@@ -224,11 +224,11 @@
         .result-tile {
             position: relative; background: var(--panel-2); border: 1px solid var(--border);
             border-radius: 8px; overflow: hidden; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; transition: border-color .15s;
+            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; transition: border-color .15s;
         }
         .result-tile.selected { border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
         .result-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .result-tile .tile-status { font-size: 10px; color: var(--text-dim); text-align: center; padding: 4px; font-family: var(--font-mono); }
+        .result-tile .tile-status { font-size: 10px; color: var(--text-dim); text-align: center; padding: 0 6px; font-family: var(--font-mono); }
         .result-tile .tile-index {
             position: absolute; top: 4px; left: 4px; font-family: var(--font-mono); font-size: 9px;
             color: var(--text-dim); background: color-mix(in srgb, var(--panel-2) 70%, transparent);
@@ -239,6 +239,11 @@
             border: none; border-radius: 6px; padding: 4px 7px; font-size: 11px; display: none;
         }
         .result-tile:hover .tile-dl { display: block; }
+        .result-tile .tile-retry-btn {
+            background: var(--panel); color: var(--text-dim); border: 1px solid var(--border);
+            border-radius: 6px; padding: 4px 9px; font-size: 10.5px; font-weight: 500;
+        }
+        .result-tile .tile-retry-btn:hover { color: var(--accent); border-color: var(--accent); background: var(--panel); }
         #placeholder-text { grid-column: 1 / -1; color: var(--text-dim); font-size: 13px; text-align: center; align-self: center; padding: 0 10px; }
         .btn-download { background: var(--ok) !important; margin-top: 12px; width: 100%; }
         .btn-download:hover { background: var(--ok-hover) !important; }
@@ -616,6 +621,10 @@
         document.getElementById('download-btn').style.display = "inline-block";
     }
 
+    function tileStatusHTML(i, text) {
+        return `<span class="tile-index">${String(i + 1).padStart(2, '0')}</span><span class="tile-status">${text}</span>`;
+    }
+
     function fillTile(i, imgSrc) {
         const tile = document.getElementById('tile-' + i);
         tile.innerHTML = "";
@@ -635,9 +644,16 @@
         if (selectedTileIndex === null) selectTile(i);
     }
 
-    function failTile(i) {
+    function failTile(i, urlBuilder) {
         const tile = document.getElementById('tile-' + i);
-        tile.innerHTML = `<span class="tile-index">${String(i + 1).padStart(2, '0')}</span><span class="tile-status">❌ Falhou</span>`;
+        tile.innerHTML = tileStatusHTML(i, "❌ Falhou");
+        if (urlBuilder) {
+            const retryBtn = document.createElement('button');
+            retryBtn.className = "tile-retry-btn";
+            retryBtn.innerText = "🔄 Tentar novamente";
+            retryBtn.onclick = (e) => { e.stopPropagation(); loadIntoTile(i, urlBuilder, 0); };
+            tile.appendChild(retryBtn);
+        }
     }
 
     // ---------- Geração ----------
@@ -691,12 +707,14 @@
             const h = uploadedImageSize ? uploadedImageSize.height : 1024;
 
             for (let i = 0; i < VARIANT_COUNT; i++) {
-                const seed = Math.floor(Math.random() * 9999999);
-                const url = `https://image.pollinations.ai/prompt/${fullPromptEncoded}?model=kontext&image=${encodeURIComponent(imageSource)}&width=${w}&height=${h}&seed=${seed}&nologo=true`;
-                loadIntoTile(i, url);
+                const urlBuilder = () => {
+                    const seed = Math.floor(Math.random() * 9999999);
+                    return `https://image.pollinations.ai/prompt/${fullPromptEncoded}?model=kontext&image=${encodeURIComponent(imageSource)}&width=${w}&height=${h}&seed=${seed}&nologo=true`;
+                };
+                setTimeout(() => loadIntoTile(i, urlBuilder), i * 900);
             }
             status.innerHTML = publicUrl
-                ? "🎨 Editando imagem a partir da URL informada (5 variações)..."
+                ? "🎨 Editando imagem a partir da URL informada (enviando uma de cada vez)..."
                 : "🎨 Editando imagem enviada (se falhar, use a URL pública abaixo do canvas)...";
             genBtn.classList.remove('generating');
             return;
@@ -704,30 +722,40 @@
 
         // ---- Provedores por URL (Pollinations txt2img, LoremFlickr) ----
         for (let i = 0; i < VARIANT_COUNT; i++) {
-            const seed = Math.floor(Math.random() * 9999999);
-            let url = "";
-            switch (provider) {
-                case "pollinations_flux":
-                    url = `https://image.pollinations.ai/prompt/${fullPromptEncoded}?width=1024&height=1024&model=flux&seed=${seed}&nologo=true`;
-                    break;
-                case "pollinations_turbo":
-                    url = `https://image.pollinations.ai/prompt/${fullPromptEncoded}?width=1024&height=1024&model=turbo&seed=${seed}&nologo=true`;
-                    break;
-                case "lorem_flickr":
-                    const tags = cleanPrompt.toLowerCase().split(/\s+/).filter(w => w.length > 2).slice(0, 3).join(',');
-                    url = `https://loremflickr.com/1024/1024/${encodeURIComponent(tags)}?lock=${seed}`;
-                    break;
-            }
-            loadIntoTile(i, url);
+            const urlBuilder = () => {
+                const seed = Math.floor(Math.random() * 9999999);
+                switch (provider) {
+                    case "pollinations_flux":
+                        return `https://image.pollinations.ai/prompt/${fullPromptEncoded}?width=1024&height=1024&model=flux&seed=${seed}&nologo=true`;
+                    case "pollinations_turbo":
+                        return `https://image.pollinations.ai/prompt/${fullPromptEncoded}?width=1024&height=1024&model=turbo&seed=${seed}&nologo=true`;
+                    case "lorem_flickr":
+                        const tags = cleanPrompt.toLowerCase().split(/\s+/).filter(w => w.length > 2).slice(0, 3).join(',');
+                        return `https://loremflickr.com/1024/1024/${encodeURIComponent(tags)}?lock=${seed}`;
+                }
+            };
+            setTimeout(() => loadIntoTile(i, urlBuilder), i * 900);
         }
-        status.innerHTML = "🎨 Renderizando 5 imagens (pode levar até 20 segundos)...";
+        status.innerHTML = "🎨 Renderizando 5 imagens, uma de cada vez para evitar bloqueios (pode levar até 40 segundos)...";
         genBtn.classList.remove('generating');
     }
 
-    function loadIntoTile(i, url) {
+    const MAX_AUTO_RETRIES = 2;
+
+    function loadIntoTile(i, urlBuilder, attempt) {
+        attempt = attempt || 0;
+        const url = urlBuilder();
         const img = new Image();
         img.onload = () => fillTile(i, url);
-        img.onerror = () => failTile(i);
+        img.onerror = () => {
+            if (attempt < MAX_AUTO_RETRIES) {
+                const tile = document.getElementById('tile-' + i);
+                if (tile) tile.innerHTML = tileStatusHTML(i, `Tentando de novo (${attempt + 1}/${MAX_AUTO_RETRIES})...`);
+                setTimeout(() => loadIntoTile(i, urlBuilder, attempt + 1), 1400 * (attempt + 1));
+            } else {
+                failTile(i, urlBuilder);
+            }
+        };
         img.src = url;
     }
 

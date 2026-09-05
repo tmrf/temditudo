@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Live do Thosmao</title>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    video {
+      width: 80%;
+      max-width: 720px;
+    }
+
+    .live-controls {
+      margin-top: 15px;
+    }
+
+    #liveButton {
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, opacity 0.3s ease;
+    }
+
+    #liveButton.live {
+      background-color: gray;
+      color: white;
+    }
+
+    #liveButton.not-live {
+      background-color: red;
+      color: white;
+    }
+
+    #liveButton.hidden {
+      display: none;
+    }
+
+    #status {
+      display: inline-block;
+      font-weight: bold;
+      font-size: 16px;
+      margin-left: 15px;
+      vertical-align: middle;
+    }
+
+    #status.live::before {
+      content: "🔴";
+      animation: pulse 1.2s infinite;
+      margin-right: 5px;
+    }
+
+    #status.not-live::before {
+      content: "🕒";
+      margin-right: 5px;
+    }
+
+    #status.paused::before {
+      content: "⏸️";
+      margin-right: 5px;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    /* Tema Escuro */
+    body.dark-mode {
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    /* Tema Claro */
+    body.light-mode {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
+    #themeToggle {
+      margin-top: 20px;
+      padding: 8px 18px;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #444;
+      color: white;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.light-mode #themeToggle {
+      background-color: #ddd;
+      color: #000;
+    }
+  </style>
+</head>
+<body class="dark-mode">
+  <h1>Os cara estão no telhado</h1>
+
+  <video id="video" controls autoplay></video>
+
+  <div class="live-controls">
+    <button id="liveButton" class="not-live" onclick="goLive()">Ir para 🔴 Ao Vivo</button>
+    <span id="status" class="not-live">Atrasado</span>
+  </div>
+
+  <button id="themeToggle" onclick="toggleTheme()">☀️ Modo Claro</button>
+
+  <script>
+    const video = document.getElementById('video');
+    const liveButton = document.getElementById('liveButton');
+    const status = document.getElementById('status');
+    const themeToggle = document.getElementById('themeToggle');
+    const videoSrc = 'http://[2804:54d0:b000:30d8:f7c:e942:9d12:a5a2]:8888/live/index.m3u8';
+    let hls;
+    let wasLive = false;
+
+    function goLive() {
+      if (video.readyState >= 1) {
+        video.currentTime = video.duration;
+        video.play();
+      }
+    }
+
+    function updateLiveStatus() {
+      if (video.readyState >= 1) {
+        if (video.paused) {
+          status.textContent = 'Pausado';
+          status.className = 'paused';
+          liveButton.className = 'not-live';
+          liveButton.style.display = 'inline-block';
+        } else {
+          const isLive = (video.duration - video.currentTime) < 2;
+
+          if (isLive) {
+            status.textContent = 'Ao Vivo';
+            status.className = 'live';
+            liveButton.style.display = 'none'; // Esconde botão se já está ao vivo
+            wasLive = true;
+          } else {
+            status.textContent = 'Atrasado';
+            status.className = 'not-live';
+            liveButton.className = 'not-live';
+            liveButton.style.display = 'inline-block';
+
+            if (!wasLive) {
+              if (navigator.vibrate) navigator.vibrate(200);
+              wasLive = true;
+            }
+          }
+        }
+      }
+    }
+
+    setInterval(updateLiveStatus, 1000);
+
+    // HLS Setup
+    if (Hls.isSupported()) {
+      hls = new Hls();
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        video.play();
+      });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      video.src = videoSrc;
+      video.addEventListener('loadedmetadata', () => {
+        video.play();
+      });
+    } else {
+      alert("Seu navegador não suporta HLS");
+    }
+
+    // Alterna entre temas
+    function toggleTheme() {
+      const body = document.body;
+      body.classList.toggle('dark-mode');
+      body.classList.toggle('light-mode');
+
+      if (body.classList.contains('dark-mode')) {
+        themeToggle.textContent = '☀️ Modo Claro';
+      } else {
+        themeToggle.textContent = '🌙 Modo Escuro';
+      }
+    }
+  </script>
+</body>
+</html>

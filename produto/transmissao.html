@@ -168,8 +168,8 @@
 if (Hls.isSupported()) {
 hls = new Hls({
   backBufferLength: 10,
-  liveSyncDurationCount: 2,
-  liveMaxLatencyDurationCount: 4,
+  liveSyncDurationCount: 4,
+  liveMaxLatencyDurationCount: 8,
   maxLiveSyncPlaybackRate: 1.3
 });
   hls.loadSource(videoSrc);

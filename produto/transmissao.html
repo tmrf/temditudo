@@ -166,12 +166,12 @@
 
    // HLS Setup
 if (Hls.isSupported()) {
-  hls = new Hls({
-    backBufferLength: 10,
-    liveSyncDurationCount: 3,
-    liveMaxLatencyDurationCount: 6,
-    maxLiveSyncPlaybackRate: 1.3
-  });
+hls = new Hls({
+  backBufferLength: 10,
+  liveSyncDurationCount: 2,
+  liveMaxLatencyDurationCount: 4,
+  maxLiveSyncPlaybackRate: 1.3
+});
   hls.loadSource(videoSrc);
   hls.attachMedia(video);
   hls.on(Hls.Events.MANIFEST_PARSED, () => {

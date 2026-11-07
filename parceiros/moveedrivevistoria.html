@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Premium de Vistoria</title>
     <!-- Tailwind CSS para Estilização Moderna -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://tailwindcss.com"></script>
     <!-- Google Fonts (Inter) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com" rel="stylesheet">
     <!-- FontAwesome para Ícones Modernos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cloudflare.com">
     
     <style>
         body { font-family: 'Inter', sans-serif; }
@@ -146,93 +146,85 @@
                         gpsInfo.textContent = `COORDENADAS: LAT ${position.coords.latitude.toFixed(5)} | LON ${position.coords.longitude.toFixed(5)}`;
                         btnEnviar.disabled = false;
                     },
-                    (error) => {
-                        gpsStatus.innerHTML = '<i class="fa-solid fa-circle-exclamation text-sm text-rose-400"></i> <span class="text-rose-400">Localização Obrigatória Bloqueada</span>';
-                        gpsStatus.className = "flex items-center justify-center gap-2 p-3 rounded-xl text-xs font-semibold mb-6 bg-rose-500/10 text-rose-400 border border-rose-500/20 transition-all";
-                        btnEnviar.disabled = true;
-                    },
-                    { enableHighAccuracy: true }
-                );
-            }
-        }
-
-        window.onload = obterLocalizacao;
-
-        // Gerenciador e Feedbacks Visuais de Upload (Foto)
-        document.getElementById('fotoInput').addEventListener('change', function(e) {
-            const file = e.target.files;
-            if (file) {
-                document.getElementById('fotoLabel').textContent = "Foto Capturada ✓";
-                const preview = document.getElementById('fotoPreview');
-                preview.src = URL.createObjectURL(file);
-                preview.classList.remove('hidden');
-            }
-        });
-
-        // Gerenciador e Feedbacks Visuais de Upload (Vídeo)
-        document.getElementById('videoInput').addEventListener('change', function(e) {
-            const file = e.target.files;
-            if (file) {
-                document.getElementById('videoLabel').textContent = "Vídeo Gravado ✓";
-                const preview = document.getElementById('videoPreview');
-                preview.src = URL.createObjectURL(file);
-                preview.classList.remove('hidden');
-            }
-        });
-
-        // Integração de Envio com Conversão em Base64 para o Drive
-        document.getElementById('vistoriaForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const btn = document.getElementById('btnEnviar');
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fa-solid fa-spinner animate-spin"></i> Processando Mídias...';
-
-            const toBase64 = file => new Promise((resolve, reject) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => resolve(reader.result.split(','));
-                reader.onerror = error => reject(error);
-            });
-
-            try {
-                const fotoFile = document.getElementById('fotoInput').files;
-                const videoFile = document.getElementById('videoInput').files;
-
-                const dadosParaEnviar = {
-                    nome: document.getElementById('nomeInput').value,
-                    placa: document.getElementById('placaInput').value,
-                    latitude: latInput.value,
-                    longitude: lonInput.value,
-                    fotoTipo: fotoFile.type,
-                    fotoData: await toBase64(fotoFile),
-                    videoTipo: videoFile.type,
-                    videoData: await toBase64(videoFile)
-                };
-
-                // COLE A SUA URL DO SEU GOOGLE APPS SCRIPT AQUI
+                    (error) => {gpsStatus.innerHTML = ' Localização Obrigatória Bloqueada';
+gpsStatus.className = "flex items-center justify-center gap-2 p-3 rounded-xl text-xs font-semibold mb-6 bg-rose-500/10 text-rose-400 border border-rose-500/20 transition-all";
+btnEnviar.disabled = true;
+},
+{ enableHighAccuracy: true }
+);
+}
+}
+window.onload = obterLocalizacao;
+// Gerenciador e Feedbacks Visuais de Upload (Foto)
+document.getElementById('fotoInput').addEventListener('change', function(e) {
+const files = e.target.files;
+if (files && files.length > 0) {
+document.getElementById('fotoLabel').textContent = "Foto Capturada ✓";
+const preview = document.getElementById('fotoPreview');
+preview.src = URL.createObjectURL(files[0]);
+preview.classList.remove('hidden');
+}
+});
+// Gerenciador e Feedbacks Visuais de Upload (Vídeo)
+document.getElementById('videoInput').addEventListener('change', function(e) {
+const files = e.target.files;
+if (files && files.length > 0) {
+document.getElementById('videoLabel').textContent = "Vídeo Gravado ✓";
+const preview = document.getElementById('videoPreview');
+preview.src = URL.createObjectURL(files[0]);
+preview.classList.remove('hidden');
+}
+});
+// Integração de Envio corrigida para capturar o arquivo único binário (.files[0])
+document.getElementById('vistoriaForm').addEventListener('submit', async function(e) {
+e.preventDefault();
+const btn = document.getElementById('btnEnviar');
+btn.disabled = true;
+btn.innerHTML = ' Processando Mídias...';
+const toBase64 = file => new Promise((resolve, reject) => {
+const reader = new FileReader();
+reader.readAsDataURL(file);
+reader.onload = () => {
+const resultParts = reader.result.split(',');
+resolve(resultParts[1]); // Pega apenas a string Base64 limpa
+};
+reader.onerror = error => reject(error);
+});
+try {
+const fotoInputEl = document.getElementById('fotoInput');
+const videoInputEl = document.getElementById('videoInput');
+if (fotoInputEl.files.length === 0 || videoInputEl.files.length === 0) {
+throw new Error("Você precisa capturar a foto e o vídeo antes de enviar.");
+}
+const fotoObj = fotoInputEl.files[0];
+const videoObj = videoInputEl.files[0];
+const dadosParaEnviar = {
+nome: document.getElementById('nomeInput').value,
+placa: document.getElementById('placaInput').value,
+latitude: latInput.value,
+longitude: lonInput.value,
+fotoTipo: fotoObj.type,
+fotoData: await toBase64(fotoObj),
+videoTipo: videoObj.type,
+videoData: await toBase64(videoObj)
+};
+// COLE A SUA URL DO SEU GOOGLE APPS SCRIPT AQUI
                 const URL_GOOGLE_SCRIPT = "https://script.google.com/macros/s/AKfycbzicUtYk2nJf4ER2NojH2Pb9QajC_MZAgHqHYPlxjAysGR2G6F64qSFuRC2LO7jp70VOw/exec";
+const resposta = await fetch(URL_GOOGLE_SCRIPT, {
+method: "POST",
+body: JSON.stringify(dadosParaEnviar)
+});
+const resultado = await resposta.json();
+if(resultado.status === "sucesso") {
+alert("✅ Inspeção concluída e enviada com sucesso!");
+window.location.reload();
+} else {
+throw new Error(resultado.mensagem);
+}
+} catch (erro) {
+alert("❌ Falha crítica no envio: " + erro.message);
+btn.disabled = false;
+btn.innerHTML = ' Finalizar Vistoria';
+}
+});
 
-                const resposta = await fetch(URL_GOOGLE_SCRIPT, {
-                    method: "POST",
-                    body: JSON.stringify(dadosParaEnviar)
-                });
-
-                const resultado = await resposta.json();
-
-                if(resultado.status === "sucesso") {
-                    alert("✅ Inspeção concluída e enviada com sucesso!");
-                    window.location.reload();
-                } else {
-                    throw new Error(resultado.mensagem);
-                }
-
-            } catch (erro) {
-                alert("❌ Falha crítica no envio: " + erro.message);
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i> Finalizar Vistoria';
-            }
-        });
-    </script>
-</body>
-</html>
